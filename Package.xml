@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<umbPackage>
+	<info>
+		<package>
+			<name>The Dashboard</name>
+			<version>0.0</version>
+			<license url="http://www.opensource.org/licenses/mit-license.php">MIT license</license>
+			<url>http://our.umbraco.org/projects/</url>
+			<requirements>
+				<major>7</major>
+				<minor>0</minor>
+				<patch>0</patch>
+			</requirements>
+		</package>
+		<author>
+			<name>Markus Johansson</name>
+			<website>http://twitter.com/markusjoha</website>
+		</author>
+		<readme><![CDATA[]]></readme>
+	</info>
+
+	<DocumentTypes />
+	<Templates />
+	<Stylesheets />
+	<Macros />
+	<DictionaryItems />
+	<Languages />
+	<DataTypes />
+  <Actions>
+    <Action runat="install" alias="addDashboardSection" dashboardAlias="TheDashboard">
+      <section>
+        <areas>
+          <area>content</area>
+        </areas>
+        <tab caption="Welcome">
+          <control showOnce="true" addPanel="true" panelCaption="">
+            /app_plugins/TheDashboard/TheDashboard.html
+          </control>
+        </tab>
+      </section>
+    </Action>
+  </Actions>
+  <control />
+
+	<files />
+
+</umbPackage>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Our.Umbraco.TheDashboard</id>
+    <version>0.0.0</version>
+    <title>The Dashboard for Umbraco</title>
+    <description>A magical dashboard for Umbraco 7</description>
+    <authors>Marks Johansson</authors>
+    <projectUrl>https://github.com/</projectUrl>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <copyright>Copyright (c) Enkel Media Stockholm</copyright>
+    <summary />
+    <language />
+    <dependencies>
+      <dependency id="UmbracoCms.Core" version="7.0.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\MIT-LICENSE.txt" target="MIT-LICENSE.txt" />
+  </files>
+</package>

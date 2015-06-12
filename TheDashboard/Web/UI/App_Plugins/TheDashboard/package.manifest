@@ -1,0 +1,9 @@
+﻿{
+    "javascript" : [
+        "/app_plugins/thedashboard/thedashboard.controller.js"
+    ],
+    "css" : [ 
+        "/app_plugins/thedashboard/thedashboard.css"
+    ]
+
+}
