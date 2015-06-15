@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Http;
 using TheDashboard.Api.Attributes;
 using TheDashboard.Core;
@@ -11,10 +12,12 @@ using Umbraco.Core.Models;
 using Umbraco.Core.Models.Membership;
 using Umbraco.Web.Editors;
 using Umbraco.Web.WebApi;
+#pragma warning disable 612,618
+using Action = umbraco.BusinessLogic.Actions.Action;
+#pragma warning restore 612,618
 
 namespace TheDashboard.Api
 {
-
     [IsBackOffice]
     [CamelCaseController]
     public class TheDashboardController : UmbracoAuthorizedJsonController
@@ -22,54 +25,50 @@ namespace TheDashboard.Api
         [HttpGet]
         public DashboardViewModel GetViewModel()
         {
-
-            var repo = new UmbracoRepository();
-
-            var listUnpublishedContent = repo.GetUnpublishedConent();
-            var logItems = repo.GetLatestLogItems();
-            var nodesInRecyleBin = repo.GetRecycleBinNodes().Select(x => x.Id).ToArray();
-
+            var umbracoRepository = new UmbracoRepository();
             var dashboardViewModel = new DashboardViewModel();
+
+            var unpublishedContent = umbracoRepository.GetUnpublishedContent().ToArray();
+            var logItems = umbracoRepository.GetLatestLogItems().ToArray();
+            var nodesInRecyleBin = umbracoRepository.GetRecycleBinNodes().Select(x => x.Id).ToArray();
 
             foreach (var logItem in logItems.Take(10))
             {
-            
                 var user = GetUser(logItem.UserId);
                 var contentNode = GetContent(logItem.NodeId);
              
                 if (contentNode == null || !CurrentUserHasPermissions(contentNode))
                     continue;
 
-                var vm = new ActivityViewModel();
-                vm.UserDisplayName = user.Name;
-                vm.UserAvatarUrl = UserAvatarProvider.GetAvatarUrl(user);
-                vm.NodeId = logItem.NodeId;
-                vm.NodeName = contentNode.Name;
-                vm.Message = logItem.Comment;
-                vm.LogItemType = logItem.LogType.ToString();
-                vm.Timestamp = logItem.Timestamp;
+                var activityViewModel = new ActivityViewModel
+                    {
+                        UserDisplayName = user.Name,
+                        UserAvatarUrl = UserAvatarProvider.GetAvatarUrl(user),
+                        NodeId = logItem.NodeId,
+                        NodeName = contentNode.Name,
+                        Message = logItem.Comment,
+                        LogItemType = logItem.LogType.ToString(),
+                        Timestamp = logItem.Timestamp
+                    };
 
-                var unpublishedVersionOfLogItem = listUnpublishedContent.FirstOrDefault(x => x.NodeId == logItem.NodeId && x.ReleaseDate != null);
+                var unpublishedVersionOfLogItem = unpublishedContent.FirstOrDefault(x => x.NodeId == logItem.NodeId && x.ReleaseDate != null);
                 if (logItem.LogType == LogTypes.Save && unpublishedVersionOfLogItem != null && unpublishedVersionOfLogItem.UpdateDate != null)
                 {
                     if(logItem.Timestamp.IsSameMinuteAs(unpublishedVersionOfLogItem.UpdateDate.Value))
-                    vm.LogItemType = "SavedAndScheduled";
-                    vm.ScheduledPublishDate = unpublishedVersionOfLogItem.ReleaseDate;
+                    activityViewModel.LogItemType = "SavedAndScheduled";
+                    activityViewModel.ScheduledPublishDate = unpublishedVersionOfLogItem.ReleaseDate;
                 }
 
                 if (logItem.LogType == LogTypes.UnPublish && nodesInRecyleBin.Contains(logItem.NodeId))
                 {
-                    vm.LogItemType = "UnPublishToRecycleBin";
+                    activityViewModel.LogItemType = "UnPublishToRecycleBin";
                 }
 
-                dashboardViewModel.Activities.Add(vm);
-                
+                dashboardViewModel.Activities.Add(activityViewModel);
             }
 
-            
-            foreach (var item in listUnpublishedContent.Where(x => x.ReleaseDate == null))
+            foreach (var item in unpublishedContent.Where(x => x.ReleaseDate == null))
             {
-                
                 var user = GetUser(item.DocumentUser);
                 var contentNode = GetContent(item.NodeId);
 
@@ -78,19 +77,18 @@ namespace TheDashboard.Api
                 if (contentNode == null || !CurrentUserHasPermissions(contentNode) || nodesInRecyleBin.Contains(contentNode.Id))
                     continue;
 
-                var vm = new ActivityViewModel();
-                vm.UserDisplayName = user.Name;
-                vm.UserAvatarUrl = UserAvatarProvider.GetAvatarUrl(user);
-                vm.NodeId = item.NodeId;
-                vm.NodeName = contentNode.Name;
-                vm.Timestamp = item.UpdateDate.Value;
+                var activityViewModel = new ActivityViewModel
+                    {
+                        UserDisplayName = user.Name,
+                        UserAvatarUrl = UserAvatarProvider.GetAvatarUrl(user),
+                        NodeId = item.NodeId,
+                        NodeName = contentNode.Name,
+                        Timestamp = item.UpdateDate != null ? item.UpdateDate.Value : (DateTime?) null
+                    };
 
-
-                dashboardViewModel.UnpublishedContent.Add(vm);
-
+                dashboardViewModel.UnpublishedContent.Add(activityViewModel);
             }
 
-            
             foreach (var item in logItems.Where(x => x.UserId == Security.CurrentUser.Id).Take(10))
             {
                 var contentNode = GetContent(item.NodeId);
@@ -98,19 +96,20 @@ namespace TheDashboard.Api
                 if (contentNode == null || !CurrentUserHasPermissions(contentNode))
                     continue;
 
-                var vm = new ActivityViewModel();
-                vm.NodeId = item.NodeId;
-                vm.NodeName = contentNode.Name;
-                vm.LogItemType = item.LogType.ToString();
-                vm.Timestamp = item.Timestamp;
+                var activityViewModel = new ActivityViewModel
+                    {
+                        NodeId = item.NodeId,
+                        NodeName = contentNode.Name,
+                        LogItemType = item.LogType.ToString(),
+                        Timestamp = item.Timestamp
+                    };
 
-                dashboardViewModel.UserRecentActivity.Add(vm);
-
+                dashboardViewModel.UserRecentActivity.Add(activityViewModel);
             }
 
-            dashboardViewModel.CountPublishedNodes = repo.CountPublishedNodes();
-            dashboardViewModel.CountTotalWebsiteMembers = repo.CountMembers();
-            dashboardViewModel.CountNewMembersLastWeek = repo.CountNewMember();
+            dashboardViewModel.CountPublishedNodes = umbracoRepository.CountPublishedNodes();
+            dashboardViewModel.CountTotalWebsiteMembers = umbracoRepository.CountMembers();
+            dashboardViewModel.CountNewMembersLastWeek = umbracoRepository.CountNewMember();
             dashboardViewModel.CountContentInRecycleBin = nodesInRecyleBin.Count();
 
             return dashboardViewModel;
@@ -118,9 +117,8 @@ namespace TheDashboard.Api
 
         private bool CurrentUserHasPermissions(IContent contentNode)
         {
-            return global::umbraco.BusinessLogic.Actions.Action.FromString(UmbracoUser.GetPermissions(contentNode.Path)).OfType<ActionBrowse>().Any();
+            return Action.FromString(UmbracoUser.GetPermissions(contentNode.Path)).OfType<ActionBrowse>().Any();
         }
-
 
         private IUser GetUser(int id)
         {
@@ -132,6 +130,5 @@ namespace TheDashboard.Api
             var doc = Services.ContentService.GetById(id);
             return doc;
         }
-
     }
 }
