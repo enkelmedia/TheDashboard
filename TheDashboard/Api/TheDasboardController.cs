@@ -28,7 +28,7 @@ namespace TheDashboard.Api
             var umbracoRepository = new UmbracoRepository();
             var dashboardViewModel = new DashboardViewModel();
 
-            var unpublishedContent = umbracoRepository.GetUnpublishedContent().Take(10).ToArray();
+            var unpublishedContent = umbracoRepository.GetUnpublishedContent().ToArray();
             var logItems = umbracoRepository.GetLatestLogItems().ToArray();
             var nodesInRecyleBin = umbracoRepository.GetRecycleBinNodes().Select(x => x.Id).ToArray();
 
