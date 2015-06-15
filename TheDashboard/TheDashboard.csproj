@@ -203,7 +203,6 @@
     <Content Include="Web\UI\App_Plugins\TheDashboard\TheDashboard.controller.js" />
     <Content Include="Web\UI\App_Plugins\TheDashboard\TheDashboard.css" />
     <Content Include="Web\UI\App_Plugins\TheDashboard\TheDashboard.html" />
-    <Content Include="Web\UI\App_Plugins\TheDashboard\umbraco-guy.png" />
     <Content Include="packages.config" />
     <Content Include="Web\UI\App_Plugins\TheDashboard\package.manifest" />
     <None Include="Web.Debug.config">

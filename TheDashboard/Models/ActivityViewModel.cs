@@ -10,7 +10,7 @@ namespace TheDashboard.Models
         public string NodeName { get; set; }
         public int NodeId { get; set; }
         public string LogItemType { get; set; }
-        public DateTime Timestamp { get; set; }
+        public DateTime? Timestamp { get; set; }
         public DateTime? ScheduledPublishDate { get; set; }
     }
 }
