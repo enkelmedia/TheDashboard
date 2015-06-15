@@ -51,7 +51,7 @@ namespace TheDashboard.Data
 
         //select * from cmsMember 
 
-        public IEnumerable<UnpublishedNode> GetUnpublishedConent(int userId = 0)
+        public IEnumerable<UnpublishedNode> GetUnpublishedContent(int userId = 0)
         {
             //TODO: What about nodes thats intentional left unpublished?
 
@@ -61,13 +61,13 @@ namespace TheDashboard.Data
                 userSqlFilter = " and documentUser=" + userId;
             }
 
-            var list = UmbracoContext.Current.Application.DatabaseContext.Database.Fetch<UnpublishedNode>(@"
+            var unpublishedContent = UmbracoContext.Current.Application.DatabaseContext.Database.Fetch<UnpublishedNode>(@"
               SELECT [nodeId] ,[text], [documentUser], [releaseDate], [updateDate]
               FROM [cmsDocument]
               WHERE newest =1 and published = 0" + userSqlFilter);
               //WHERE newest =1 and published = 0 and releaseDate is null" + userSqlFilter);
 
-            return list;
+            return unpublishedContent;
         }
 
         public IEnumerable<LogItem> GetLatestLogItems()
