@@ -22,7 +22,7 @@
 	****************************************
   -->
   <PropertyGroup>
-	  <PackageVersion>1.4</PackageVersion>
+	  <PackageVersion>1.0</PackageVersion>
     <BuildConfiguration>Release</BuildConfiguration>
   </PropertyGroup>
 

@@ -3,7 +3,7 @@
 	<info>
 		<package>
 			<name>The Dashboard</name>
-			<version>0.0</version>
+			<version>1.0</version>
 			<license url="http://www.opensource.org/licenses/mit-license.php">MIT license</license>
 			<url>http://our.umbraco.org/projects/</url>
 			<requirements>
