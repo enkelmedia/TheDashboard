@@ -5,7 +5,6 @@ using TheDashboard.Api.Attributes;
 using TheDashboard.Core;
 using TheDashboard.Core.Extentions;
 using TheDashboard.Data;
-using TheDashboard.Data.DTO;
 using TheDashboard.Models;
 using umbraco.BusinessLogic;
 using umbraco.BusinessLogic.Actions;
@@ -13,7 +12,9 @@ using Umbraco.Core.Models;
 using Umbraco.Core.Models.Membership;
 using Umbraco.Web.Editors;
 using Umbraco.Web.WebApi;
+#pragma warning disable 612,618
 using Action = umbraco.BusinessLogic.Actions.Action;
+#pragma warning restore 612,618
 
 namespace TheDashboard.Api
 {
