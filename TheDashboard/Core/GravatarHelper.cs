@@ -28,6 +28,5 @@ namespace TheDashboard.Core
 
             return sBuilder.ToString();  // Return the hexadecimal string. 
         }
-
     }
 }

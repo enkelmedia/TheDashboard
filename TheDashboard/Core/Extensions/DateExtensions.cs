@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace TheDashboard.Core.Extentions
+namespace TheDashboard.Core.Extensions
 {
-    public static class DateExtentions
+    public static class DateExtensions
     {
         public static bool IsSameMinuteAs(this DateTime date, DateTime checkDate)
         {
