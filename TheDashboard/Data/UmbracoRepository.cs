@@ -10,7 +10,6 @@ namespace TheDashboard.Data
 {
     public class UmbracoRepository
     {
-
         public IEnumerable<IContent> GetRecycleBinNodes()
         {
             return UmbracoContext.Current.Application.Services.ContentService.GetContentInRecycleBin();
@@ -18,7 +17,6 @@ namespace TheDashboard.Data
 
         public int CountPublishedNodes()
         {
-
             var res =
                 UmbracoContext.Current.Application.DatabaseContext.Database.ExecuteScalar<int>(@"SELECT COUNT(nodeId)
                     FROM [cmsDocument]
@@ -26,13 +24,12 @@ namespace TheDashboard.Data
             return res;
         }
 
-         public int CountContentInRecycleBin()
+        public int CountContentInRecycleBin()
         {
             //var res = UmbracoContext.Current.Application.DatabaseContext.Database.ExecuteScalar<int>(@"SELECT COUNT(nodeId) FROM [cmsDocument] inner join umbracoNode on cmsDocument.nodeId = umbracoNode.Id where umbracoNode.trashed = 1");
             var res = UmbracoContext.Current.Application.DatabaseContext.Database.ExecuteScalar<int>(@"SELECT COUNT(id) FROM umbracoNode where trashed = 1");
             return res;
         }
-        
 
         public int CountMembers()
         {
@@ -43,29 +40,27 @@ namespace TheDashboard.Data
         public int CountNewMember()
         {
             var res = UmbracoContext.Current.Application.DatabaseContext.Database.ExecuteScalar<int>(@"select COUNT(nodeId) from cmsMember
-                inner join umbracoNode on cmsMember.nodeId = umbraconode.id     
-                WHERE createDate > @0
-            ",DateTime.Now.AddDays(-7));
+                    inner join umbracoNode on cmsMember.nodeId = umbraconode.id     
+                    WHERE createDate > @0
+                ", DateTime.Now.AddDays(-7));
             return res;
         }
-
-        //select * from cmsMember 
 
         public IEnumerable<UnpublishedNode> GetUnpublishedContent(int userId = 0)
         {
             //TODO: What about nodes thats intentional left unpublished?
 
-            string userSqlFilter = "";
+            var userSqlFilter = string.Empty;
             if (userId != 0)
             {
                 userSqlFilter = " and documentUser=" + userId;
             }
 
             var unpublishedContent = UmbracoContext.Current.Application.DatabaseContext.Database.Fetch<UnpublishedNode>(@"
-              SELECT [nodeId] ,[text], [documentUser], [releaseDate], [updateDate]
-              FROM [cmsDocument]
-              WHERE newest =1 and published = 0" + userSqlFilter);
-              //WHERE newest =1 and published = 0 and releaseDate is null" + userSqlFilter);
+                SELECT [nodeId] ,[text], [documentUser], [releaseDate], [updateDate]
+                FROM [cmsDocument]
+                WHERE newest =1 and published = 0" + userSqlFilter);
+                //WHERE newest =1 and published = 0 and releaseDate is null" + userSqlFilter);
 
             return unpublishedContent;
         }
@@ -83,6 +78,5 @@ namespace TheDashboard.Data
 
             return logItems.OrderByDescending(x=>x.Timestamp).Where(x=>x.NodeId != -1);
         }
-
     }
 }

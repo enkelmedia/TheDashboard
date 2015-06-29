@@ -9,6 +9,5 @@ namespace TheDashboard.Data.DTO
         public int DocumentUser { get; set; }
         public DateTime? ReleaseDate { get; set; }
         public DateTime? UpdateDate { get; set; }
-
     }
 }

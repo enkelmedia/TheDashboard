@@ -28,7 +28,6 @@ namespace TheDashboard.Core
             }
 
             return HttpContext.Current.Application["dashboard_user_" + user.Id].ToString();
-
         }
     }
 }

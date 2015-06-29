@@ -1,15 +1,12 @@
-﻿
-angular.module("umbraco")
+﻿angular.module("umbraco")
     .controller("TheDashboard.Controller",
     function ($scope, $http, notificationsService) {
 
         $http.get('/umbraco/backoffice/api/TheDashboard/GetViewModel').
-          success(function (data, status, headers, config) {
-              
+            success(function (data, status, headers, config) {
                 $scope.vm = data;
             }).
-          error(function (data, status, headers, config) {
+            error(function (data, status, headers, config) {
               
-          });
-
+            });
     });

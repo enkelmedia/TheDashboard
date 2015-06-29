@@ -3,7 +3,7 @@ using System.Linq;
 using System.Web.Http;
 using TheDashboard.Api.Attributes;
 using TheDashboard.Core;
-using TheDashboard.Core.Extentions;
+using TheDashboard.Core.Extensions;
 using TheDashboard.Data;
 using TheDashboard.Models;
 using umbraco.BusinessLogic;
@@ -72,8 +72,8 @@ namespace TheDashboard.Api
                 var user = GetUser(item.DocumentUser);
                 var contentNode = GetContent(item.NodeId);
 
-                // Checking for null, makring sure that user has permissions and checking for this content node in the recycle bin. If its in the recycle bin
-                // we should no return this as an unpublished node.
+                // Checking for null, making sure that user has permissions and checking for this content node in the recycle bin. If its in the recycle bin
+                // we should not return this as an unpublished node.
                 if (contentNode == null || !CurrentUserHasPermissions(contentNode) || nodesInRecyleBin.Contains(contentNode.Id))
                     continue;
 

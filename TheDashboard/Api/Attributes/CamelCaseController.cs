@@ -19,7 +19,6 @@ namespace TheDashboard.Api.Attributes
             };
 
             controllerSettings.Formatters.Add(formatter);
-
         }
     }
 }
