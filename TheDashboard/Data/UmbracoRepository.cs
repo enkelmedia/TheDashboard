@@ -136,7 +136,7 @@ namespace TheDashboard.Data
         {
             return AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(s => s.GetTypes())
-                .Where(p => baseType.IsAssignableFrom(p) && p.IsClass && !p.Namespace.ToLower().StartsWith("umbraco."));
+                .Where(p => baseType.IsAssignableFrom(p) && p.IsClass && !p.IsAbstract && !p.Namespace.ToLower().StartsWith("umbraco."));
         }
 
         private static IEnumerable<string> GetActionMethodsOnController(Type controllerType, bool onlyGetMethods)

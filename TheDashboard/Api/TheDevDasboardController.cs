@@ -34,6 +34,7 @@ namespace TheDashboard.Api
                         Namespace = x.Namespace,
                         ActionMethods = x.ActionMethods,
                     })
+                    .OrderBy(x => x.Name)
                     .ToList();
 
             dashboardViewModel.SurfaceControllers =
@@ -44,6 +45,7 @@ namespace TheDashboard.Api
                         Namespace = x.Namespace,
                         ActionMethods = x.ActionMethods,
                     })
+                    .OrderBy(x => x.Name)
                     .ToList();
 
             dashboardViewModel.ApplicationEventHandlers =
@@ -53,6 +55,7 @@ namespace TheDashboard.Api
                         Name = x.Name,
                         Namespace = x.Namespace,
                     })
+                    .OrderBy(x => x.Name)
                     .ToList();
 
             dashboardViewModel.ContentFinders =
@@ -62,6 +65,7 @@ namespace TheDashboard.Api
                         Name = x.Name,
                         Namespace = x.Namespace,
                     })
+                    .OrderBy(x => x.Name)
                     .ToList();
 
             dashboardViewModel.CustomEvents.AddRange(GetCustomEventsForType(umbracoRepository,
@@ -92,7 +96,10 @@ namespace TheDashboard.Api
                             Name = y.Name,
                             Namespace = y.Namespace,
                         })
-                });
+                        .OrderBy(y => y.Name)
+                })
+                .OrderBy(x => x.ServiceName)
+                .ThenBy(x => x.EventName);
         }
     }
 }
