@@ -200,11 +200,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Web\UI\App_Plugins\TheDashboard\TheDevDashboard.controller.js" />
     <Content Include="Web\UI\App_Plugins\TheDashboard\TheDashboard.controller.js" />
     <Content Include="Web\UI\App_Plugins\TheDashboard\TheDashboard.css" />
     <Content Include="Web\UI\App_Plugins\TheDashboard\TheDashboard.html" />
     <Content Include="packages.config" />
     <Content Include="Web\UI\App_Plugins\TheDashboard\package.manifest" />
+    <Content Include="Web\UI\App_Plugins\TheDashboard\TheDevDashboard.html" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -217,14 +219,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\Attributes\CamelCaseController.cs" />
+    <Compile Include="Api\TheDevDasboardController.cs" />
     <Compile Include="Api\TheDasboardController.cs" />
     <Compile Include="Core\Extensions\DateExtensions.cs" />
     <Compile Include="Core\GravatarHelper.cs" />
     <Compile Include="Core\UserAvatarProvider.cs" />
+    <Compile Include="Data\DTO\CustomEventDto.cs" />
+    <Compile Include="Data\DTO\ReflectedClassDto.cs" />
+    <Compile Include="Data\DTO\ControllerDetailDto.cs" />
     <Compile Include="Data\UmbracoRepository.cs" />
-    <Compile Include="Models\DashboardViewModel.cs" />
-    <Compile Include="Models\ActivityViewModel.cs" />
-    <Compile Include="Data\DTO\UnpublishedNodeDTO.cs" />
+    <Compile Include="Models\DevDashboard\BaseClassViewModel.cs" />
+    <Compile Include="Models\DevDashboard\CustomEventViewModel.cs" />
+    <Compile Include="Models\DevDashboard\ContentFinderViewModel.cs" />
+    <Compile Include="Models\DevDashboard\ApplicationEventHandlerViewModel.cs" />
+    <Compile Include="Models\DevDashboard\BaseControllerViewModel.cs" />
+    <Compile Include="Models\DevDashboard\SurfaceControllerViewModel.cs" />
+    <Compile Include="Models\DevDashboard\HijackedRouteViewModel.cs" />
+    <Compile Include="Models\DevDashboard\DevDashboardViewModel.cs" />
+    <Compile Include="Models\Dashboard\DashboardViewModel.cs" />
+    <Compile Include="Models\Dashboard\ActivityViewModel.cs" />
+    <Compile Include="Data\DTO\UnpublishedNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -256,7 +270,7 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>XCOPY "$(ProjectDir)Web\UI" "$(SolutionDir)Umbraco7.Web.UI" /y /S</PostBuildEvent>
+    <PostBuildEvent>REM XCOPY "$(ProjectDir)Web\UI" "$(SolutionDir)Umbraco7.Web.UI" /y /S</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

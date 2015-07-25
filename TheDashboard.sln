@@ -1,12 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheDashboard", "TheDashboard\TheDashboard.csproj", "{967D7390-8E24-4E90-BEC4-F1C39231A92E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{B2B3088F-D407-4020-8D56-107D9F938F19}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
-		..\..\..\..\..\Downloads\Vorto-master\Vorto-master\MIT-LICENSE.txt = ..\..\..\..\..\Downloads\Vorto-master\Vorto-master\MIT-LICENSE.txt
+		..\..\..\..\Downloads\Vorto-master\Vorto-master\MIT-LICENSE.txt = ..\..\..\..\Downloads\Vorto-master\Vorto-master\MIT-LICENSE.txt
 		Package.build.cmd = Package.build.cmd
 		Package.build.xml = Package.build.xml
 		Package.nuspec = Package.nuspec
