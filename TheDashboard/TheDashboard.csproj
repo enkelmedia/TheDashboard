@@ -228,6 +228,8 @@
     <Compile Include="Data\DTO\ReflectedClassDto.cs" />
     <Compile Include="Data\DTO\ControllerDetailDto.cs" />
     <Compile Include="Data\UmbracoRepository.cs" />
+    <Compile Include="Install\PackageActions\RemoveOldInstallation.cs" />
+    <Compile Include="Install\PackageActions\TheDashboardPackageAction.cs" />
     <Compile Include="Models\DevDashboard\BaseClassViewModel.cs" />
     <Compile Include="Models\DevDashboard\CustomEventViewModel.cs" />
     <Compile Include="Models\DevDashboard\ContentFinderViewModel.cs" />
@@ -270,7 +272,7 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>REM XCOPY "$(ProjectDir)Web\UI" "$(SolutionDir)Umbraco7.Web.UI" /y /S</PostBuildEvent>
+    <PostBuildEvent>XCOPY "$(ProjectDir)Web\UI" "$(SolutionDir)Umbraco7.Web.UI" /y /S</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

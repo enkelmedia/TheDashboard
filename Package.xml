@@ -3,7 +3,7 @@
 	<info>
 		<package>
 			<name>The Dashboard</name>
-			<version>1.0</version>
+			<version>1.1</version>
 			<license url="http://www.opensource.org/licenses/mit-license.php">MIT license</license>
 			<url>http://our.umbraco.org/projects/</url>
 			<requirements>
@@ -27,30 +27,10 @@
 	<Languages />
 	<DataTypes />
   <Actions>
-    <Action runat="install" alias="addDashboardSection" dashboardAlias="TheDashboard">
-      <section>
-        <areas>
-          <area>content</area>
-        </areas>
-        <tab caption="Welcome">
-          <control showOnce="true" addPanel="true" panelCaption="">
-            /app_plugins/TheDashboard/TheDashboard.html
-          </control>
-        </tab>
-      </section>
-    </Action>
-    <Action runat="install" alias="addDashboardSection" dashboardAlias="TheDevDashboard">
-      <section>
-        <areas>
-          <area>developer</area>
-        </areas>
-        <tab caption="Developer Dashboard">
-          <control showOnce="true" addPanel="true" panelCaption="">
-            /app_plugins/TheDashboard/TheDevDashboard.html
-          </control>
-        </tab>
-      </section>
-    </Action>    
+    
+    <Action runat="install" undo="true" alias="TheDasboard"></Action>
+    <Action runat="install" alias="RemoveOldInstallation"></Action>
+    
   </Actions>
   <control />
 
