@@ -39,6 +39,18 @@
         </tab>
       </section>
     </Action>
+    <Action runat="install" alias="addDashboardSection" dashboardAlias="TheDevDashboard">
+      <section>
+        <areas>
+          <area>developer</area>
+        </areas>
+        <tab caption="Developer Dashboard">
+          <control showOnce="true" addPanel="true" panelCaption="">
+            /app_plugins/TheDashboard/TheDevDashboard.html
+          </control>
+        </tab>
+      </section>
+    </Action>    
   </Actions>
   <control />
 

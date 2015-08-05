@@ -1,15 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Web.Mvc;
 using TheDashboard.Data.DTO;
 using umbraco.BusinessLogic;
+using Umbraco.Core;
 using Umbraco.Core.Models;
+using Umbraco.Core.Services;
 using Umbraco.Web;
+using Umbraco.Web.Routing;
 
 namespace TheDashboard.Data
 {
     public class UmbracoRepository
     {
+        #region Content dashboard
+
         public IEnumerable<IContent> GetRecycleBinNodes()
         {
             return UmbracoContext.Current.Application.Services.ContentService.GetContentInRecycleBin();
@@ -78,5 +85,99 @@ namespace TheDashboard.Data
 
             return logItems.OrderByDescending(x=>x.Timestamp).Where(x=>x.NodeId != -1);
         }
+
+        #endregion
+
+        #region Developer dashboard
+
+        public IEnumerable<ControllerDetailDto> GetControllersAssignableFrom(Type baseType, bool populateOnlyGetActionMethods = false)
+        {
+            return GetNonCoreTypesAssignableFrom(baseType)
+                .Select(x => new ControllerDetailDto
+                {
+                    Name = x.Name,
+                    Namespace = x.Namespace,
+                    ActionMethods = GetActionMethodsOnController(x, populateOnlyGetActionMethods),
+                });
+        }
+
+        public IEnumerable<ReflectedClassDto> GetApplicationEventHandlers()
+        {
+            return GetNonCoreTypesAssignableFrom(typeof(IApplicationEventHandler))
+                .Select(x => new ReflectedClassDto
+                {
+                    Name = x.Name,
+                    Namespace = x.Namespace,
+                });
+        }
+
+        public IEnumerable<CustomEventDto> GetCustomEvents(IService serviceInstance)
+        {
+            return serviceInstance.GetType().GetEvents()
+                .Select(x => new CustomEventDto
+                {
+                    EventName = x.Name,
+                    Handlers = GetCustomEventHandlers(serviceInstance, x)
+                })
+                .Where(x => x.Handlers != null && x.Handlers.Any());
+        }
+
+        public IEnumerable<ReflectedClassDto> GetContentFinders()
+        {
+            return GetNonCoreTypesAssignableFrom(typeof (IContentFinder))
+                .Select(x => new ReflectedClassDto
+                {
+                    Name = x.Name,
+                    Namespace = x.Namespace,
+                });
+        }
+
+        private IEnumerable<Type> GetNonCoreTypesAssignableFrom(Type baseType)
+        {
+            return AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(s => s.GetTypes())
+                .Where(p => baseType.IsAssignableFrom(p) && p.IsClass && !p.IsAbstract && !p.Namespace.ToLower().StartsWith("umbraco."));
+        }
+
+        private static IEnumerable<string> GetActionMethodsOnController(Type controllerType, bool onlyGetMethods)
+        {
+            return controllerType.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly)
+                .Where(x => typeof (ActionResult).IsAssignableFrom(x.ReturnType) &&
+                            !x.Name.StartsWith("get_") &&
+                            (!onlyGetMethods || !x.GetCustomAttributes(typeof (HttpPostAttribute), false).Any()))
+                .Select(x => x.Name)
+                .OrderBy(x => x);
+        }
+
+        private static IEnumerable<ReflectedClassDto> GetCustomEventHandlers(IService serviceInstance, EventInfo eventInfo)
+        {
+            var fi = GetEventField(serviceInstance, eventInfo);
+            if (fi != null)
+            {
+                var del = fi.GetValue(serviceInstance) as Delegate;
+                if (del != null)
+                {
+                    return del.GetInvocationList()
+                        .Where(x => !x.Method.DeclaringType.FullName.ToLower().StartsWith("umbraco."))
+                        .Select(x => new ReflectedClassDto
+                        {
+                            Name = x.Method.Name,
+                            Namespace = x.Method.DeclaringType.FullName,
+                        });
+                    }
+            }
+
+            return null;
+        }
+
+        private static FieldInfo GetEventField(IService serviceInstance, EventInfo eventInfo)
+        {
+            return serviceInstance.GetType()
+                .GetField(eventInfo.Name,
+                    BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public |
+                    BindingFlags.FlattenHierarchy);
+        }
+
+        #endregion
     }
 }
