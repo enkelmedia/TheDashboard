@@ -7,7 +7,7 @@ div.logitem {
 
 div.logitem img {
     -ms-border-radius: 20px;
-    border-radius: 30px;
+    border-radius: 50%;
     box-shadow: 3px 5px 7px -2px #555;
     width: 55px;
     height: 55px;
@@ -16,7 +16,8 @@ div.logitem img {
     margin-bottom: 20px;
 }
 
-div.logitem span { font-size: 12px;font-style: italic;}
+div.logitem span { font-size: 12px; font-style: italic; }
+div.logitem.has-avatar p { padding-left: 70px; }
 
 div.number {
     margin-bottom: 10px;

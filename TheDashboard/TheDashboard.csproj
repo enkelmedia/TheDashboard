@@ -200,6 +200,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Web\UI\App_Plugins\TheDashboard\Lang\en-UK.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web\UI\App_Plugins\TheDashboard\Lang\en-US.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web\UI\App_Plugins\TheDashboard\Lang\da-DK.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web\UI\App_Plugins\TheDashboard\TheDevDashboard.controller.js" />
     <Content Include="Web\UI\App_Plugins\TheDashboard\TheDashboard.controller.js" />
     <Content Include="Web\UI\App_Plugins\TheDashboard\TheDashboard.css" />
