@@ -39,4 +39,13 @@ div.number div.dot.members {
 }
 div.number p { padding-top: 15px;}
 
+table.userLogTable{width: 100%; font-size: 12px;}
+table.userLogTable th{text-align: left;}
+table.userLogTable tr th, table.userLogTable tr td{border: #f2f2f2 solid 1px; padding: 5px;}
+
+span.filterSet{display: inline-block; margin-right: 7px}
+	span.filterSet label{display: inline-block; vertical-align: middle;}
+	span.filterSet input, span.filterSet select{vertical-align: middle; margin: 0;}
+
+
 /*div.umbracoguy { margin-top: 35px;}*/

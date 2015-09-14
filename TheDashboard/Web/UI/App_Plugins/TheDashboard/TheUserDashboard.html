@@ -1,0 +1,76 @@
+﻿<div class="row" ng-controller="TheUserDashboard.Controller" >
+	<span class="filterSet">
+		<label>Date:</label>
+		<select ng-options="item as (item | date:'M/d/yy') for item in dates track by item" ng-model="selectedDate" no-dirty-check>
+			<option value="">All</option>
+		</select>
+	</span>
+	<!--
+	<button type="button" class="btn btn-primary" ng-click="onAdminFilterClick('admin')">
+		Show Admin
+	</button>-->
+	<button type="button" class="btn btn-primary" ng-disabled="actionInProgress" ng-click="searchActivities()">
+		Search
+	</button>
+	
+    <div class="umb-pane" bs-affix-target="">
+        <h3>Activites</h3>
+        <p>Shows activites by usersy</p>
+		<table class="userLogTable" ng-table="tableParams" template-header="header" template-pagination="pager">
+			<!--
+			<thead>
+				<tr>
+					<th style="width:5%;">Node ID</th>
+					<th style="width:10%;">Text</th>
+					<th style="width:10%;">Date Stamp</th>
+					<th style="width:20%;">Log Header</th>
+					<th style="width:40%;">Comment</th>
+					<th style="width:15%;">Activity By</th>
+				</tr>
+			</thead>-->
+			<tbody>
+			<tr ng-repeat="item in $data">
+				<td data-title="'ID'" ng-bind="item.nodeId" style="width:5%;"></td>
+				<td data-title="'Text'" ng-bind="item.text" style="width:10%;"></td>
+				<td data-title="'Date'" ng-bind="item.realDate | date:'M/d/yy h:mm:ss a'" style="width:10%;"></td>
+				<td data-title="'Header'" ng-bind="item.logHeader" style="width:20%;"></td>
+				<td data-title="'Comment'" ng-bind="item.logComment" style="width:40%;"></td>
+				<td data-title="'Activity By'" ng-bind="item.username" style="width:15%;"></td>
+			</tr>
+			</tbody>
+		</table>
+    </div>
+</div>
+
+<!-- Pagination Template for ngTable log table -->
+<script type="text/ng-template" id="pager">
+    <div class="p-20">
+        <ul class="pager ng-cloak">
+            <li ng-repeat="page in pages"
+                ng-class="{'disabled': !page.active, 'previous': page.type == 'prev', 'next': page.type == 'next'}"
+                ng-show="page.type == 'prev' || page.type == 'next'" ng-switch="page.type">
+                <button type="button" ng-switch-when="prev" ng-click="params.page(page.number)" class="btn btn-default pull-left">&laquo; Previous</button>
+                <button type="button" ng-switch-when="next" ng-click="params.page(page.number)" class="btn btn-default pull-right">Next &raquo;</button>
+            </li>
+            <li>
+                <div class="btn-group">
+					<button type="button" ng-class="{'active':params.count() == 10}" ng-click="params.count(10)" class="btn btn-default">10</button>
+                    <button type="button" ng-class="{'active':params.count() == 25}" ng-click="params.count(25)" class="btn btn-default">25</button>
+                    <button type="button" ng-class="{'active':params.count() == 50}" ng-click="params.count(50)" class="btn btn-default">50</button>
+                    <button type="button" ng-class="{'active':params.count() == 100}" ng-click="params.count(100)" class="btn btn-default">100</button>
+					<button type="button" ng-class="{'active':params.count() == 200}" ng-click="params.count(200)" class="btn btn-default">200</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</script>
+
+<!-- Header Template for ngTable log table -->
+<script  type="text/ng-template" id="header">
+<tr>
+    <th title="{{$column.headerTitle(this)}}" ng-repeat="$column in $columns" ng-class="{ 'sortable': $column.sortable(this), 'sort-asc': params.sorting()[$column.sortable(this)]=='asc', 'sort-desc': params.sorting()[$column.sortable(this)]=='desc' }" ng-click="sortBy($column, $event)" ng-show="$column.show(this)" ng-init="template=$column.headerTemplateURL(this)" class="header {{$column.class(this)}}">
+        <div ng-if="!template" ng-show="!template" class="ng-table-header" ng-class="{'sort-indicator': $column.sortIndicator(this)=='div'}"> <span ng-bind="$column.title(this)" ng-class="{'sort-indicator': $column.sortIndicator(this)=='span'}"></span> </div>
+        <div ng-if="template" ng-show="template" ng-include="template"></div>
+    </th>
+</tr>
+</script>

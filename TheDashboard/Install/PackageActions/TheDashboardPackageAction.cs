@@ -10,12 +10,12 @@ namespace TheDashboard.Install.PackageActions
     {
         public string Alias()
         {
-            return "TheDasboard";
+            return "TheDashboard";
         }
 
         public XmlNode SampleXml()
         {
-            string sample = "<Action runat=\"install\" undo=\"true/false\" alias=\"TheDasboard\"/>";
+            string sample = "<Action runat=\"install\" undo=\"true/false\" alias=\"TheDashboard\"/>";
             return umbraco.cms.businesslogic.packager.standardPackageActions.helper.parseStringToXmlNode(sample);
         }
 
@@ -25,6 +25,7 @@ namespace TheDashboard.Install.PackageActions
 
             this.AddSectionDashboard("TheDashboard", "content", "Welcome", "/app_plugins/TheDashboard/TheDashboard.html");
             this.AddSectionDashboard("TheDevDashboard", "developer", "Developer dashboard", "/app_plugins/TheDashboard/TheDevDashboard.html");
+            this.AddSectionDashboard("TheUserDashboard", "users", "User session dashboard", "/app_plugins/TheDashboard/TheUserDashboard.html");
 
             return true;
         }
@@ -34,6 +35,7 @@ namespace TheDashboard.Install.PackageActions
             // Remove the dashboards from Dashboard.config
             this.RemoveDashboardTab("TheDashboard");
             this.RemoveDashboardTab("TheDevDashboard");
+            this.RemoveDashboardTab("TheUserDashboard");
 
             return true;
         }

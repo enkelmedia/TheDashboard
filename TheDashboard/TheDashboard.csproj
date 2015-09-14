@@ -200,6 +200,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Web\UI\App_Plugins\TheDashboard\TheUserDashboard.html" />
+    <Content Include="Web\UI\App_Plugins\TheDashboard\TheUserDashboard.controller.js" />
     <Content Include="Web\UI\App_Plugins\TheDashboard\TheDevDashboard.controller.js" />
     <Content Include="Web\UI\App_Plugins\TheDashboard\TheDashboard.controller.js" />
     <Content Include="Web\UI\App_Plugins\TheDashboard\TheDashboard.css" />
@@ -207,6 +209,7 @@
     <Content Include="packages.config" />
     <Content Include="Web\UI\App_Plugins\TheDashboard\package.manifest" />
     <Content Include="Web\UI\App_Plugins\TheDashboard\TheDevDashboard.html" />
+    <None Include="Properties\PublishProfiles\thedashboard.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -219,6 +222,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\Attributes\CamelCaseController.cs" />
+    <Compile Include="Api\TheUserDashboardController.cs" />
     <Compile Include="Api\TheDevDasboardController.cs" />
     <Compile Include="Api\TheDasboardController.cs" />
     <Compile Include="Core\Extensions\DateExtensions.cs" />
@@ -227,6 +231,7 @@
     <Compile Include="Data\DTO\CustomEventDto.cs" />
     <Compile Include="Data\DTO\ReflectedClassDto.cs" />
     <Compile Include="Data\DTO\ControllerDetailDto.cs" />
+    <Compile Include="Data\DTO\UserActivityDto.cs" />
     <Compile Include="Data\UmbracoRepository.cs" />
     <Compile Include="Install\PackageActions\RemoveOldInstallation.cs" />
     <Compile Include="Install\PackageActions\TheDashboardPackageAction.cs" />
@@ -241,6 +246,8 @@
     <Compile Include="Models\Dashboard\DashboardViewModel.cs" />
     <Compile Include="Models\Dashboard\ActivityViewModel.cs" />
     <Compile Include="Data\DTO\UnpublishedNode.cs" />
+    <Compile Include="Models\UserDashboard\UserActivitiesViewModel.cs" />
+    <Compile Include="Models\UserDashboard\UserDashboardViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -272,7 +279,8 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>XCOPY "$(ProjectDir)Web\UI" "$(SolutionDir)Umbraco7.Web.UI" /y /S</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

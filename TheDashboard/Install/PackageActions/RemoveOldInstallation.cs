@@ -22,7 +22,7 @@ namespace TheDashboard.Install.PackageActions
         public bool Execute(string packageName, XmlNode xmlData)
         {
 
-            List<InstalledPackage> list = InstalledPackage.GetAllInstalledPackages().Where(x => x.Data.Name.Equals("The Dashboard")).ToList();
+            List<InstalledPackage> list = InstalledPackage.GetAllInstalledPackages().Where(x => x.Data.Name.Equals("TheDashboard")).ToList();
 
             if (list.Count > 1)
             {

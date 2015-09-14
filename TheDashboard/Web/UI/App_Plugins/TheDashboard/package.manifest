@@ -1,10 +1,15 @@
 ﻿{
     "javascript" : [
         "/app_plugins/thedashboard/thedashboard.controller.js",
-		"/app_plugins/thedashboard/thedevdashboard.controller.js"
+		"/app_plugins/thedashboard/thedevdashboard.controller.js",
+		"/app_plugins/thedashboard/theuserdashboard.controller.js",
+		"/app_plugins/thedashboard/paging.js",
+		
+		
     ],
     "css" : [ 
-        "/app_plugins/thedashboard/thedashboard.css"
+        "/app_plugins/thedashboard/thedashboard.css",
+		"/app_plugins/thedashboard/paging.css"
     ]
 
 }

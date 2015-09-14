@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using TheDashboard.Data.DTO;
 using umbraco.BusinessLogic;
 using Umbraco.Core;
+using Umbraco.Core.Logging;
 using Umbraco.Core.Models;
 using Umbraco.Core.Services;
 using Umbraco.Web;
@@ -67,7 +68,7 @@ namespace TheDashboard.Data
                 SELECT [nodeId] ,[text], [documentUser], [releaseDate], [updateDate]
                 FROM [cmsDocument]
                 WHERE newest =1 and published = 0" + userSqlFilter);
-                //WHERE newest =1 and published = 0 and releaseDate is null" + userSqlFilter);
+            //WHERE newest =1 and published = 0 and releaseDate is null" + userSqlFilter);
 
             return unpublishedContent;
         }
@@ -83,7 +84,8 @@ namespace TheDashboard.Data
             logItems.AddRange(Log.Instance.GetLogItems(LogTypes.Delete, dtLogItemsSince));
             logItems.AddRange(Log.Instance.GetLogItems(LogTypes.UnPublish, dtLogItemsSince));
 
-            return logItems.OrderByDescending(x=>x.Timestamp).Where(x=>x.NodeId != -1);
+
+            return logItems.OrderByDescending(x => x.Timestamp).Where(x => x.NodeId != -1);
         }
 
         #endregion
@@ -124,7 +126,7 @@ namespace TheDashboard.Data
 
         public IEnumerable<ReflectedClassDto> GetContentFinders()
         {
-            return GetNonCoreTypesAssignableFrom(typeof (IContentFinder))
+            return GetNonCoreTypesAssignableFrom(typeof(IContentFinder))
                 .Select(x => new ReflectedClassDto
                 {
                     Name = x.Name,
@@ -142,9 +144,9 @@ namespace TheDashboard.Data
         private static IEnumerable<string> GetActionMethodsOnController(Type controllerType, bool onlyGetMethods)
         {
             return controllerType.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly)
-                .Where(x => typeof (ActionResult).IsAssignableFrom(x.ReturnType) &&
+                .Where(x => typeof(ActionResult).IsAssignableFrom(x.ReturnType) &&
                             !x.Name.StartsWith("get_") &&
-                            (!onlyGetMethods || !x.GetCustomAttributes(typeof (HttpPostAttribute), false).Any()))
+                            (!onlyGetMethods || !x.GetCustomAttributes(typeof(HttpPostAttribute), false).Any()))
                 .Select(x => x.Name)
                 .OrderBy(x => x);
         }
@@ -164,7 +166,7 @@ namespace TheDashboard.Data
                             Name = x.Method.Name,
                             Namespace = x.Method.DeclaringType.FullName,
                         });
-                    }
+                }
             }
 
             return null;
@@ -177,6 +179,107 @@ namespace TheDashboard.Data
                     BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public |
                     BindingFlags.FlattenHierarchy);
         }
+
+        #endregion
+
+        #region User dashboard
+
+
+        public IEnumerable<UserActivityDto> GetUserActivities(DateTime date)
+        {
+            try
+            {
+                //if this date then all
+                if (date.ToString("yyyy-MM-dd") == "1987-05-09")
+                {
+                    var useractivities = UmbracoContext.Current.Application.DatabaseContext.Database.Fetch<UserActivityDto>(@"
+                    SELECT NodeId, Datestamp, logHeader, logComment, userName, text, uUserType.userTypeAlias
+                        FROM umbracoLog uLog
+                            LEFT JOIN umbracoUser uUser ON uLog.userId = uUser.id
+                            LEFT JOIN umbracoNode uNode ON uLog.NodeId = uNode.id
+    	    				INNER JOIN umbracoUserType uUserType ON uUser.userType = uUserType.id
+                            ORDER BY Datestamp DESC");
+                    return useractivities;
+                    
+                }
+                else {
+                    var useractivities = UmbracoContext.Current.Application.DatabaseContext.Database.Fetch<UserActivityDto>(@"
+                    SELECT NodeId, Datestamp, logHeader, logComment, userName, text, uUserType.userTypeAlias
+                        FROM umbracoLog uLog
+                            LEFT JOIN umbracoUser uUser ON uLog.userId = uUser.id
+                            LEFT JOIN umbracoNode uNode ON uLog.NodeId = uNode.id
+					        INNER JOIN umbracoUserType uUserType ON uUser.userType = uUserType.id
+                            WHERE CAST(Datestamp AS DATE) = '" + date.ToString("yyyy-MM-dd") + "' " +
+                            "ORDER BY Datestamp DESC");
+                    return useractivities;
+                }
+            }
+            catch (Exception ex)
+            {
+                //Otherwise, you can use this code, that gets type automatically
+                LogHelper.Error(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType, "thedashboardusermsg", ex);
+                throw ex;
+
+            }
+        }
+
+        public IEnumerable<DateTime> GetAvailableDates()
+        {
+            try
+            {
+                var useractivityDates = UmbracoContext.Current.Application.DatabaseContext.Database.Fetch<DateTime>(@"
+                SELECT CAST(Datestamp AS DATE) AS DateTime
+	                FROM umbracoLog uLog GROUP BY CAST(Datestamp AS DATE) ORDER BY DateTime DESC");
+                return useractivityDates;
+
+            }
+            catch (Exception ex)
+            {
+
+                LogHelper.Error(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType, "thedashboardusermsg", ex);
+                throw ex;
+
+            }
+        }
+        /**
+        public IEnumerable<UserActivityDto> GetUserActivitiesSearch(string searchTerm)
+        {
+            try
+            {
+                if (!String.IsNullOrEmpty(searchTerm))
+                {
+                    string upperTerm = searchTerm.Replace("text: ", "").Trim().ToUpper();
+                    var useractivities = UmbracoContext.Current.Application.DatabaseContext.Database.Fetch<UserActivityDto>(@"
+                SELECT NodeId, Datestamp, logHeader, logComment, userName, text, uUserType.userTypeAlias
+                    FROM umbracoLog uLog
+                    LEFT JOIN umbracoUser uUser ON uLog.userId = uUser.id
+                    LEFT JOIN umbracoNode uNode ON uLog.NodeId = uNode.id
+					INNER JOIN umbracoUserType uUserType ON uUser.userType = uUserType.id
+                    WHERE logHeader <> 'Open' AND (UPPER(userName) LIKE '%"+upperTerm+"%' OR UPPER(text) LIKE '%"+upperTerm+"%' OR UPPER(logComment) LIKE '%"+upperTerm+"%')" +
+                    " ORDER BY Datestamp DESC, userName, text, logComment");
+
+                    LogHelper.Info(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType, "Search term is get user act:" + upperTerm);
+
+                    //WHERE logHeader <> 'Open' AND (UPPER(userName) LIKE '%"+upperTerm+"%' OR UPPER(text) LIKE '%"+upperTerm+"%' OR UPPER(logComment) LIKE '%"+upperTerm+"%')" +
+
+                    return useractivities;
+                }
+                else
+                {
+                    return new List<UserActivityDto>();
+                }
+            }
+            catch (Exception ex)
+            {
+                //Otherwise, you can use this code, that gets type automatically
+
+                LogHelper.Error(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType, "thedashboardusermsg", ex);
+
+                throw ex;
+
+            }
+        }**/
+
 
         #endregion
     }
