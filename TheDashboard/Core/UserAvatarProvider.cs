@@ -21,7 +21,7 @@ namespace TheDashboard.Core
                 }
                 else
                 {
-                    value = string.Format("http://www.gravatar.com/avatar/{0}&s=55", GravatarHelper.HashEmailForGravatar(user.Email));    
+                    value = string.Format("https://www.gravatar.com/avatar/{0}&s=55", GravatarHelper.HashEmailForGravatar(user.Email));    
                 }
 
                 HttpContext.Current.Application["dashboard_user_" + user.Id] = value;
