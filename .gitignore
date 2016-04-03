@@ -65,3 +65,5 @@ bin/
 /Umbraco7.Web.UI/*
 /packages/*
 /package/*
+
+/copy file to test-enviroment.cmd
