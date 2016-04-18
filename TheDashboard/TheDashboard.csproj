@@ -201,9 +201,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web\UI\App_Plugins\TheDashboard\Lang\en-UK.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web\UI\App_Plugins\TheDashboard\Lang\en-GB.xml" />
     <Content Include="Web\UI\App_Plugins\TheDashboard\Lang\es-ES.xml">
       <SubType>Designer</SubType>
     </Content>
