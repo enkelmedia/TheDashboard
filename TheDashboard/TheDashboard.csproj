@@ -221,6 +221,7 @@
     <Compile Include="Api\Attributes\CamelCaseController.cs" />
     <Compile Include="Api\TheDevDasboardController.cs" />
     <Compile Include="Api\TheDasboardController.cs" />
+    <Compile Include="Core\Extensions\AssemblyExtensions.cs" />
     <Compile Include="Core\Extensions\DateExtensions.cs" />
     <Compile Include="Core\GravatarHelper.cs" />
     <Compile Include="Core\UserAvatarProvider.cs" />
