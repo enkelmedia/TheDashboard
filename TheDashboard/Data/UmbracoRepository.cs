@@ -13,6 +13,8 @@ using Umbraco.Web.Routing;
 
 namespace TheDashboard.Data
 {
+    using TheDashboard.Core.Extensions;
+
     public class UmbracoRepository
     {
         #region Content dashboard
@@ -135,7 +137,7 @@ namespace TheDashboard.Data
         private IEnumerable<Type> GetNonCoreTypesAssignableFrom(Type baseType)
         {
             return AppDomain.CurrentDomain.GetAssemblies()
-                .SelectMany(s => s.GetTypes())
+                .SelectMany(s => s.GetLoadableTypes())
                 .Where(p => baseType.IsAssignableFrom(p) && 
                     p.IsClass && !p.IsAbstract && 
                     (string.IsNullOrEmpty(p.Namespace) || !p.Namespace.ToLower().StartsWith("umbraco.")));
