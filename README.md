@@ -19,3 +19,5 @@ There is a buildt version of the package here: https://our.umbraco.org/projects/
 
 ##Upgrading
 When you upgrade, just run the new installer owver the old installation - there is no need to uninstall.
+
+This package was created by Enkel Media, http://www.enkelmedia.se
