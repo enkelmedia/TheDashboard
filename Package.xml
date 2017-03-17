@@ -3,9 +3,9 @@
 	<info>
 		<package>
 			<name>The Dashboard</name>
-			<version>1.1</version>
+			<version>1.2</version>
 			<license url="http://www.opensource.org/licenses/mit-license.php">MIT license</license>
-			<url>http://our.umbraco.org/projects/</url>
+			<url>https://our.umbraco.org/projects/backoffice-extensions/the-dashboard/</url>
 			<requirements>
 				<major>7</major>
 				<minor>0</minor>

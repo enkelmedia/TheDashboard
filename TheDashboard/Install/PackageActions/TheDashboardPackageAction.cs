@@ -1,8 +1,11 @@
 ﻿using System.Xml;
+using TheDashboard.Install.PackageActions.Helpers;
 using umbraco.BusinessLogic;
 using Umbraco.Core;
+using Umbraco.Core.Configuration;
 using Umbraco.Core.IO;
 using umbraco.interfaces;
+using Umbraco.Web;
 
 namespace TheDashboard.Install.PackageActions
 {
@@ -10,23 +13,23 @@ namespace TheDashboard.Install.PackageActions
     {
         public string Alias()
         {
-            return "TheDasboard";
+            return "TheDashboard";
         }
 
         public XmlNode SampleXml()
         {
-
             string sample = "<Action runat=\"install\" undo=\"true/false\" alias=\"TheDasboard\"/>";
-
             return umbraco.cms.businesslogic.packager.standardPackageActions.helper.parseStringToXmlNode(sample);
         }
 
         public bool Execute(string packageName, XmlNode xmlData)
         {
             //If not there, add the dashboards to dashboard.config
-
             this.AddSectionDashboard("TheDashboard", "content", "Welcome", "/app_plugins/TheDashboard/TheDashboard.html");
             this.AddSectionDashboard("TheDevDashboard", "developer", "Developer dashboard", "/app_plugins/TheDashboard/TheDevDashboard.html");
+
+           // Language (only runs in Umbraco 7.3 and below)
+            TranslationHelper.AddTranslations();
 
             return true;
         }
@@ -36,6 +39,9 @@ namespace TheDashboard.Install.PackageActions
             // Remove the dashboards from Dashboard.config
             this.RemoveDashboardTab("TheDashboard");
             this.RemoveDashboardTab("TheDevDashboard");
+
+            // Language (only runs in Umbraco 7.3 and below)
+            TranslationHelper.RemoveTranslations();
 
             return true;
         }
