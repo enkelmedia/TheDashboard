@@ -67,3 +67,4 @@ bin/
 /package/*
 
 /copy file to test-enviroment.cmd
+.vs/
