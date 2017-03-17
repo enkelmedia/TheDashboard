@@ -15,7 +15,9 @@ namespace TheDashboard.Install.PackageActions
 
         public XmlNode SampleXml()
         {
+
             string sample = "<Action runat=\"install\" undo=\"true/false\" alias=\"TheDasboard\"/>";
+
             return umbraco.cms.businesslogic.packager.standardPackageActions.helper.parseStringToXmlNode(sample);
         }
 
@@ -115,7 +117,7 @@ namespace TheDashboard.Install.PackageActions
 
             if (section != null)
             {
-                dashboardFile.SelectSingleNode("/dashBoard").RemoveChild(section);
+                dashboardFile.SelectSingleNode("//dashBoard").RemoveChild(section);
                 dashboardFile.Save(dbConfig);
             }
 
