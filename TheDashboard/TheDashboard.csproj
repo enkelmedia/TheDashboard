@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -200,6 +201,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Web\UI\App_Plugins\TheDashboard\Lang\en-GB.xml" />
+    <Content Include="Web\UI\App_Plugins\TheDashboard\Lang\es-ES.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web\UI\App_Plugins\TheDashboard\Lang\en-US.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web\UI\App_Plugins\TheDashboard\Lang\da-DK.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web\UI\App_Plugins\TheDashboard\TheDevDashboard.controller.js" />
     <Content Include="Web\UI\App_Plugins\TheDashboard\TheDashboard.controller.js" />
     <Content Include="Web\UI\App_Plugins\TheDashboard\TheDashboard.css" />

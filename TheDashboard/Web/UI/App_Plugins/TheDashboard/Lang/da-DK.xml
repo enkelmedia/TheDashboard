@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language>
+    <area alias="theDashboard">
+        <key alias="recentActivities">Senest aktiviteter</key>
+        <key alias="recentActivitiesDescription">Viser senest aktiviteter for alle brugere i bagkontoret.</key>
+        <key alias="unpublishedContent">Ikke-udgivet indhold</key>
+        <key alias="unpublishedContentDescription">Viser ikke-udgivet indhold som ikke er sat til udgivelse.</key>
+        <key alias="yourRecentActivity">Din seneste aktivitet</key>
+        <key alias="yourRecentActivitiesDescription">Viser dine seneste aktiviteter</key>
+        <key alias="publishedContentNodes">Udgivet indholdsnoder</key>
+        <key alias="nodesInRecycleBin">Noder i papirkurv</key>
+        <key alias="membersOnWebsite">Medlemmer på website</key>
+        <key alias="newMembersLastWeek">Nye medlemmer seneste uge</key>
+        <key alias="butNotPublishedOrScheduled">men ikke udgivet eller planlagt</key>
+        <key alias="butDidNotPublish">men ikke udgivet</key>
+        <key alias="forPublishingAt">til udgivelse fra</key>
+        <key alias="to">til</key>
+        <key alias="saved">gemt</key>
+        <key alias="moved">flyttet</key>
+        <key alias="unpublished">ikke-udgivet</key>
+        <key alias="savedBy">gemt af</key>
+        <key alias="savedAndScheduled">gemt og planlagt</key>
+        <key alias="savedAndPublished">gemt og udgivet</key>
+        <key alias="recycleBin">papirkurv</key>
+        <key alias="Saved">Gemt</key>
+        <key alias="Moved">Flyttet</key>
+        <key alias="Unpublished">Fjernet fra udgivelse</key>
+        <key alias="SavedAndScheduled">Gemt og planlagt</key>
+        <key alias="SavedAndPublished">Gemt og udgivet</key>
+    </area>
+</language>

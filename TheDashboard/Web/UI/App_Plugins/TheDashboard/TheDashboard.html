@@ -1,65 +1,65 @@
 ﻿<div class="row" ng-controller="TheDashboard.Controller">
 
 	<div class="span3">
-		<h3>Recent activites</h3>
-		<p>Shows recent activites from all users in the back office.</p>
-		<div ng-repeat="item in vm.activities" class="logitem">
-			<img src="{{item.userAvatarUrl}}" />
-			<span>{{item.timestamp | date:'medium'}}</span>
-			<div>
-				<p ng-show="item.logItemType =='Save'">
-					<strong>{{item.userDisplayName}}</strong> saved <a href="/umbraco/#/content/content/edit/{{item.nodeId}}">{{item.nodeName}}</a> but did not publish.
-				</p>
-				<p ng-show="item.logItemType =='SavedAndScheduled'">
-					<strong>{{item.userDisplayName}}</strong> saved and scheduled <a href="/umbraco/#/content/content/edit/{{item.nodeId}}">{{item.nodeName}}</a> for publishing at {{item.scheduledPublishDate | date}}.
-				</p>
-				<p ng-show="item.logItemType =='Publish'">
-					<strong>{{item.userDisplayName}}</strong> saved and published <a href="/umbraco/#/content/content/edit/{{item.nodeId}}">{{item.nodeName}}</a>.
-				</p>
-				<p ng-show="item.logItemType =='Delete'">
-					<strong>{{item.userDisplayName}}</strong> moved {{item.nodeName}} to <a href="/umbraco/#/content/content/recyclebin">recycle bin.</a>
-				</p>
-				<p ng-show="item.logItemType =='UnPublish'">
-					<strong>{{item.userDisplayName}}</strong> unpublished {{item.nodeName}}.
-				</p>
-				<p ng-show="item.logItemType =='UnPublishToRecycleBin'">
-					<strong>{{item.userDisplayName}}</strong> moved {{item.nodeName}} to <a href="/umbraco/#/content/content/recyclebin">recycle bin</a>.
-				</p>
-			</div>
-		</div>
+		<h3><localize key="theDashboard_recentActivities">Recent activities</localize></h3>
+		<p><localize key="theDashboard_recentActivitiesDescription">Shows recent activities from all users in the back office.</localize></p>
+        <div ng-repeat="item in vm.activities" class="logitem has-avatar">
+            <img src="{{item.userAvatarUrl}}" />
+            <span>{{item.timestamp | date:'medium'}}</span>
+            <div>
+                <p ng-show="item.logItemType =='Save'">
+                    <strong>{{item.userDisplayName}}</strong> <localize key="theDashboard_saved">saved</localize> <a href="/umbraco/#/content/content/edit/{{item.nodeId}}">{{item.nodeName}}</a> <localize key="theDashboard_butDidNotPublish">but did not publish</localize>.
+                </p>
+                <p ng-show="item.logItemType =='SavedAndScheduled'">
+                    <strong>{{item.userDisplayName}}</strong> <localize key="theDashboard_savedAndScheduled">saved and scheduled</localize> <a href="/umbraco/#/content/content/edit/{{item.nodeId}}">{{item.nodeName}}</a> <localize key="theDashboard_forPublishingAt">for publishing at</localize> {{item.scheduledPublishDate | date}}.
+                </p>
+                <p ng-show="item.logItemType =='Publish'">
+                    <strong>{{item.userDisplayName}}</strong> <localize key="theDashboard_savedAndPublished">saved and published</localize> <a href="/umbraco/#/content/content/edit/{{item.nodeId}}">{{item.nodeName}}</a>.
+                </p>
+                <p ng-show="item.logItemType =='Delete'">
+                    <strong>{{item.userDisplayName}}</strong> <localize key="theDashboard_moved">moved</localize> {{item.nodeName}} <localize key="theDashboard_to">to</localize> <a href="/umbraco/#/content/content/recyclebin"><localize key="theDashboard_recycleBin">recycle bin</localize>.</a>
+                </p>
+                <p ng-show="item.logItemType =='UnPublish'">
+                    <strong>{{item.userDisplayName}}</strong> <localize key="theDashboard_unpublished">unpublished</localize> {{item.nodeName}}.
+                </p>
+                <p ng-show="item.logItemType =='UnPublishToRecycleBin'">
+                    <strong>{{item.userDisplayName}}</strong> <localize key="theDashboard_moved">moved</localize> {{item.nodeName}} <localize key="theDashboard_to">to</localize> <a href="/umbraco/#/content/content/recyclebin">recycle bin</a>.
+                </p>
+            </div>
+        </div>
 	</div>
 	<div class="span3 offset1">
 		<div ng-show="vm.unpublishedContent.length > 0">
-			<h3>Unpublished content</h3>
-			<p>Shows unpublished content that has not been been scheduled for publish.</p>
+			<h3><localize key="theDashboard_unpublishedContent">Unpublished content</localize></h3>
+			<p><localize key="theDashboard_unpublishedContentDescription">Shows unpublished content that has not been been scheduled for publish.</localize></p>
 			<div ng-repeat="item in vm.unpublishedContent" class="logitem">
 				<img src="{{item.userAvatarUrl}}" />
 				<span>{{item.timestamp | date:'medium'}}</span>
-				<p><a href="/umbraco/#/content/content/edit/{{item.nodeId}}">{{item.nodeName}}</a> saved by {{item.userDisplayName}} but not published or scheduled.</p>
+				<p><a href="/umbraco/#/content/content/edit/{{item.nodeId}}">{{item.nodeName}}</a> <localize key="theDashboard_savedBy">saved by</localize> {{item.userDisplayName}} <localize key="theDashboard_butNotPublishedOrScheduled">but not published or scheduled</localize>.</p>
 			</div>
 		</div>
 		<div>
-			<h3>Your recent activity</h3>
-			<p>Shows your own recent activities.</p>
+			<h3><localize key="theDashboard_yourRecentActivity">Your recent activity</localize></h3>
+			<p><localize key="theDashboard_yourRecentActivitiesDescription">Shows your own recent activities.</localize></p>
 			<div ng-repeat="item in vm.userRecentActivity" class="logitem">
 				<span>{{item.timestamp | date:'medium'}}</span>
 				<p ng-show="item.logItemType =='Save'">
-					Saved <a href="/umbraco/#/content/content/edit/{{item.nodeId}}">{{item.nodeName}}</a> but did not publish.
+                    <localize key="theDashboard_Saved">Saved</localize> <a href="/umbraco/#/content/content/edit/{{item.nodeId}}">{{item.nodeName}}</a> <localize key="theDashboard_butDidNotPublish">but did not publish</localize>.
 				</p>
 				<p ng-show="item.logItemType =='SavedAndScheduled'">
-					Saved and scheduled <a href="/umbraco/#/content/content/edit/{{item.nodeId}}">{{item.nodeName}}</a> for publishing at {{item.scheduledPublishDate | date}}.
+                    <localize key="theDashboard_SavedAndScheduled">Saved and scheduled</localize> <a href="/umbraco/#/content/content/edit/{{item.nodeId}}">{{item.nodeName}}</a> <localize key="theDashboard_forPublishingAt">for publishing at</localize> {{item.scheduledPublishDate | date}}.
 				</p>
 				<p ng-show="item.logItemType =='Publish'">
-					Saved and published <a href="/umbraco/#/content/content/edit/{{item.nodeId}}">{{item.nodeName}}</a>.
+                    <localize key="theDashboard_SavedAndPublished">Saved and published</localize> <a href="/umbraco/#/content/content/edit/{{item.nodeId}}">{{item.nodeName}}</a>.
 				</p>
 				<p ng-show="item.logItemType =='Delete'">
-					Moved {{item.nodeName}} to <a href="/umbraco/#/content/content/recyclebin">recycle bin.</a>
+                    <localize key="theDashboard_Moved">Moved</localize> {{item.nodeName}} <localize key="theDashboard_to">to</localize> <a href="/umbraco/#/content/content/recyclebin">recycle bin.</a>
 				</p>
 				<p ng-show="item.logItemType =='UnPublish'">
-					Unpublished <a href="/umbraco/#/content/content/edit/{{item.nodeId}}">{{item.nodeName}}</a>.
+                    <localize key="theDashboard_Unpublished">Unpublished</localize> <a href="/umbraco/#/content/content/edit/{{item.nodeId}}">{{item.nodeName}}</a>.
 				</p>
 				<p ng-show="item.logItemType =='UnPublishToRecycleBin'">
-					Moved {{item.nodeName}} to <a href="/umbraco/#/content/content/recyclebin">recycle bin</a>.
+                    <localize key="theDashboard_Moved">Moved</localize> {{item.nodeName}} <localize key="theDashboard_to">to</localize> <a href="/umbraco/#/content/content/recyclebin"><localize key="theDashboard_recycleBin">recycle bin</localize></a>.
 				</p>
 			</div>
 		</div>
@@ -69,20 +69,20 @@
 		<h3></h3>
 		<div class="number">
 			<div class="dot">{{vm.countPublishedNodes}}</div>
-			<p>Published content nodes</p>
+			<p><localize key="theDashboard_publishedContentNodes">Published content nodes</localize></p>
 		</div>
 
 		<div class="number">
 			<div class="dot">{{vm.countContentInRecycleBin}}</div>
-			<p>Nodes in recyle bin</p>
+			<p><localize key="theDashboard_nodesInRecycleBin">Nodes in recyle bin</localize></p>
 		</div>
 		<div class="number">
 			<div class="dot members">{{vm.countTotalWebsiteMembers}}</div>
-			<p>Members on website</p>
+			<p><localize key="theDashboard_membersOnWebsite">Members on website</localize></p>
 		</div>
 		<div class="number">
 			<div class="dot members">{{vm.countNewMembersLastWeek}}</div>
-			<p>New members last week</p>
+			<p><localize key="theDashboard_newMembersLastWeek">New members last week</localize></p>
 		</div>
 		<!-- <div class="umbracoguy">
             <button class="btn btn-info" ng-click="magic = 'true'" ng-hide="magic=='true'">Magic button</button>
