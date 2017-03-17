@@ -287,7 +287,17 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>XCOPY "$(ProjectDir)Web\UI" "$(SolutionDir)Umbraco7.Web.UI" /y /S</PostBuildEvent>
+  <PostBuildEvent>REM ----- Please do not remove this in your PRs -------
+
+if($(ProjectDirr) == D:\Html\Tips Och Tricks\Umbraco\Egna Extentions\TheDashboard\TheDashboard\ (
+
+ECHO ----------- Copy files fo local enviroment --------
+XCOPY "$(ProjectDir)Web\UI" "$(SolutionDir)Umbraco7.Web.UI" /y /S
+XCOPY "$(ProjectDir)bin\$(ConfigurationName)\TheDashboard.dll" "$(SolutionDir)Umbraco7.Web.UI\bin" /y /S
+)
+
+</PostBuildEvent>
+
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

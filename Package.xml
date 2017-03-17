@@ -27,10 +27,8 @@
 	<Languages />
 	<DataTypes />
   <Actions>
-    
-    <Action runat="install" undo="true" alias="TheDasboard"></Action>
+    <Action runat="install" undo="true" alias="TheDashboard"></Action>
     <Action runat="install" alias="RemoveOldInstallation"></Action>
-    
   </Actions>
   <control />
 

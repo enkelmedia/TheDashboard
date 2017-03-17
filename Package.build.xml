@@ -22,7 +22,7 @@
 	****************************************
   -->
   <PropertyGroup>
-	  <PackageVersion>1.1</PackageVersion>
+	  <PackageVersion>1.2</PackageVersion>
     <BuildConfiguration>Release</BuildConfiguration>
   </PropertyGroup>
 
@@ -63,7 +63,7 @@
   
   <!-- COMPILE -->
   <Target Name="Compile" DependsOnTargets="UpdateAssemblyInfo">
-	  <MSBuild Projects="$(ProjectDir)\TheDashboard.csproj" Properties="Configuration=$(BuildConfiguration);" />
+	  <MSBuild Projects="$(ProjectDir)\TheDashboard.csproj" Properties="Configuration=$(BuildConfiguration);PostBuildEvent=" />
   </Target>
 
   <!-- PREPAIRE FILES --> 
