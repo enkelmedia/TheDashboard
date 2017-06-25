@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language>
+    <area alias="theDashboard">
+      <key alias="recentActivities">Seneste aktiviteter</key>
+      <key alias="recentActivitiesDescription">Viser seneste aktiviteter fra alle brukere i Umbraco.</key>
+      <key alias="unpublishedContent">Upublisert innhold</key>
+      <key alias="unpublishedContentDescription">Viser upublisert innhold uten planlagt publisering.</key>
+      <key alias="yourRecentActivity">Dine seneste aktiviteter</key>
+      <key alias="yourRecentActivitiesDescription">Viser dine seneste aktiviteter.</key>
+      <key alias="publishedContentNodes">Publiserte elementer</key>
+      <key alias="nodesInRecycleBin">Elementer i søppelbøtten</key>
+      <key alias="membersOnWebsite">Medlemmer på websiten</key>
+      <key alias="newMembersLastWeek">Nye medlemmer forrige uke</key>
+      <key alias="butNotPublishedOrScheduled">men ble ikke publisert eller planlagt publisert</key>
+      <key alias="butDidNotPublish">men publiserte ikke</key>
+      <key alias="forPublishingAt">til publisering den</key>
+      <key alias="to">til</key>
+      <key alias="saved">lagret</key>
+      <key alias="moved">flyttet</key>
+      <key alias="unpublished">avpublisert</key>
+      <key alias="savedBy">ble lagret av</key>
+      <key alias="savedAndScheduled">lagret og planla publisering</key>
+      <key alias="savedAndPublished">lagret og publiserte</key>
+      <key alias="recycleBin">søppelbøtte</key>
+      <key alias="Saved">Lagret</key>
+      <key alias="Moved">Flyttet</key>
+      <key alias="Unpublished">Upublisert</key>
+      <key alias="SavedAndScheduled">Lagret og planla publisering</key>
+      <key alias="SavedAndPublished">Lagret og publiserte</key>
+    </area>
+</language>
