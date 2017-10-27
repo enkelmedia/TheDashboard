@@ -2,7 +2,7 @@
 <language>
     <area alias="theDashboard">
         <key alias="recentActivities">Senest aktiviteter</key>
-        <key alias="recentActivitiesDescription">Viser senest aktiviteter for alle brugere i bagkontoret.</key>
+        <key alias="recentActivitiesDescription">Viser senest aktiviteter for alle brugere i Umbraco.</key>
         <key alias="unpublishedContent">Ikke-udgivet indhold</key>
         <key alias="unpublishedContentDescription">Viser ikke-udgivet indhold som ikke er sat til udgivelse.</key>
         <key alias="yourRecentActivity">Din seneste aktivitet</key>
