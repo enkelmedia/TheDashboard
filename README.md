@@ -1,6 +1,8 @@
 The Dashboard
 =====
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 This is a magic dashboard for Umbraco 7, it's accualy "The Dashboard".
 
 **Content dashboard**
