@@ -2,7 +2,7 @@
     .controller("TheDevDashboard.Controller",
     function ($scope, $http) {
 
-        $http.get('/umbraco/backoffice/api/TheDevDashboard/GetViewModel').
+        $http.get('backoffice/api/TheDevDashboard/GetViewModel').
             success(function (data, status, headers, config) {
                 $scope.vm = data;
             }).
