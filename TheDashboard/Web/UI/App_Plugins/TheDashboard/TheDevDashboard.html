@@ -1,17 +1,19 @@
 ﻿<div class="row" ng-controller="TheDevDashboard.Controller">
-
+    <umb-load-indicator ng-if="!vm.hijackedRoutes"></umb-load-indicator>
     <div class="span6">
         <h3>Hijacked routes</h3>
         <p>Shows document types associated with custom controllers.</p>
         <div ng-repeat="item in vm.hijackedRoutes" class="logitem">
             <div>
-                <p><strong>{{item.name}}</strong> in <strong>{{item.namespace}}</strong>
+                <p>
+                    <strong>{{item.name}}</strong> in <strong>{{item.namespace}}</strong>
                 </p>
                 <p>Public GETable action methods: </p>
                 <ul>
                     <li ng-repeat="method in item.actionMethods">{{method}}()</li>
                 </ul>
-                <p><em>Hijacking document type <strong>{{item.documentType}}</strong> and template(s) <strong>{{item.templates}}</strong>.</em>
+                <p>
+                    <em>Hijacking document type <strong>{{item.documentType}}</strong> and template(s) <strong>{{item.templates}}</strong>.</em>
                 </p>
             </div>
         </div>
@@ -20,7 +22,8 @@
         <p>Shows all defined surface controllers.</p>
         <div ng-repeat="item in vm.surfaceControllers" class="logitem">
             <div>
-                <p><strong>{{item.name}}</strong> in <strong>{{item.namespace}}</strong>
+                <p>
+                    <strong>{{item.name}}</strong> in <strong>{{item.namespace}}</strong>
                 </p>
                 <p>Action methods: </p>
                 <ul>
