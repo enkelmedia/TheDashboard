@@ -20,6 +20,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -227,6 +228,8 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="Web\UI\Config\Dashboard.config.install.xdt" />
+    <Content Include="Web\UI\Config\Dashboard.config.uninstall.xdt" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config" />
@@ -263,7 +266,7 @@
     <Folder Include="Web\UI\App_Plugins\TheDashboard\Avatars\" />
   </ItemGroup>
   <PropertyGroup>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -290,7 +293,7 @@
   <PropertyGroup>
     <PostBuildEvent>REM ----- Please do not remove this in your PRs -------
 
-if($(ProjectDirr) == D:\Html\Tips Och Tricks\Umbraco\Egna Extentions\TheDashboard\TheDashboard\ (
+if($(ProjectDir) == "D:\Html\Tips Och Tricks\Umbraco\Egna Extentions\TheDashboard\TheDashboard\" (
 
 ECHO ----------- Copy files fo local enviroment --------
 XCOPY "$(ProjectDir)Web\UI" "$(SolutionDir)Umbraco7.Web.UI" /y /S
