@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Examine;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web.Http;
 using TheDashboard.Api.Attributes;
@@ -25,37 +28,49 @@ namespace TheDashboard.Api
         [HttpGet]
         public DashboardViewModel GetViewModel()
         {
-            var umbracoRepository = new UmbracoRepository();
             var dashboardViewModel = new DashboardViewModel();
+
+            var umbracoRepository = new UmbracoRepository();
 
             var unpublishedContent = umbracoRepository.GetUnpublishedContent().ToArray();
             var logItems = umbracoRepository.GetLatestLogItems().ToArray();
             var nodesInRecyleBin = umbracoRepository.GetRecycleBinNodes().Select(x => x.Id).ToArray();
 
+            var topTenLogItems = logItems.Take(10).ToList();
+            var unpublishedContentWhichHasNeverBeenPublished = unpublishedContent.Where(x => x.ReleaseDate == null).ToList();
+            var topTenLogItemsForCurrentUser = logItems.Where(x => x.UserId == Security.CurrentUser.Id).Take(10).ToList();
+
+            var nodeIds = topTenLogItems.Select(x => x.NodeId).ToList();
+            nodeIds.AddRange(unpublishedContentWhichHasNeverBeenPublished.Select(x => x.NodeId));
+            nodeIds.AddRange(topTenLogItemsForCurrentUser.Select(x => x.NodeId));
+
+            var NodeIdPermissions = ApplicationContext.Services.UserService.GetPermissions(Security.CurrentUser, nodeIds.ToArray());
+            
+
             foreach (var logItem in logItems.Take(10))
             {
-                var user = GetUser(logItem.UserId);
-                var contentNode = GetContent(logItem.NodeId);
-             
-                if (contentNode == null || !CurrentUserHasPermissions(contentNode))
+                if (!CurrentUserHasPermissions(NodeIdPermissions, logItem.NodeId))
                     continue;
 
+
+                var user = GetUser(logItem.UserId);
+
                 var activityViewModel = new ActivityViewModel
-                    {
-                        UserDisplayName = user.Name,
-                        UserAvatarUrl = UserAvatarProvider.GetAvatarUrl(user),
-                        NodeId = logItem.NodeId,
-                        NodeName = contentNode.Name,
-                        Message = logItem.Comment,
-                        LogItemType = logItem.LogType.ToString(),
-                        Timestamp = logItem.Timestamp
-                    };
+                {
+                    UserDisplayName = user.Name,
+                    UserAvatarUrl = UserAvatarProvider.GetAvatarUrl(user),
+                    NodeId = logItem.NodeId,
+                    NodeName = GetContentNodeName(logItem.NodeId),
+                    Message = logItem.Comment,
+                    LogItemType = logItem.LogType.ToString(),
+                    Timestamp = logItem.Timestamp
+                };
 
                 var unpublishedVersionOfLogItem = unpublishedContent.FirstOrDefault(x => x.NodeId == logItem.NodeId && x.ReleaseDate != null);
                 if (logItem.LogType == LogTypes.Save && unpublishedVersionOfLogItem != null && unpublishedVersionOfLogItem.UpdateDate != null)
                 {
-                    if(logItem.Timestamp.IsSameMinuteAs(unpublishedVersionOfLogItem.UpdateDate.Value))
-                    activityViewModel.LogItemType = "SavedAndScheduled";
+                    if (logItem.Timestamp.IsSameMinuteAs(unpublishedVersionOfLogItem.UpdateDate.Value))
+                        activityViewModel.LogItemType = "SavedAndScheduled";
                     activityViewModel.ScheduledPublishDate = unpublishedVersionOfLogItem.ReleaseDate;
                 }
 
@@ -67,57 +82,94 @@ namespace TheDashboard.Api
                 dashboardViewModel.Activities.Add(activityViewModel);
             }
 
-            foreach (var item in unpublishedContent.Where(x => x.ReleaseDate == null))
-            {
-                var user = GetUser(item.DocumentUser);
-                var contentNode = GetContent(item.NodeId);
 
+            foreach (var item in unpublishedContentWhichHasNeverBeenPublished)
+            {
+                if (!CurrentUserHasPermissions(NodeIdPermissions, item.NodeId))
+                {
+                    continue;
+                }
+                if (nodesInRecyleBin.Contains(item.NodeId))
+                {
+                    continue;
+                }
                 // Checking for null, making sure that user has permissions and checking for this content node in the recycle bin. If its in the recycle bin
                 // we should not return this as an unpublished node.
-                if (contentNode == null || !CurrentUserHasPermissions(contentNode) || nodesInRecyleBin.Contains(contentNode.Id))
-                    continue;
 
+                var user = GetUser(item.DocumentUser);
                 var activityViewModel = new ActivityViewModel
-                    {
-                        UserDisplayName = user.Name,
-                        UserAvatarUrl = UserAvatarProvider.GetAvatarUrl(user),
-                        NodeId = item.NodeId,
-                        NodeName = contentNode.Name,
-                        Timestamp = item.UpdateDate != null ? item.UpdateDate.Value : (DateTime?) null
-                    };
+                {
+                    UserDisplayName = user.Name,
+                    UserAvatarUrl = UserAvatarProvider.GetAvatarUrl(user),
+                    NodeId = item.NodeId,
+                    NodeName = GetContentNodeName(item.NodeId),
+                    Timestamp = item.UpdateDate != null ? item.UpdateDate.Value : (DateTime?)null
+                };
 
                 dashboardViewModel.UnpublishedContent.Add(activityViewModel);
             }
 
-            foreach (var item in logItems.Where(x => x.UserId == Security.CurrentUser.Id).Take(10))
+            foreach (var item in topTenLogItemsForCurrentUser)
             {
-                var contentNode = GetContent(item.NodeId);
-
-                if (contentNode == null || !CurrentUserHasPermissions(contentNode))
+                if (!CurrentUserHasPermissions(NodeIdPermissions, item.NodeId))
+                {
                     continue;
+                }
+
 
                 var activityViewModel = new ActivityViewModel
-                    {
-                        NodeId = item.NodeId,
-                        NodeName = contentNode.Name,
-                        LogItemType = item.LogType.ToString(),
-                        Timestamp = item.Timestamp
-                    };
+                {
+                    NodeId = item.NodeId,
+                    NodeName = GetContentNodeName(item.NodeId),
+                    LogItemType = item.LogType.ToString(),
+                    Timestamp = item.Timestamp
+                };
 
                 dashboardViewModel.UserRecentActivity.Add(activityViewModel);
             }
-
+            
             dashboardViewModel.CountPublishedNodes = umbracoRepository.CountPublishedNodes();
+
             dashboardViewModel.CountTotalWebsiteMembers = umbracoRepository.CountMembers();
+
             dashboardViewModel.CountNewMembersLastWeek = umbracoRepository.CountNewMember();
+
             dashboardViewModel.CountContentInRecycleBin = nodesInRecyleBin.Count();
 
             return dashboardViewModel;
         }
 
-        private bool CurrentUserHasPermissions(IContent contentNode)
+        private string GetContentNodeName(int nodeId)
         {
-            return Action.FromString(UmbracoUser.GetPermissions(contentNode.Path)).OfType<ActionBrowse>().Any();
+            //first check in Examine as this is WAY faster
+            var criteria = ExamineManager.Instance
+                .SearchProviderCollection["InternalSearcher"]
+                .CreateSearchCriteria("content");
+            var filter = criteria.Id(nodeId);
+            var results = ExamineManager
+                .Instance.SearchProviderCollection["InternalSearcher"]
+                .Search(filter.Compile());
+            if (results.Any())
+            {
+                var firstResult = results.First();
+                return firstResult.Fields["nodeName"];
+            }
+            else
+            {
+                var contentNode = Services.ContentService.GetById(nodeId);
+                if (contentNode != null)
+                {
+                    return contentNode.Name;
+                }
+            }
+            return null;
+        }
+
+        private bool CurrentUserHasPermissions(IEnumerable<EntityPermission> permissionResults, int nodeId)
+        {
+            var perms = permissionResults.Where(x => x.EntityId == nodeId).SelectMany(x => x.AssignedPermissions).Distinct().ToArray();
+            var actionBrowseLetter = ActionBrowse.Instance.Letter.ToString();
+            return perms.Any(x => x == actionBrowseLetter);
         }
 
         private IUser GetUser(int id)
@@ -125,10 +177,6 @@ namespace TheDashboard.Api
             return Services.UserService.GetByProviderKey(id);
         }
 
-        private IContent GetContent(int id)
-        {
-            var doc = Services.ContentService.GetById(id);
-            return doc;
-        }
+
     }
 }
