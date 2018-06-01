@@ -3,10 +3,10 @@ The Dashboard
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This is a magic dashboard for Umbraco 7, it's accualy "The Dashboard".
+This is a magic dashboard for Umbraco 7, it's actually "The Dashboard".
 
 **Content dashboard**
-Will show editors a summery of the latest activites on the website combined with each editors recent files and other useful information.
+Will show editors a summary of the latest activites on the website combined with each editors recent files and other useful information.
  
 **Developer dashboard**
 Shows information in the developer-section about: Hijacked routes, Events, Application event handlers, Surface controllers and Content finders
