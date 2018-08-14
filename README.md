@@ -19,6 +19,12 @@ Just build the package using the included build script and upload the zip file t
 ## Installation in Umbraco CMS
 There is a built version of the package here: https://our.umbraco.org/projects/backoffice-extensions/the-dashboard/ just download it and install it in the developers-section.
 
+Or use Nuget
+
+```
+Install-Package Our.Umbraco.TheDashboard
+```
+
 ## Upgrading
 When you upgrade, just run the new installer over the old installation - there is no need to uninstall.
 
