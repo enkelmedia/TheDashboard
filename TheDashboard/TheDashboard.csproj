@@ -320,7 +320,7 @@
   <PropertyGroup>
     <PostBuildEvent>REM ----- Please do not remove this in your PRs -------
 
-if($(ProjectDir) == "D:\Html\Tips Och Tricks\Umbraco\Egna Extentions\TheDashboard\TheDashboard\" (
+if $(ProjectDir) == C:\Development\TheDashboard\TheDashboard\ (
 
 ECHO ----------- Copy files fo local enviroment --------
 XCOPY "$(ProjectDir)Web\UI" "$(SolutionDir)Umbraco7.Web.UI" /y /S
