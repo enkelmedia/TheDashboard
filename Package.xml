@@ -3,13 +3,13 @@
 	<info>
 		<package>
 			<name>The Dashboard</name>
-			<version>1.3</version>
+			<version>1.4</version>
 			<license url="http://www.opensource.org/licenses/mit-license.php">MIT license</license>
 			<url>https://our.umbraco.org/projects/backoffice-extensions/the-dashboard/</url>
 			<requirements>
 				<major>7</major>
-				<minor>0</minor>
-				<patch>0</patch>
+				<minor>7</minor>
+				<patch>2</patch>
 			</requirements>
 		</package>
 		<author>
