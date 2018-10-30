@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language>
+    <area alias="theDashboard">
+      <key alias="recentActivities">Recente activiteiten</key>
+      <key alias="recentActivitiesDescription">Toont recente activiteiten van alle gebruikers in de back office.</key>
+      <key alias="unpublishedContent">Ongepubliceerde inhoud</key>
+      <key alias="unpublishedContentDescription">Toont ongepubliceerde inhoud dat niet gepland is om te publiceren.</key>
+      <key alias="yourRecentActivity">Jouw recente activiteiten</key>
+      <key alias="yourRecentActivitiesDescription">Toont je eigen recente activiteiten</key>
+      <key alias="publishedContentNodes">Gepubliceerde content nodes</key>
+      <key alias="nodesInRecycleBin">Nodes in prullenbak</key>
+      <key alias="membersOnWebsite">Leden op de website</key>
+      <key alias="newMembersLastWeek">Nieuwe leden vorige week</key>
+      <key alias="butNotPublishedOrScheduled">maar niet gepubliceerd of gepland</key>
+      <key alias="butDidNotPublish">maar niet gepubliceerd</key>
+      <key alias="forPublishingAt">voor publicatie op</key>
+      <key alias="to">naar</key>
+      <key alias="saved">opgeslagen</key>
+      <key alias="moved">verplaatst</key>
+      <key alias="unpublished">ongepubliceerd</key>
+      <key alias="savedBy">opgeslagen door</key>
+      <key alias="savedAndScheduled">opgeslagen en gepland</key>
+      <key alias="savedAndPublished">opgeslagen en gepubliceerd</key>
+      <key alias="recycleBin">prullenbak</key>
+      <key alias="Saved">Opgeslagen</key>
+      <key alias="Moved">Verplaatst</key>
+      <key alias="Unpublished">Ongepubliceerd</key>
+      <key alias="SavedAndScheduled">Opgeslagen en gepland</key>
+      <key alias="SavedAndPublished">Opgeslagen en gepubliceerd</key>
+    </area>
+</language>

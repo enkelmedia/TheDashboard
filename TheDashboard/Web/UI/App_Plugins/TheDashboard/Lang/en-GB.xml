@@ -2,7 +2,7 @@
 <language>
     <area alias="theDashboard">
       <key alias="recentActivities">Recent activities</key>
-      <key alias="recentActivitiesDescription">Shows recent activites from all users in the back office.</key>
+      <key alias="recentActivitiesDescription">Shows recent activities from all users in the back office.</key>
       <key alias="unpublishedContent">Unpublished content</key>
       <key alias="unpublishedContentDescription">Shows unpublished content that has not been scheduled for publish.</key>
       <key alias="yourRecentActivity">Your recent activity</key>
