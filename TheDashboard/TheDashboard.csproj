@@ -230,6 +230,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web\UI\App_Plugins\TheDashboard\Lang\en-GB.xml" />
+    <Content Include="Web\UI\App_Plugins\TheDashboard\Lang\nb-NO.xml" />
+    <Content Include="Web\UI\App_Plugins\TheDashboard\Lang\nl-NL.xml" />
     <Content Include="Web\UI\App_Plugins\TheDashboard\Lang\sv-SE.xml">
       <SubType>Designer</SubType>
     </Content>
