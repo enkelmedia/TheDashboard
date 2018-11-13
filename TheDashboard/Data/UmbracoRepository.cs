@@ -85,7 +85,13 @@ namespace TheDashboard.Data
             logItems.AddRange(Log.Instance.GetLogItems(LogTypes.Delete, dtLogItemsSince));
             logItems.AddRange(Log.Instance.GetLogItems(LogTypes.UnPublish, dtLogItemsSince));
 
-            return logItems.OrderByDescending(x=>x.Timestamp).Where(x=>x.NodeId != -1);
+            return FilterLogItem(logItems).OrderByDescending(x=>x.Timestamp).Where(x=>x.NodeId != -1);
+        }
+
+        private IEnumerable<LogItem> FilterLogItem(IEnumerable<LogItem> logItems)
+        {
+            logItems = logItems.Where(x => x.NodeId != 0 && !x.Comment.Equals("Save DictionaryItem performed by user"));
+            return logItems;
         }
 
         #endregion
