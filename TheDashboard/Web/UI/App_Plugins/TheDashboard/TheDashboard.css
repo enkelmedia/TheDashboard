@@ -6,6 +6,11 @@ div.logitem {
     margin-bottom: 8px;
 }
 
+div.logitem a {
+	color: #00aea2;
+	text-decoration: underline;
+}
+
 div.logitem img {
     -ms-border-radius: 20px;
     border-radius: 50%;
