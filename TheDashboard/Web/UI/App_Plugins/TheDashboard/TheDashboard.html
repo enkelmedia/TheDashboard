@@ -32,15 +32,6 @@
         </div>
     </div>
     <div class="span3 offset1">
-        <div ng-show="vm.unpublishedContent.length > 0">
-            <h3><localize key="theDashboard_unpublishedContent">Unpublished content</localize></h3>
-            <p><localize key="theDashboard_unpublishedContentDescription">Shows unpublished content that has not been been scheduled for publish.</localize></p>
-            <div ng-repeat="item in vm.unpublishedContent" class="logitem">
-                <img ng-src="{{item.userAvatarUrl}}"/>
-                <span>{{item.timestamp | date:'medium'}}</span>
-                <p><a href="/umbraco/#/content/content/edit/{{item.nodeId}}">{{item.nodeName}}</a> <localize key="theDashboard_savedBy">saved by</localize> {{item.userDisplayName}} <localize key="theDashboard_butNotPublishedOrScheduled">but not published or scheduled</localize>.</p>
-            </div>
-        </div>
         <div>
             <h3><localize key="theDashboard_yourRecentActivity">Your recent activity</localize></h3>
             <p><localize key="theDashboard_yourRecentActivitiesDescription">Shows your own recent activities.</localize></p>
@@ -66,7 +57,15 @@
                 </p>
             </div>
         </div>
-
+	    <div ng-show="vm.unpublishedContent.length > 0">
+		    <h3><localize key="theDashboard_unpublishedContent">Unpublished content</localize></h3>
+		    <p><localize key="theDashboard_unpublishedContentDescription">Shows unpublished content that has not been been scheduled for publish.</localize></p>
+		    <div ng-repeat="item in vm.unpublishedContent" class="logitem">
+			    <img ng-src="{{item.userAvatarUrl}}"/>
+			    <span>{{item.timestamp | date:'medium'}}</span>
+			    <p><a href="/umbraco/#/content/content/edit/{{item.nodeId}}">{{item.nodeName}}</a> <localize key="theDashboard_savedBy">saved by</localize> {{item.userDisplayName}} <localize key="theDashboard_butNotPublishedOrScheduled">but not published or scheduled</localize>.</p>
+		    </div>
+	    </div>
     </div>
     <div class="span3 offset1">
         <h3></h3>
