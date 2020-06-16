@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language>
+  <area alias="dashboardTabs">
+    <key alias="Our.Umbraco.TheDashboard">Welcome</key>
+  </area>
+
+  <area alias="theDashboard">
+      <key alias="recentActivities">Recent activities</key>
+      <key alias="recentActivitiesDescription">Shows recent activities from all users in the back office.</key>
+      <key alias="unpublishedContent">Unpublished content</key>
+      <key alias="unpublishedContentDescription">Shows unpublished content that has not been scheduled for publish.</key>
+      <key alias="yourRecentActivity">Your recent activity</key>
+      <key alias="yourRecentActivitiesDescription">Shows your own recent activities</key>
+      <key alias="publishedContentNodes">Published content nodes</key>
+      <key alias="nodesInRecycleBin">Nodes in recycle bin</key>
+      <key alias="membersOnWebsite">Members on website</key>
+      <key alias="newMembersLastWeek">New members last week</key>
+      <key alias="butNotPublishedOrScheduled">but not published or scheduled</key>
+      <key alias="butDidNotPublish">but did not publish</key>
+      <key alias="forPublishingAt">for publishing at</key>
+      <key alias="to">to</key>
+      <key alias="saved">saved</key>
+      <key alias="moved">moved</key>
+      <key alias="unpublished">unpublished</key>
+      <key alias="savedBy">saved by</key>
+      <key alias="savedAndScheduled">saved and scheduled</key>
+      <key alias="savedAndPublished">saved and published</key>
+      <key alias="recycleBin">recycle bin</key>
+      <key alias="rolledBack">rolled back</key>
+
+      <key alias="Saved">Saved</key>
+      <key alias="Moved">Moved</key>
+      <key alias="Unpublished">Unpublished</key>
+      <key alias="SavedAndScheduled">Saved and scheduled</key>
+      <key alias="SavedAndPublished">Saved and published</key>
+      <key alias="RolledBack">Rolled back</key>
+    </area>
+</language>

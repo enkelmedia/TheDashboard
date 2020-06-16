@@ -3,23 +3,22 @@
 	<info>
 		<package>
 			<name>The Dashboard</name>
-			<version>1.4</version>
+			<version>8.0.0</version>
 			<license url="http://www.opensource.org/licenses/mit-license.php">MIT license</license>
 			<url>https://our.umbraco.org/projects/backoffice-extensions/the-dashboard/</url>
 			<requirements>
-				<major>7</major>
-				<minor>7</minor>
-				<patch>2</patch>
+				<major>8</major>
+				<minor>0</minor>
+				<patch>0</patch>
 			</requirements>
 		</package>
 		<author>
-			<name>Markus Johansson</name>
+			<name>Markus Johansson, Obviuse AB</name>
 			<website>http://twitter.com/markusjoha</website>
 		</author>
 		<readme><![CDATA[]]></readme>
 	</info>
-
-	<DocumentTypes />
+  <DocumentTypes />
 	<Templates />
 	<Stylesheets />
 	<Macros />
@@ -27,11 +26,7 @@
 	<Languages />
 	<DataTypes />
   <Actions>
-    <Action runat="install" undo="true" alias="TheDashboard"></Action>
-    <Action runat="install" alias="RemoveOldInstallation"></Action>
   </Actions>
   <control />
-
-	<files />
-
+  <files />
 </umbPackage>

@@ -38,33 +38,13 @@ bin/
 /Assets/
 /Build/
 *.DS_Store
-/packages/AutoMapper.3.0.0
-/packages/ClientDependency.1.7.1.2
-/packages/ClientDependency-Mvc.1.7.0.4
-/packages/HtmlAgilityPack.1.4.6
-/packages/ImageProcessor.1.8.7.0
-/packages/ImageProcessor.Web.3.2.1.0
-/packages/Lucene.Net.2.9.4.1
-/packages/Microsoft.AspNet.Mvc.4.0.30506.0
-/packages/Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.1
-/packages/Microsoft.AspNet.Razor.2.0.30506.0
-/packages/Microsoft.AspNet.WebApi.4.0.30506.0
-/packages/Microsoft.AspNet.WebApi.Client.4.0.30506.0
-/packages/Microsoft.AspNet.WebApi.Core.4.0.30506.0
-/packages/Microsoft.AspNet.WebApi.WebHost.4.0.30506.0
-/packages/Microsoft.AspNet.WebPages.2.0.30506.0
-/packages/Microsoft.Net.Http.2.0.20710.0
-/packages/Microsoft.Web.Infrastructure.1.0.0.0
-/packages/MiniProfiler.2.1.0
-/packages/MySql.Data.6.6.5
-/packages/Newtonsoft.Json.6.0.2
-/packages/SharpZipLib.0.86.0
-/packages/UmbracoCms.Core.7.1.1
-/packages/xmlrpcnet.2.5.0
 
+/Umbraco8.Web.UI/*
 /Umbraco7.Web.UI/*
 /packages/*
 /package/*
 
 /copy file to test-enviroment.cmd
 .vs/
+
+xcopy*

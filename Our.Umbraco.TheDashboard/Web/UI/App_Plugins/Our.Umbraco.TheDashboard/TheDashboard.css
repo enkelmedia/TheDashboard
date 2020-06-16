@@ -1,0 +1,94 @@
+﻿.theDashboard {
+    display: flex;
+}
+
+.theDashboard > div {
+    flex-grow: 1;
+    flex-basis: 0;
+    margin-right: 20px;
+}
+
+.theDashboard umb-box-header:focus {
+    outline: none;
+}
+
+.theDashboard .recentActivity {
+    display: flex;
+}
+.theDashboard .recentActivity a {
+    text-decoration: underline;
+}
+.theDashboard .recentActivity > div:nth-child(1) {
+    min-width: 30px;
+}
+
+.theDashboard .recentActivity > div:nth-child(2) {
+    padding-left: 10px;
+}
+
+.theDashboard .recentActivity span.theDashboard-datetime {
+    font-size: 12px;
+    font-style: italic;
+}
+
+
+/* unpublished */
+.theDashboard .theDashboard-unpublised-wrapper {
+    position: relative;
+    cursor: pointer;
+}
+
+.theDashboard .theDashboard-unpublised-wrapper .umb-box-header span {
+    position: absolute;
+    left: -15px;
+    top: -15px;
+    font-size: 12px;
+    background: #F5C1BC;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 200px;
+}
+
+.theDashboard div.number {
+    margin-bottom: 10px;
+    height: 45px;
+    vertical-align: middle;
+}
+
+.theDashboard div.number div.dot {
+    padding-top: 15px;
+    float: left;
+    background-color: cadetblue;
+    color: #fff;
+    border-radius: 25px;
+    width: 50px;
+    height: 35px;
+    margin-right: 8px;
+    text-align: center;
+}
+
+.theDashboard div.number div.dot.dot-style-standard {
+    background-color: cadetblue;
+}
+.theDashboard div.number div.dot.dot-style-success {
+    background-color: #2bc37c;
+}
+.theDashboard div.number div.dot.dot-style-action {
+    background-color: #3544b1;
+}
+.theDashboard div.number div.dot.dot-style-warning {
+    background-color: cadetblue;
+}
+.theDashboard div.number div.dot.dot-style-selected {
+    background-color: #F5C1BC;
+}
+.theDashboard div.number div.dot.dot-style-danger {
+    background-color: #d42054;
+}
+
+.theDashboard div.number p {
+    padding-top: 15px;
+}

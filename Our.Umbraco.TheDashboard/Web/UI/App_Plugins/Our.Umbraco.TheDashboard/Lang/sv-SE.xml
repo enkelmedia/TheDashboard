@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language>
+    <area alias="theDashboard">
+        <key alias="recentActivities">Senaste aktiviteter</key>
+        <key alias="recentActivitiesDescription">Visar senaste aktiviteter från alla användare.</key>
+        <key alias="unpublishedContent">Opublicerat innehåll</key>
+        <key alias="unpublishedContentDescription">Visar opublicerat innehåll som ej har schemalagts för publicering.</key>
+        <key alias="yourRecentActivity">Dina senaste aktiviteter</key>
+        <key alias="yourRecentActivitiesDescription">Visar dina senaste aktiviteter</key>
+        <key alias="publishedContentNodes">Publicerade noder</key>
+        <key alias="nodesInRecycleBin">Noder i papperskorgen</key>
+        <key alias="membersOnWebsite">Medlemmar på sajten</key>
+        <key alias="newMembersLastWeek">Nya medlemmar senaste veckan</key>
+        <key alias="butNotPublishedOrScheduled">men ej publicerad eller schemalagd</key>
+        <key alias="butDidNotPublish">men publicerade ej inte</key>
+        <key alias="forPublishingAt">att publiceras</key>
+        <key alias="to">till</key>
+        <key alias="saved">sparade</key>
+        <key alias="moved">flyttade</key>
+        <key alias="unpublished">avpublicerade</key>
+        <key alias="savedBy">sparad av</key>
+        <key alias="savedAndScheduled">sparade och schemalade</key>
+        <key alias="savedAndPublished">sparade och publicerade</key>
+        <key alias="recycleBin">papperskorgen</key>
+        <key alias="rolledBack">återställde</key>
+        <key alias="Saved">Sparade</key>
+        <key alias="Moved">Flyttade</key>
+        <key alias="Unpublished">Avpublicerade</key>
+        <key alias="SavedAndScheduled">Sparade och schemalade</key>
+        <key alias="SavedAndPublished">Sparade och publicerade</key>
+        <key alias="RolledBack">Återställde</key>
+    </area>
+</language>

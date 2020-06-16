@@ -2,18 +2,18 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Our.Umbraco.TheDashboard</id>
-    <version>1.4</version>
+    <version>8.0.0</version>
     <title>The Dashboard for Umbraco</title>
-    <description>A magical dashboard for Umbraco 7</description>
+    <description>A magical dashboard for Umbraco 8+</description>
     <authors>Markus Johansson</authors>
     <projectUrl>https://our.umbraco.org/projects/backoffice-extensions/the-dashboard/</projectUrl>
     <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <copyright>Copyright (c) Enkel Media Stockholm</copyright>
+    <copyright>Copyright (c) Obviuse AB</copyright>
     <summary />
     <language />
     <dependencies>
-      <dependency id="UmbracoCms.Core" version="7.0.0" />
+      <dependency id="UmbracoCms.Web" version="8.0.0" />
     </dependencies>
   </metadata>
   <files>

@@ -22,7 +22,7 @@
 	****************************************
   -->
   <PropertyGroup>
-	  <PackageVersion>1.4</PackageVersion>
+	  <PackageVersion>8.0.0</PackageVersion>
     <BuildConfiguration>Release</BuildConfiguration>
     
   </PropertyGroup>
@@ -31,7 +31,7 @@
 	  <RootDir>$(MSBuildProjectDirectory)</RootDir>
 	  <BuildDir>$(RootDir)\Build</BuildDir>
 	  <PackageDir>$(RootDir)\Package</PackageDir>
-	  <ProjectDir>$(RootDir)\TheDashboard</ProjectDir>
+	  <ProjectDir>$(RootDir)\Our.Umbraco.TheDashboard</ProjectDir>
   </PropertyGroup>
   
   <!-- 
@@ -64,13 +64,13 @@
   
   <!-- COMPILE -->
   <Target Name="Compile" DependsOnTargets="UpdateAssemblyInfo">
-	  <MSBuild Projects="$(ProjectDir)\TheDashboard.csproj" Properties="Configuration=$(BuildConfiguration);PostBuildEvent=" />
+	  <MSBuild Projects="$(ProjectDir)\Our.Umbraco.TheDashboard.csproj" Properties="Configuration=$(BuildConfiguration);PostBuildEvent=" />
   </Target>
 
   <!-- PREPAIRE FILES --> 
   <Target Name="PrepairFiles_Umbraco" DependsOnTargets="Compile">
     <ItemGroup>
-      <BinFiles Include="$(ProjectDir)\bin\$(BuildConfiguration)\TheDashboard.dll" />
+      <BinFiles Include="$(ProjectDir)\bin\$(BuildConfiguration)\Our.Umbraco.TheDashboard.dll" />
       <WebFiles Include="$(ProjectDir)\Web\UI\**\*.*" />
       <PackageFile Include="$(RootDir)\Package.xml;" />  
     </ItemGroup>
@@ -105,7 +105,7 @@
   <Target Name="PrepairFiles_NuGet" DependsOnTargets="Package_Umbraco">
     <RemoveDir Directories="$(BuildDir)" Condition="Exists('$(BuildDir)')" />
     <ItemGroup>
-      <BinFiles Include="$(ProjectDir)\bin\$(BuildConfiguration)\TheDashboard.dll" />
+      <BinFiles Include="$(ProjectDir)\bin\$(BuildConfiguration)\Our.Umbraco.TheDashboard.dll" />
       <WebFiles Include="$(ProjectDir)\Web\UI\**\*.*" />
       <NuGetPackageFile Include="$(RootDir)\Package.nuspec" /> 
     </ItemGroup>
