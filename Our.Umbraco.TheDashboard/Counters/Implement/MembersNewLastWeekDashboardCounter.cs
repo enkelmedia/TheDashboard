@@ -23,7 +23,7 @@ namespace Our.Umbraco.TheDashboard.Counters.Implement
             {
                 Text = _localizedTextService.Localize("theDashboard/newMembersLastWeek"),
                 Count = count,
-                ClickUrl = "/umbraco#/member",
+                ClickUrl = "/umbraco#/member/member/list/all-members",
                 Style = DashboardCounterModel.CounterStyles.Selected
             };
         }
