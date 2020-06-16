@@ -15,7 +15,7 @@ Install-Package Our.Umbraco.TheDashboard
 ```
 
 ## Extension Points
-There's something called "Counters" listed to the left. These are actually small classes that implements the IDashboardCounter-interface from the package. 
+There's something called "Counters" listed to the left in the Dashboard. These are actually small classes that implements the IDashboardCounter-interface from the package. 
 
 These classes are instantiated using Umbraco's CollectionBuilders (same as for ie ContentFinders) so you can inject any dependency you need in the constructor. 
 
@@ -33,7 +33,7 @@ public class OrdersDashboardCounter : IDashboardCounter
 
     public DashboardCounterModel GetModel(IScope scope)
     {
-        var sql = @"SELECT count(id) FROM customOders";
+        var sql = @"SELECT count(id) FROM customOrders";
 
         var count = scope.Database.ExecuteScalar<int>(sql);
         return new DashboardCounterModel()
@@ -71,11 +71,10 @@ Are more then welcome but please, before you put a lot of work into it raise and
 ### Roadmap
 The main idea with the package is to provide a super simple dashboard for the content section, we're extreamly cautious with adding features as we want to keep the code base super-easy.
 
-In the v8 version of the package the "Developer Dashboard" was remove, there's plenty of other packages, ie "Diplo GodMode" https://our.umbraco.com/packages/developer-tools/diplo-god-mode/ that solves this problem. There is no plans to add it back.
- 
+In the v8 version of the package the "Developer Dashboard" was remove, there's plenty of other packages, ie "Diplo GodMode" https://our.umbraco.com/packages/developer-tools/diplo-god-mode/ that solves this problem. There is no plans to add it back. 
 
 ### Build
-Just build the package using the included build script and upload the zip file to the Umbraco back-office. 
+Just build the package using the included build script (`Package.build.cmd`) this will create artifacts in a `/Package`-folder - these can then be uploaded to the backoffice.
 
 
 This package was created by Enkel Media, http://www.enkelmedia.se
