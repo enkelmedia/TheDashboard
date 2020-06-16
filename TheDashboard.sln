@@ -12,7 +12,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution 
 		Package.nuspec = Package.nuspec
 		Package.xml = Package.xml
 		README.md = README.md
-		Todo.md = Todo.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Our.Umbraco.TheDashboard", "Our.Umbraco.TheDashboard\Our.Umbraco.TheDashboard.csproj", "{0630C551-9151-4116-A952-3E7AC812847F}"
