@@ -74,7 +74,11 @@ The main idea with the package is to provide a super simple dashboard for the co
 In the v8 version of the package the "Developer Dashboard" was remove, there's plenty of other packages, ie "Diplo GodMode" https://our.umbraco.com/packages/developer-tools/diplo-god-mode/ that solves this problem. There is no plans to add it back. 
 
 ### Build
-Just build the package using the included build script (`Package.build.cmd`) this will create artifacts in a `/Package`-folder - these can then be uploaded to the backoffice.
+To build a Release-version of the package, 
+
+* [ ] Make sure to update package.build.xml and set `PackageVersion` to the right version.
+* [ ] Run `Package.build.cmd` to create packages
+* [ ] Artifacts created in /Package/-folder
 
 
 This package was created by Enkel Media, http://www.enkelmedia.se
