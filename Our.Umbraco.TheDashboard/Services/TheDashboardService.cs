@@ -85,7 +85,7 @@ namespace Our.Umbraco.TheDashboard.Services
 	            AND ud.edited = 1 
 	            AND ud.published = 1 
 	            AND ucs.[action] is null
-	            AND ul.logHeader = 'Save'
+	            AND (ul.logHeader = 'Save' OR ul.logHeader = 'SaveVariant')
 
               ORDER by ul.Datestamp DESC
             ";
