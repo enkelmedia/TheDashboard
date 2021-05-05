@@ -47,7 +47,7 @@ public class OrdersDashboardCounter : IDashboardCounter
 }
 ```
 
-And then you need to create a Composer that adds you’re new Counter.
+And then you need to create a Composer that adds youâ€™re new Counter.
 
 ```csharp
 [ComposeAfter(typeof(TheDashboardComposer))]
@@ -69,7 +69,7 @@ public class OrdersCounterComposer : IUserComposer
 Are more then welcome but please, before you put a lot of work into it raise and issue and make sure that we're on the same track.
 
 ### Roadmap
-The main idea with the package is to provide a super simple dashboard for the content section, we're extreamly cautious with adding features as we want to keep the code base super-easy.
+The main idea with the package is to provide a super simple dashboard for the content section, we're extremely cautious with adding features as we want to keep the code base super-easy.
 
 In the v8 version of the package the "Developer Dashboard" was remove, there's plenty of other packages, ie "Diplo GodMode" https://our.umbraco.com/packages/developer-tools/diplo-god-mode/ that solves this problem. There is no plans to add it back. 
 
