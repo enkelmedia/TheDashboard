@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // These are replaced during build, set version in package.build.xml
-[assembly: AssemblyVersion("8.0.2")]
-[assembly: AssemblyFileVersion("8.0.2")]
+[assembly: AssemblyVersion("8.0.3")]
+[assembly: AssemblyFileVersion("8.0.3")]
