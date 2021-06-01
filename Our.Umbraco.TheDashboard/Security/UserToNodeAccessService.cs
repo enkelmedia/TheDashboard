@@ -57,10 +57,12 @@ namespace Our.Umbraco.TheDashboard.Security
                 ;
 
             // Compare usersStart node(s) (if any) against the path, if not found in start nodes access should be denied
-            if (_userStartNodes.Length > 1)
+            if (_userStartNodes.Length > 0)
             {
+                bool onlyRootInList = _userStartNodes.Length == 1 && _userStartNodes[0] == Constants.System.Root;
+
                 // Users with access to "all" will have a startNode with -1
-                if (_userStartNodes.Length > 1 || _userStartNodes[0] != Constants.System.Root)
+                if (_userStartNodes.Length > 1 || !onlyRootInList)
                 {
                     // At this stage we know that the user has start nodes assigned.
 
