@@ -22,7 +22,7 @@
 	****************************************
   -->
   <PropertyGroup>
-	  <PackageVersion>8.0.4</PackageVersion>
+	  <PackageVersion>8.0.5</PackageVersion>
     <BuildConfiguration>Release</BuildConfiguration>
     
   </PropertyGroup>
