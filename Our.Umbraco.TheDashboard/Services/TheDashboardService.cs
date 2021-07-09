@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Security.AccessControl;
 using Our.Umbraco.TheDashboard.Models.Dtos;
-using Umbraco.Core.Scoping;
+using Umbraco.Cms.Core.Scoping;
 
 namespace Our.Umbraco.TheDashboard.Services
 {

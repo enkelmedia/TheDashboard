@@ -1,6 +1,8 @@
-﻿using LightInject;
-using Umbraco.Core.Scoping;
-using Umbraco.Core.Services;
+﻿
+
+using System.Threading;
+using Umbraco.Cms.Core.Scoping;
+using Umbraco.Cms.Core.Services;
 
 namespace Our.Umbraco.TheDashboard.Counters.Implement
 {
@@ -19,7 +21,7 @@ namespace Our.Umbraco.TheDashboard.Counters.Implement
             
             return new DashboardCounterModel()
             {
-                Text = _localizedTextService.Localize("theDashboard/membersOnWebsite"),
+                Text = _localizedTextService.Localize("theDashboard","membersOnWebsite",Thread.CurrentThread.CurrentCulture),
                 Count = count,
                 ClickUrl = "/umbraco#/member/member/list/all-members",
                 Style = DashboardCounterModel.CounterStyles.Selected

@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-using Umbraco.Core;
-using Umbraco.Core.Cache;
-using Umbraco.Core.Models;
-using Umbraco.Core.Models.Membership;
-using Umbraco.Web.Composing;
+using Umbraco.Cms.Core.Cache;
+using Umbraco.Extensions;
 
 namespace Our.Umbraco.TheDashboard.Extensions
 {

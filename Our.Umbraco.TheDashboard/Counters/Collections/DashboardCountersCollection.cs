@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Umbraco.Core.Composing;
+using Umbraco.Cms.Core.Composing;
 
 namespace Our.Umbraco.TheDashboard.Counters.Collections
 {

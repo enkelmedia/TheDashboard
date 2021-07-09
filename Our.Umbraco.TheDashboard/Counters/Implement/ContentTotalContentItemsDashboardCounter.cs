@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Threading;
+using Umbraco.Cms.Core;
+using Umbraco.Cms.Core.Scoping;
+using Umbraco.Cms.Core.Services;
 using Umbraco.Core;
-using Umbraco.Core.Scoping;
-using Umbraco.Core.Services;
 
 namespace Our.Umbraco.TheDashboard.Counters.Implement
 {
@@ -27,7 +29,7 @@ namespace Our.Umbraco.TheDashboard.Counters.Implement
 
             return new DashboardCounterModel()
             {
-                Text = _localizedTextService.Localize("theDashboard/publishedContentNodes"),
+                Text = _localizedTextService.Localize("theDashboard","publishedContentNodes", Thread.CurrentThread.CurrentCulture),
                 Count = count,
                 Style = DashboardCounterModel.CounterStyles.Action
             };

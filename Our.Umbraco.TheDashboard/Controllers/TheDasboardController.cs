@@ -1,56 +1,70 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web.Http;
-using Our.Umbraco.TheDashboard.Controllers.Attributes;
+using Microsoft.AspNetCore.Mvc;
 using Our.Umbraco.TheDashboard.Counters.Collections;
 using Our.Umbraco.TheDashboard.Mapping;
 using Our.Umbraco.TheDashboard.Models.Dtos;
 using Our.Umbraco.TheDashboard.Models.Frontend;
 using Our.Umbraco.TheDashboard.Security;
 using Our.Umbraco.TheDashboard.Services;
-using Umbraco.Core.Cache;
-using Umbraco.Core.Scoping;
-using Umbraco.Web.Editors;
-using Umbraco.Web.WebApi;
+using Umbraco.Cms.Core.Cache;
+using Umbraco.Cms.Core.Scoping;
+using Umbraco.Cms.Core.Security;
+using Umbraco.Cms.Core.Services;
+using Umbraco.Cms.Web.BackOffice.Controllers;
+using Umbraco.Cms.Web.BackOffice.Filters;
+using Umbraco.Cms.Web.Common.Attributes;
+
 
 namespace Our.Umbraco.TheDashboard.Controllers
 {
     [IsBackOffice]
-    [CamelCaseController]
+    [JsonCamelCaseFormatter]
     public class TheDashboardController : UmbracoAuthorizedJsonController
     {
         private readonly AppCaches _appCaches;
         private readonly IScopeProvider _scopeProvider;
         private readonly ITheDashboardService _dashboardService;
         private readonly DashboardCountersCollection _dashboardCountersCollection;
+        private readonly IUserService _userService;
+        private readonly IBackOfficeSecurity _security;
+        private readonly IEntityService _entityService;
 
         public TheDashboardController(AppCaches appCaches, 
             IScopeProvider scopeProvider,
             ITheDashboardService dashboardService, 
-            DashboardCountersCollection dashboardCountersCollection)
+            DashboardCountersCollection dashboardCountersCollection,
+            IUserService userService,
+            IBackOfficeSecurity security,
+            IEntityService entityService
+        )
         {
             _appCaches = appCaches;
             _scopeProvider = scopeProvider;
             _dashboardService = dashboardService;
             _dashboardCountersCollection = dashboardCountersCollection;
+            _userService = userService;
+            _security = security;
+            _entityService = entityService;
         }
 
         [HttpGet]
         public RecentActivitiesFrontendModel GetAllRecentActivities()
         {
+            
             var model = new RecentActivitiesFrontendModel();
             model.AllItems = new List<RecentActivityFrontendModel>();
             model.YourItems = new List<RecentActivityFrontendModel>();
 
             var allRecentDtos = _dashboardService.GetEntries();
 
-            var accessService = new UserToNodeAccessHelper(Security.CurrentUser, Services.UserService, allRecentDtos);
+            var accessService = new UserToNodeAccessHelper(_security.CurrentUser, _userService,_entityService,_appCaches, allRecentDtos);
             var filteredDtos = allRecentDtos.Where(x => accessService.HasAccessTo(x)).ToList();
 
             model.AllItems = CreateFrontendModelsFrom(filteredDtos);
 
             // filter to only my own
-            var filteredMyActivitiesDtos = filteredDtos.Where(x => x.UserId == Security.CurrentUser.Id).ToList();
+            var filteredMyActivitiesDtos = filteredDtos.Where(x => x.UserId == _security.CurrentUser.Id).ToList();
             model.YourItems = CreateFrontendModelsFrom(filteredMyActivitiesDtos);
 
             return model;
@@ -64,7 +78,7 @@ namespace Our.Umbraco.TheDashboard.Controllers
             
             var allRecentDtos = _dashboardService.GetUnpublished();
 
-            var accessService = new UserToNodeAccessHelper(Security.CurrentUser, Services.UserService, allRecentDtos);
+            var accessService = new UserToNodeAccessHelper(_security.CurrentUser, _userService,_entityService,_appCaches, allRecentDtos);
             var filteredDtos = allRecentDtos.Where(x => accessService.HasAccessTo(x)).ToList();
 
             model.Items = CreateFrontendModelsFrom(filteredDtos);

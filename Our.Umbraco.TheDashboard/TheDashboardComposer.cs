@@ -1,27 +1,30 @@
 ﻿using Our.Umbraco.TheDashboard.Counters.Implement;
 using Our.Umbraco.TheDashboard.Extensions;
 using Our.Umbraco.TheDashboard.Services;
+using Umbraco.Cms.Core.Composing;
+using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Core;
-using Umbraco.Core.Composing;
-using Umbraco.Web;
+using Microsoft.Extensions.DependencyInjection;
+using Our.Umbraco.TheDashboard.Counters.Collections;
 
 namespace Our.Umbraco.TheDashboard
 {
     public class TheDashboardComposer : IUserComposer
     {
-        public void Compose(Composition composition)
+      
+        public void Compose(IUmbracoBuilder builder)
         {
-            composition.Components().Append<TheDashboardComponent>();
-            composition.Dashboards().Add<TheDashboardDashboard>();
 
-            composition.Register<ITheDashboardService,TheDashboardService>();
+            builder.Dashboards().Add<TheDashboardDashboard>();
+            builder.Services.AddTransient<ITheDashboardService, TheDashboardService>();
 
+            builder.WithCollectionBuilder<DashboardCountersCollectionBuilder>()
+                .Append<ContentTotalContentItemsDashboardCounter>()
+                .Append<ContentInRecycleBinDashboardCounter>()
+                .Append<MembersTotalDashboardCounter>();
 
-            composition.TheDashboardCounters().Append<ContentTotalContentItemsDashboardCounter>();
-            composition.TheDashboardCounters().Append<ContentInRecycleBinDashboardCounter>();
-            composition.TheDashboardCounters().Append<MembersTotalDashboardCounter>();
-            composition.TheDashboardCounters().Append<MembersNewLastWeekDashboardCounter>();
-
+            // Just using this to make sure that it works and are used in the package
+            builder.TheDashboardCounters().Append<MembersNewLastWeekDashboardCounter>();
 
         }
     }

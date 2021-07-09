@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using Umbraco.Cms.Core;
+using Umbraco.Cms.Core.Scoping;
+using Umbraco.Cms.Core.Services;
 using Umbraco.Core;
-using Umbraco.Core.Scoping;
-using Umbraco.Core.Services;
+
 
 namespace Our.Umbraco.TheDashboard.Counters.Implement
 {
@@ -28,11 +31,10 @@ namespace Our.Umbraco.TheDashboard.Counters.Implement
 
             return new DashboardCounterModel()
             {
-                Text = _localizedTextService.Localize("theDashboard/nodesInRecycleBin"),
+                Text = _localizedTextService.Localize("theDashboard","nodesInRecycleBin",Thread.CurrentThread.CurrentCulture),
                 Count = count,
                 ClickUrl = "/umbraco#/content/content/recyclebin",
                 Style = DashboardCounterModel.CounterStyles.Action
-                
             };
         }
     }

@@ -1,7 +1,7 @@
 ﻿using Our.Umbraco.TheDashboard.Extensions;
 using Our.Umbraco.TheDashboard.Models.Dtos;
 using Our.Umbraco.TheDashboard.Models.Frontend;
-using Umbraco.Core.Cache;
+using Umbraco.Cms.Core.Cache;
 
 namespace Our.Umbraco.TheDashboard.Mapping
 {

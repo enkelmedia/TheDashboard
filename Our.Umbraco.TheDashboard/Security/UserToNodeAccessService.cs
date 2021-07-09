@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using Our.Umbraco.TheDashboard.Models;
-using Umbraco.Core.Models.Membership;
-using Umbraco.Core.Services;
-using Umbraco.Core;
-using Umbraco.Core.Composing;
-using Umbraco.Core.Migrations.Upgrade.V_7_12_0;
-using Umbraco.Core.Models;
-using Umbraco.Web.Actions;
+using Umbraco.Cms.Core;
+using Umbraco.Cms.Core.Actions;
+using Umbraco.Cms.Core.Cache;
+using Umbraco.Cms.Core.Models;
+using Umbraco.Cms.Core.Models.Membership;
+using Umbraco.Cms.Core.Services;
+
 
 namespace Our.Umbraco.TheDashboard.Security
 {
     internal class UserToNodeAccessHelper
     {
+        private readonly IEntityService _entityService;
+        private readonly AppCaches _appCaches;
         private EntityPermissionCollection _permissions;
 
         /// <summary>
@@ -21,9 +23,16 @@ namespace Our.Umbraco.TheDashboard.Security
         /// </summary>
         private int[] _userStartNodes;
 
-        internal UserToNodeAccessHelper(IUser currentUser, IUserService userService, IEnumerable<IUmbracoNodeWithPermissions> nodes)
+        internal UserToNodeAccessHelper(
+            IUser currentUser, 
+            IUserService userService, 
+            IEntityService entityService,
+            AppCaches appCaches,
+            IEnumerable<IUmbracoNodeWithPermissions> nodes)
         {
-            _userStartNodes = currentUser.CalculateContentStartNodeIds(Current.Services.EntityService);
+            _entityService = entityService;
+            _appCaches = appCaches;
+            _userStartNodes = currentUser.CalculateContentStartNodeIds(_entityService,appCaches);
             _permissions = userService.GetPermissions(currentUser, AllNodeIdsFromPath(nodes));
         }
 

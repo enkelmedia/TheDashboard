@@ -1,5 +1,4 @@
-﻿using System.Web.UI.WebControls;
-
+﻿
 namespace Our.Umbraco.TheDashboard.Counters
 {
     public class DashboardCounterModel

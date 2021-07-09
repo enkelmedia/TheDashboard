@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Our.Umbraco.TheDashboard.Counters.Collections;
-using Umbraco.Core.Composing;
+﻿using Our.Umbraco.TheDashboard.Counters.Collections;
+using Umbraco.Cms.Core.DependencyInjection;
 
 namespace Our.Umbraco.TheDashboard.Extensions
 {
@@ -14,10 +9,10 @@ namespace Our.Umbraco.TheDashboard.Extensions
             /// <summary>
             /// Used to modify the collection of Dashboard Counters for The Dashboard
             /// </summary>
-            /// <param name="composition"></param>
+            /// <param name="builder"></param>
             /// <returns></returns>
-            public static DashboardCountersCollectionBuilder TheDashboardCounters(this Composition composition)
-                => composition.WithCollectionBuilder<DashboardCountersCollectionBuilder>();
+            public static DashboardCountersCollectionBuilder TheDashboardCounters(this IUmbracoBuilder builder)
+                => builder.WithCollectionBuilder<DashboardCountersCollectionBuilder>();
         
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
-using Umbraco.Core.Composing;
-using Umbraco.Core.Dashboards;
+using Umbraco.Cms.Core.Composing;
+using Umbraco.Cms.Core.Dashboards;
 
 namespace Our.Umbraco.TheDashboard
 {
@@ -13,7 +13,7 @@ namespace Our.Umbraco.TheDashboard
 
         public string[] Sections => new[]
         {
-            global::Umbraco.Core.Constants.Applications.Content
+            global::Umbraco.Cms.Core.Constants.Applications.Content
         };
 
         public IAccessRule[] AccessRules => Array.Empty<IAccessRule>();
