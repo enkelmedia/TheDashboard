@@ -8,11 +8,19 @@ This is a magic dashboard for Umbraco 7,8 and 9, it's actually "The Dashboard". 
 ## Installation in Umbraco CMS
 There is a built version of the package here: https://our.umbraco.org/projects/backoffice-extensions/the-dashboard/ just download it and install it in the developers-section.
 
-Or use Nuget
+Command Line
+
+```
+dotnet add package Our.Umbraco.TheDashboard
+```
+
+Or NuGet
 
 ```
 Install-Package Our.Umbraco.TheDashboard
 ```
+
+
 
 ## Extension Points
 There's something called "Counters" listed to the left in the Dashboard. These are actually small classes that implements the IDashboardCounter-interface from the package. 
