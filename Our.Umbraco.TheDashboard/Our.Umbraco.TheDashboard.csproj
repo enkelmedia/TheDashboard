@@ -2,13 +2,18 @@
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
         <ContentTargetFolders>.</ContentTargetFolders>
-        <Product>Our.Umbraco.TheDashboard</Product>
         <PackageId>Our.Umbraco.TheDashboard</PackageId>
         <Title>Our.Umbraco.TheDashboard</Title>
-        <Description>...</Description>
-        <Product>...</Product>
+        <Description>Content dashboard for Umbraco 9</Description>
+        <Product>The Dashboard for Umbraco</Product>
         <PackageTags>umbraco plugin package</PackageTags>
         <Version>9.0.0-rc001</Version>
+        <Authors>Markus Johansson</Authors>
+        <Copyright>Copyright (c) Obviuse AB</Copyright>
+        <Company>Obviuse AB / Enkel Media Stockholm AB</Company>
+        <PackageProjectUrl>https://our.umbraco.org/projects/backoffice-extensions/the-dashboard/</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/enkelmedia/TheDashboard</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
     </PropertyGroup>
 
     <ItemGroup>

@@ -3,7 +3,7 @@ The Dashboard
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This is a magic dashboard for Umbraco 7-8, it's actually "The Dashboard". It will show editors a summary of the latest activites on the website combined with each editors recent activities and other useful information.
+This is a magic dashboard for Umbraco 7,8 and 9, it's actually "The Dashboard". It will show editors a summary of the latest activites on the website combined with each editors recent activities and other useful information.
 
 ## Installation in Umbraco CMS
 There is a built version of the package here: https://our.umbraco.org/projects/backoffice-extensions/the-dashboard/ just download it and install it in the developers-section.
@@ -77,7 +77,7 @@ In the v8 version of the package the "Developer Dashboard" was remove, there's p
 To build a Release-version of the package, 
 
 * [ ] Make sure to update package.build.xml and set `PackageVersion` to the right version.
-* [ ] Run `Package.build.cmd` to create packages
+* [ ] Run `dotnet pack --configuration Release` inside the `Our.Umbraco.TheDashboard`-folder to create packages
 * [ ] Artifacts created in /Package/-folder
 
 
