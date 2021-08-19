@@ -4,14 +4,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Umbraco.Cms" Version="9.0.0-rc001" />
-        <PackageReference Include="Umbraco.Cms.SqlCe" Version="9.0.0-rc001" />
+        <PackageReference Include="Umbraco.Cms" Version="9.0.0-rc002" />
+        <PackageReference Include="Umbraco.Cms.SqlCe" Version="9.0.0-rc002" />
         <PackageReference Include="Umbraco.SqlServerCE" Version="4.0.0.1" />
     </ItemGroup>
 
-    <Import Project="..\Our.Umbraco.TheDashboard\build\Our.Umbraco.TheDashboard.targets"/>
+    <Import Project="..\Our.Umbraco.TheDashboard\build\Our.Umbraco.TheDashboard.targets" />
     <ItemGroup>
-        <ProjectReference Include="..\Our.Umbraco.TheDashboard\Our.Umbraco.TheDashboard.csproj"/>
+        <ProjectReference Include="..\Our.Umbraco.TheDashboard\Our.Umbraco.TheDashboard.csproj" />
     </ItemGroup>
 
     <ItemGroup>

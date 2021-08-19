@@ -3,7 +3,6 @@ using Our.Umbraco.TheDashboard.Extensions;
 using Our.Umbraco.TheDashboard.Services;
 using Umbraco.Cms.Core.Composing;
 using Umbraco.Cms.Core.DependencyInjection;
-using Umbraco.Core;
 using Microsoft.Extensions.DependencyInjection;
 using Our.Umbraco.TheDashboard.Counters.Collections;
 
