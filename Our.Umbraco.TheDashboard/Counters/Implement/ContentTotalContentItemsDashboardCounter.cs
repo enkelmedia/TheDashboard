@@ -3,7 +3,6 @@ using System.Threading;
 using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Scoping;
 using Umbraco.Cms.Core.Services;
-using Umbraco.Core;
 
 namespace Our.Umbraco.TheDashboard.Counters.Implement
 {

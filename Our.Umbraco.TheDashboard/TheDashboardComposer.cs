@@ -3,15 +3,13 @@ using Our.Umbraco.TheDashboard.Extensions;
 using Our.Umbraco.TheDashboard.Services;
 using Umbraco.Cms.Core.Composing;
 using Umbraco.Cms.Core.DependencyInjection;
-using Umbraco.Core;
 using Microsoft.Extensions.DependencyInjection;
 using Our.Umbraco.TheDashboard.Counters.Collections;
 
 namespace Our.Umbraco.TheDashboard
 {
-    public class TheDashboardComposer : IUserComposer
+    public class TheDashboardComposer : IComposer
     {
-      
         public void Compose(IUmbracoBuilder builder)
         {
 
