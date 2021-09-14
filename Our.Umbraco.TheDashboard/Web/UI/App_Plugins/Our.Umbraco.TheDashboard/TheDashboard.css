@@ -49,12 +49,12 @@
 
 
     /* unpublished */
-    .theDashboard .theDashboard-unpublised-wrapper {
+    .theDashboard .theDashboard-unpublished-wrapper {
         position: relative;
         cursor: pointer;
     }
 
-        .theDashboard .theDashboard-unpublised-wrapper .umb-box-header span {
+        .theDashboard .theDashboard-unpublished-wrapper .umb-box-header span {
             position: absolute;
             left: -15px;
             top: -15px;
@@ -67,6 +67,7 @@
             align-items: center;
             border-radius: 200px;
         }
+
 
     .theDashboard div.number {
         margin-bottom: 10px;

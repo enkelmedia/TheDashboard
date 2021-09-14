@@ -44,7 +44,7 @@
     </div>
     <div>
         
-        <umb-box class="theDashboard-unpublised-wrapper">
+        <umb-box class="theDashboard-unpublished-wrapper">
             <umb-box-header
                 title-key="theDashboard_unpublishedContent"
                 description-key="theDashboard_unpublishedContentDescription"
@@ -61,6 +61,45 @@
             </umb-box-header>
             <umb-box-content ng-if="showUnpublished">
                 <div ng-repeat="item in vm.unpublished.items" class="recentActivity">
+                    
+                    <umb-avatar name="{{item.user.name}}"
+                                size="xs"
+                                color="secondary"
+                                img-src="{{item.user.avatar[0]}}"
+                                img-srcset="{{item.user.avatar[1]}} 2x, {{item.user.avatar[2]}} 3x">
+                    </umb-avatar>
+
+                    <div>
+                        <span class="theDashboard-datetime">{{item.datestampFormatted}}</span>
+                        <p ng-if="item.activityType =='Unpublish'">
+                            <a href="/umbraco/#/content/content/edit/{{item.nodeId}}">{{item.nodeName}}</a> <localize key="theDashboard_wasUnpubllished">was unpublished</localize>.
+                        </p>
+                        <p ng-if="item.activityType == 'Save'">
+                            <a href="/umbraco/#/content/content/edit/{{item.nodeId}}">{{item.nodeName}}</a> <localize key="theDashboard_savedButNotPublished">was saved but not published</localize>.
+                        </p>
+                    </div>
+
+                </div>
+            </umb-box-content>
+        </umb-box>
+
+        <umb-box class="theDashboard-unpublished-wrapper">
+            <umb-box-header
+                title-key="theDashboard_pendingChanges"
+                description-key="theDashboard_pendingChangesDescription"
+                ng-click="showPending = !showPending">
+                <span>{{vm.pending.count}}</span>
+                <div>
+                    <svg ng-if="!showPending" width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.5 12L0.00480941 0.75L12.9952 0.750001L6.5 12Z" fill="#C4C4C4" />
+                    </svg>
+                    <svg ng-if="showPending" width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.5 0L12.9952 11.25L0.00480938 11.25L6.5 0Z" fill="#C4C4C4" />
+                    </svg>
+                </div>
+            </umb-box-header>
+            <umb-box-content ng-if="showPending">
+                <div ng-repeat="item in vm.pending.items" class="recentActivity">
                     
                     <umb-avatar name="{{item.user.name}}"
                                 size="xs"

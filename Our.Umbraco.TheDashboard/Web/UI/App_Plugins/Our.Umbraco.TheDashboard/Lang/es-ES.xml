@@ -6,7 +6,9 @@
     <area alias="theDashboard">
         <key alias="recentActivities">Actividad reciente</key>
         <key alias="recentActivitiesDescription">Muestra la actividad reciente de todos los usuarios en la administración.</key>
-        <key alias="unpublishedContent">Contenido no publicado</key>
+		<key alias="pendingChanges">Cambios pendientes</key>"
+		<key alias="pendingChangesDescription">Muestra contenido modificado que no se ha programado para su publicación..</key>"
+		<key alias="unpublishedContent">Contenido no publicado</key>
         <key alias="unpublishedContentDescription">Muestra el contenido no publicado que no está programado para publicar.</key>
         <key alias="yourRecentActivity">Tu actividad reciente</key>
         <key alias="yourRecentActivitiesDescription">Muestra tu actividad reciente</key>
@@ -25,7 +27,9 @@
         <key alias="savedAndScheduled">guardó y programó</key>
         <key alias="savedAndPublished">guardó y publicó</key>
         <key alias="recycleBin">papelera</key>
-        <key alias="Saved">Guardado</key>
+		<key alias="wasUnpubllished">Fue inédito</key>
+		<key alias="savedButNotPublished">se guardó pero no se publicó</key>
+		<key alias="Saved">Guardado</key>
         <key alias="Moved">Movido</key>
         <key alias="Unpublished">No publicado</key>
         <key alias="SavedAndScheduled">Guardado y programado</key>

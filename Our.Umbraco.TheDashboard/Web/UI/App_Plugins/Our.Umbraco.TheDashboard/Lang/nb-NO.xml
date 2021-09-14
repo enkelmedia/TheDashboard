@@ -3,6 +3,8 @@
     <area alias="theDashboard">
       <key alias="recentActivities">Seneste aktiviteter</key>
       <key alias="recentActivitiesDescription">Viser seneste aktiviteter fra alle brukere i Umbraco.</key>
+	  <key alias="pendingChanges">Ventende endringer</key>"
+	  <key alias="pendingChangesDescription">Viser endret innhold som ikke er planlagt for publisering.</key>"
       <key alias="unpublishedContent">Upublisert innhold</key>
       <key alias="unpublishedContentDescription">Viser upublisert innhold uten planlagt publisering.</key>
       <key alias="yourRecentActivity">Dine seneste aktiviteter</key>
@@ -22,6 +24,8 @@
       <key alias="savedAndScheduled">lagret og planla publisering</key>
       <key alias="savedAndPublished">lagret og publiserte</key>
       <key alias="recycleBin">søppelbøtte</key>
+	  <key alias="wasUnpubllished">var upublisert</key>
+	  <key alias="savedButNotPublished">ble lagret, men ikke publisert</key>
       <key alias="Saved">Lagret</key>
       <key alias="Moved">Flyttet</key>
       <key alias="Unpublished">Upublisert</key>
