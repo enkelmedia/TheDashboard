@@ -23,7 +23,12 @@ namespace Our.Umbraco.TheDashboard.Security
 
         internal UserToNodeAccessHelper(IUser currentUser, IUserService userService, IEnumerable<IUmbracoNodeWithPermissions> nodes)
         {
-            _userStartNodes = currentUser.CalculateContentStartNodeIds(Current.Services.EntityService);
+            List<int> userStartNodes = new List<int>();
+            foreach(IReadOnlyUserGroup group in currentUser.Groups)
+			{
+                userStartNodes.Add(group.StartContentId.Value);
+			}
+            _userStartNodes = userStartNodes.Distinct().ToArray();
             _permissions = userService.GetPermissions(currentUser, AllNodeIdsFromPath(nodes));
         }
 
