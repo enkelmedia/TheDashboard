@@ -1,9 +1,9 @@
 ﻿{
-    "javascript" : [
-        "/app_plugins/Our.Umbraco.TheDashboard/TheDashboard.controller.js"
-    ],
+  "javascript": [
+    "~/App_Plugins/Our.Umbraco.TheDashboard/TheDashboard.controller.js"
+  ],
   "css": [
-      "/app_plugins/Our.Umbraco.TheDashboard/TheDashboard.css"
+    "~/App_Plugins/Our.Umbraco.TheDashboard/TheDashboard.css"
   ]
 
 }
