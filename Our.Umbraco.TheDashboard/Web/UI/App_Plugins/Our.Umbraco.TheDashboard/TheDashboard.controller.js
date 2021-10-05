@@ -49,6 +49,13 @@
 
         });
 
+        $http.get('backoffice/api/TheDashboard/GetPending').then(function (res) {
+
+            processDates(res.data.items, function () {
+                vm.pending = res.data;
+            });
+
+        });
 
         $http.get('backoffice/api/TheDashboard/GetCounters').then(function(res) {
             vm.counters = res.data;

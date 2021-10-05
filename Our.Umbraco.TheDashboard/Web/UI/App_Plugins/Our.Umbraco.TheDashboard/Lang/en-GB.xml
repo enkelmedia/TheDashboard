@@ -7,6 +7,8 @@
   <area alias="theDashboard">
       <key alias="recentActivities">Recent activities</key>
       <key alias="recentActivitiesDescription">Shows recent activities from all users in the back office.</key>
+	  <key alias="pendingChanges">Pending changes</key>"
+	  <key alias="pendingChangesDescription">Shows changed content that has not been scheduled for publish.</key>"
       <key alias="unpublishedContent">Unpublished content</key>
       <key alias="unpublishedContentDescription">Shows unpublished content that has not been scheduled for publish.</key>
       <key alias="yourRecentActivity">Your recent activity</key>
@@ -26,9 +28,11 @@
       <key alias="savedAndScheduled">saved and scheduled</key>
       <key alias="savedAndPublished">saved and published</key>
       <key alias="recycleBin">recycle bin</key>
-      <key alias="rolledBack">rolled back</key>
+	  <key alias="rolledBack">rolled back</key>
+	  <key alias="wasUnpubllished">was unpublished</key>
+	  <key alias="savedButNotPublished">was saved but not published</key>
 
-      <key alias="Saved">Saved</key>
+	  <key alias="Saved">Saved</key>
       <key alias="Moved">Moved</key>
       <key alias="Unpublished">Unpublished</key>
       <key alias="SavedAndScheduled">Saved and scheduled</key>

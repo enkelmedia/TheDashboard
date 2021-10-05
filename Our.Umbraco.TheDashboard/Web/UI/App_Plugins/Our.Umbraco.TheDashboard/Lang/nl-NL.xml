@@ -3,6 +3,8 @@
     <area alias="theDashboard">
       <key alias="recentActivities">Recente activiteiten</key>
       <key alias="recentActivitiesDescription">Toont recente activiteiten van alle gebruikers in de back office.</key>
+	  <key alias="pendingChanges">Wijzigingen in behandeling</key>"
+	  <key alias="pendingChangesDescription">Toont gewijzigde inhoud die niet is gepland voor publicatie.</key>"
       <key alias="unpublishedContent">Ongepubliceerde inhoud</key>
       <key alias="unpublishedContentDescription">Toont ongepubliceerde inhoud dat niet gepland is om te publiceren.</key>
       <key alias="yourRecentActivity">Jouw recente activiteiten</key>
@@ -22,6 +24,8 @@
       <key alias="savedAndScheduled">opgeslagen en gepland</key>
       <key alias="savedAndPublished">opgeslagen en gepubliceerd</key>
       <key alias="recycleBin">prullenbak</key>
+	  <key alias="wasUnpubllished">was ongepubliceerd</key>
+	  <key alias="savedButNotPublished">is opgeslagen maar niet gepubliceerd</key>
       <key alias="Saved">Opgeslagen</key>
       <key alias="Moved">Verplaatst</key>
       <key alias="Unpublished">Ongepubliceerd</key>

@@ -72,6 +72,21 @@ namespace Our.Umbraco.TheDashboard.Controllers
             return model;
         }
 
+        [HttpGet]
+        public UnpublishedContentNotScheduledFrontendModel GetPending()
+        {
+            var model = new UnpublishedContentNotScheduledFrontendModel();
+            model.Items = new List<RecentActivityFrontendModel>();
+
+            var allRecentDtos = _dashboardService.GetPending();
+
+            var accessService = new UserToNodeAccessHelper(Security.CurrentUser, Services.UserService, allRecentDtos);
+            var filteredDtos = allRecentDtos.Where(x => accessService.HasAccessTo(x)).ToList();
+
+            model.Items = CreateFrontendModelsFrom(filteredDtos);
+            model.Count = model.Items.Count;
+            return model;
+        }
 
         private List<RecentActivityFrontendModel> CreateFrontendModelsFrom(List<LogEntryDto> dtos)
         {
