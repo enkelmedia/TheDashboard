@@ -52,52 +52,44 @@ namespace Our.Umbraco.TheDashboard.Security
                 .Split(',')
                 .Reverse()
                 .Select(x => int.Parse(x))
-                .Where(x => x > 0) // exclude -1 as this is the root and has no permissions.
+                .Where(x => x > 0) // exlude -1 as this is the root and has no permissions.
                 .ToList()
                 ;
 
             // Compare usersStart node(s) (if any) against the path, if not found in start nodes access should be denied
             if (_userStartNodes.Length > 0)
             {
-                // "Standard" settings would be "Content Root" this means access to any page in the root.
-                // When there is more root nodes except for Content Root (-1) the Content Root-access does not
-                // Mean anything, the more "narrow" content nodes will will. (At least in v8.0.0).
                 bool onlyRootInList = _userStartNodes.Length == 1 && _userStartNodes[0] == Constants.System.Root;
 
-                if (!onlyRootInList)
+                // Users with access to "all" will have a startNode with -1
+                if (_userStartNodes.Length > 1 || !onlyRootInList)
                 {
-                    // No need to check for permissions if only multiple Content Root (-1) in list.
-                    var userStartNodesWithoutRoot = _userStartNodes.Where(x => x != Constants.System.Root).ToArray();
+                    // At this stage we know that the user has start nodes assigned.
 
-                    if (userStartNodesWithoutRoot.Length > 0)
+                    // Compare ids in the path against ids in _startNodes.
+                    // At lest one of the ids in _userStartNodes must be present in the path
+                    bool found = false;
+
+                    foreach (var startNodeId in _userStartNodes)
                     {
-                        // At this stage we know that the user has start nodes assigned.
-
-                        // Compare ids in the path against ids in _startNodes.
-                        // At lest one of the ids in _userStartNodes must be present in the path
-                        bool found = false;
-
-                        foreach (var startNodeId in userStartNodesWithoutRoot)
+                        var inPath = nodeIds.Contains(startNodeId);
+                        if (inPath)
                         {
-                            var inPath = nodeIds.Contains(startNodeId);
-                            if (inPath)
-                            {
-                                found = true;
-                                break;
-                            }
+                            found = true;
+                            break;
                         }
-
-                        // If none of the start node ids was found in the path we should 
-                        // not allow access.
-                        if(!found)
-                            return false;
-
                     }
+
+                    // If none of the start node ids was found in the path we should 
+                    // not allow access.
+                    if(!found)
+                        return false;
+
                 }
 
             }
 
-            // Look for permissions on the current node and it's ancestors.
+            // Look for permissions on the current node and it's anscestors.
             foreach (var id in nodeIds)
             {
                 if(!HasPermissions(_permissions,id))
