@@ -8,11 +8,4 @@ namespace Our.Umbraco.TheDashboard.Models.Frontend
         public List<RecentActivityFrontendModel> YourItems { get; set; }
 
     }
-
-    public class UnpublishedContentNotScheduledFrontendModel
-    {
-        public int Count { get; set; }
-        public List<RecentActivityFrontendModel> Items { get; set; }
-    }
-
 }

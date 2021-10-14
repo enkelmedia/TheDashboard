@@ -7,6 +7,6 @@ namespace Our.Umbraco.TheDashboard.Services
     {
         List<LogEntryDto> GetEntries();
 
-        List<LogEntryDto> GetUnpublished();
+        List<LogEntryDto> GetPending();
     }
 }

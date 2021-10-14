@@ -52,7 +52,7 @@ namespace Our.Umbraco.TheDashboard.Services
         }
 
 
-        public List<LogEntryDto> GetUnpublished()
+        public List<LogEntryDto> GetPending()
         {
 
             var sql = @"SELECT ul.[id]

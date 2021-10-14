@@ -41,10 +41,10 @@
         });
 
         
-        $http.get('backoffice/api/TheDashboard/GetUnpublished').then(function(res) {
+        $http.get('backoffice/api/TheDashboard/GetPending').then(function(res) {
 
             processDates(res.data.items, function() {
-                vm.unpublished = res.data;
+                vm.pending = res.data;
             });
 
         });

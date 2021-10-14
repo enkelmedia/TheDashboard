@@ -44,12 +44,12 @@
     </div>
     <div>
         
-        <umb-box class="theDashboard-unpublised-wrapper">
+        <umb-box class="theDashboard-pending-wrapper">
             <umb-box-header
-                title-key="theDashboard_unpublishedContent"
-                description-key="theDashboard_unpublishedContentDescription"
-                ng-click="showUnpublished = !showUnpublished">
-                <span>{{vm.unpublished.count}}</span>
+                title-key="theDashboard_pendingContent"
+                description-key="theDashboard_pendingContentDescription"
+                ng-click="showPending = !showPending">
+                <span>{{vm.pending.count}}</span>
                 <div>
                     <svg ng-if="!showUnpublished" width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6.5 12L0.00480941 0.75L12.9952 0.750001L6.5 12Z" fill="#C4C4C4" />
@@ -59,8 +59,8 @@
                     </svg>
                 </div>
             </umb-box-header>
-            <umb-box-content ng-if="showUnpublished">
-                <div ng-repeat="item in vm.unpublished.items" class="recentActivity">
+            <umb-box-content ng-if="showPending">
+                <div ng-repeat="item in vm.pending.items" class="recentActivity">
                     
                     <umb-avatar name="{{item.user.name}}"
                                 size="xs"
