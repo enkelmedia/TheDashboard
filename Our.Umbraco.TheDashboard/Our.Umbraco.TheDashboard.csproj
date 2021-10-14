@@ -7,7 +7,7 @@
         <Description>Content dashboard for Umbraco 9</Description>
         <Product>The Dashboard for Umbraco</Product>
         <PackageTags>umbraco plugin package</PackageTags>
-        <Version>9.0.0-rc003</Version>
+        <Version>9.0.0-rc004</Version>
         <Authors>Markus Johansson</Authors>
         <Copyright>Copyright (c) Obviuse AB</Copyright>
         <Company>Obviuse AB / Enkel Media Stockholm AB</Company>
