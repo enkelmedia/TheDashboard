@@ -23,6 +23,7 @@
         <key alias="savedAndPublished">sparade och publicerade</key>
         <key alias="recycleBin">papperskorgen</key>
         <key alias="rolledBack">återställde</key>
+
         <key alias="Saved">Sparade</key>
         <key alias="Moved">Flyttade</key>
         <key alias="Unpublished">Avpublicerade</key>
