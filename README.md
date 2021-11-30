@@ -83,7 +83,6 @@ public class OrdersCounterComposer : IComposer
 		builder.TheDashboardCounters().Append<OrdersDashboardCounter>();
 	}
 }
-}
 ```
 
 ## Contributions
