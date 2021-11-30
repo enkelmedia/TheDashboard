@@ -75,12 +75,12 @@ public class OrdersCounterComposer : IComposer
 {
   public void Compose(IUmbracoBuilder builder)
   {
-	  // First, remove the member-counters as we don't need them
-	  builder.TheDashboardCounters().Remove<MembersTotalDashboardCounter>();
-	  builder.TheDashboardCounters().Remove<MembersNewLastWeekDashboardCounter>();
+	// First, remove the member-counters as we don't need them
+	builder.TheDashboardCounters().Remove<MembersTotalDashboardCounter>();
+	builder.TheDashboardCounters().Remove<MembersNewLastWeekDashboardCounter>();
 
-	  // Add my custom counter
-	  builder.TheDashboardCounters().Append<OrdersDashboardCounter>();
+	// Add my custom counter
+	builder.TheDashboardCounters().Append<OrdersDashboardCounter>();
   }
 }
 ```
