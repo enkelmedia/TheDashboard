@@ -10,7 +10,7 @@
 		<key alias="unpublishedContent">Unpublished content</key>
 		<key alias="unpublishedContentDescription">Shows unpublished content that has not been scheduled for publish.</key>
 		<key alias="pendingContent">Pending content</key>
-		<key alias="pendingContentDescription">Shows published content with changes that has not been scheduled for publishing.</key>
+		<key alias="pendingContentDescription">Shows published content with changes that have not been scheduled for publishing.</key>
 		<key alias="yourRecentActivity">Your recent activity</key>
 		<key alias="yourRecentActivitiesDescription">Shows your own recent activities</key>
 		<key alias="publishedContentNodes">Published content nodes</key>
