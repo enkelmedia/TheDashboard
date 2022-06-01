@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <language>
-    <area alias="theDashboard">
+	<area alias="dashboardTabs">
+		<key alias="Our.Umbraco.TheDashboard">Welkom</key>
+	</area>
+	<area alias="theDashboard">
       <key alias="recentActivities">Recente activiteiten</key>
       <key alias="recentActivitiesDescription">Toont recente activiteiten van alle gebruikers in de back office.</key>
       <key alias="unpublishedContent">Ongepubliceerde inhoud</key>
