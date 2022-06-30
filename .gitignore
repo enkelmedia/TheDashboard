@@ -49,3 +49,4 @@ bin/
 
 xcopy*
 Our.Umbraco.TheDashboard.Testsite/
+.idea

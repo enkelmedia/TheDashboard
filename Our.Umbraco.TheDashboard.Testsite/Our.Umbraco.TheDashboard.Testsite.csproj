@@ -1,17 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Umbraco.Cms" Version="9.0.0" />
-        <PackageReference Include="Umbraco.Cms.SqlCe" Version="9.0.0" />
+        <PackageReference Include="Umbraco.Cms" Version="10.0.0" />
         <PackageReference Include="Umbraco.SqlServerCE" Version="4.0.0.1" />
     </ItemGroup>
 
-    <Import Project="..\Our.Umbraco.TheDashboard\build\Our.Umbraco.TheDashboard.targets"/>
+    <Import Project="..\Our.Umbraco.TheDashboard\build\Our.Umbraco.TheDashboard.targets" />
     <ItemGroup>
-        <ProjectReference Include="..\Our.Umbraco.TheDashboard\Our.Umbraco.TheDashboard.csproj"/>
+        <ProjectReference Include="..\Our.Umbraco.TheDashboard\Our.Umbraco.TheDashboard.csproj" />
     </ItemGroup>
 
     <ItemGroup>
@@ -41,6 +40,36 @@
         <Content Remove="umbraco\Data\**" />
         <Content Remove="umbraco\logs\**" />
         <Content Remove="umbraco\MediaCache\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="umbraco\PartialViewMacros\Templates\Breadcrumb.cshtml" />
+      <_ContentIncludedByDefault Remove="umbraco\PartialViewMacros\Templates\EditProfile.cshtml" />
+      <_ContentIncludedByDefault Remove="umbraco\PartialViewMacros\Templates\Empty.cshtml" />
+      <_ContentIncludedByDefault Remove="umbraco\PartialViewMacros\Templates\Gallery.cshtml" />
+      <_ContentIncludedByDefault Remove="umbraco\PartialViewMacros\Templates\ListAncestorsFromCurrentPage.cshtml" />
+      <_ContentIncludedByDefault Remove="umbraco\PartialViewMacros\Templates\ListChildPagesFromChangeableSource.cshtml" />
+      <_ContentIncludedByDefault Remove="umbraco\PartialViewMacros\Templates\ListChildPagesFromCurrentPage.cshtml" />
+      <_ContentIncludedByDefault Remove="umbraco\PartialViewMacros\Templates\ListChildPagesOrderedByDate.cshtml" />
+      <_ContentIncludedByDefault Remove="umbraco\PartialViewMacros\Templates\ListChildPagesOrderedByName.cshtml" />
+      <_ContentIncludedByDefault Remove="umbraco\PartialViewMacros\Templates\ListChildPagesOrderedByProperty.cshtml" />
+      <_ContentIncludedByDefault Remove="umbraco\PartialViewMacros\Templates\ListChildPagesWithDoctype.cshtml" />
+      <_ContentIncludedByDefault Remove="umbraco\PartialViewMacros\Templates\ListDescendantsFromCurrentPage.cshtml" />
+      <_ContentIncludedByDefault Remove="umbraco\PartialViewMacros\Templates\ListImagesFromMediaFolder.cshtml" />
+      <_ContentIncludedByDefault Remove="umbraco\PartialViewMacros\Templates\Login.cshtml" />
+      <_ContentIncludedByDefault Remove="umbraco\PartialViewMacros\Templates\LoginStatus.cshtml" />
+      <_ContentIncludedByDefault Remove="umbraco\PartialViewMacros\Templates\MultinodeTree-picker.cshtml" />
+      <_ContentIncludedByDefault Remove="umbraco\PartialViewMacros\Templates\Navigation.cshtml" />
+      <_ContentIncludedByDefault Remove="umbraco\PartialViewMacros\Templates\RegisterMember.cshtml" />
+      <_ContentIncludedByDefault Remove="umbraco\PartialViewMacros\Templates\SiteMap.cshtml" />
+      <_ContentIncludedByDefault Remove="umbraco\UmbracoBackOffice\AuthorizeUpgrade.cshtml" />
+      <_ContentIncludedByDefault Remove="umbraco\UmbracoBackOffice\Default.cshtml" />
+      <_ContentIncludedByDefault Remove="umbraco\UmbracoBackOffice\Preview.cshtml" />
+      <_ContentIncludedByDefault Remove="umbraco\UmbracoInstall\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="umbraco\UmbracoWebsite\NoNodes.cshtml" />
+      <_ContentIncludedByDefault Remove="umbraco\config\appsettings-schema.json" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="wwwroot" />
     </ItemGroup>
 
     <!-- Set this to true if ModelsBuilder mode is not InMemoryAuto-->
