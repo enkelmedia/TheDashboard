@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading;
-using Umbraco.Cms.Core.Scoping;
+using Umbraco.Cms.Infrastructure.Scoping;
 using Umbraco.Cms.Core.Services;
 
 namespace Our.Umbraco.TheDashboard.Counters.Implement

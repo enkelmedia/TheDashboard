@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 using Umbraco.Cms.Core;
-using Umbraco.Cms.Core.Scoping;
+using Umbraco.Cms.Infrastructure.Scoping;
 using Umbraco.Cms.Core.Services;
 
 namespace Our.Umbraco.TheDashboard.Counters.Implement
@@ -20,8 +20,8 @@ namespace Our.Umbraco.TheDashboard.Counters.Implement
                                WHERE un.nodeObjectType = @0 	
 	                           AND un.trashed = 1";
 
-            var count = scope.Database.ExecuteScalar<int>(sql, Constants.ObjectTypes.Document.ToString());
-
+            var count = scope.Database.ExecuteScalar<int>(sql, Constants.ObjectTypes.Document);
+            
             return new DashboardCounterModel()
             {
                 Text = _localizedTextService.Localize("theDashboard","nodesInRecycleBin",Thread.CurrentThread.CurrentCulture),

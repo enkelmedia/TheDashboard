@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using Umbraco.Cms.Core;
-using Umbraco.Cms.Core.Scoping;
+using Umbraco.Cms.Infrastructure.Scoping;
 using Umbraco.Cms.Core.Services;
 
 namespace Our.Umbraco.TheDashboard.Counters.Implement
@@ -25,7 +25,7 @@ namespace Our.Umbraco.TheDashboard.Counters.Implement
                         AND un.trashed = 0
 	                    AND ud.published = 1";
 
-            var count = scope.Database.ExecuteScalar<int>(sql, Constants.ObjectTypes.Document.ToString());
+            var count = scope.Database.ExecuteScalar<int>(sql, Constants.ObjectTypes.Document);
 
             return new DashboardCounterModel()
             {

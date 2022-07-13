@@ -1,4 +1,4 @@
-﻿using Umbraco.Cms.Core.Scoping;
+﻿using Umbraco.Cms.Infrastructure.Scoping;
 
 namespace Our.Umbraco.TheDashboard.Counters
 {

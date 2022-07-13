@@ -8,7 +8,7 @@ using Our.Umbraco.TheDashboard.Models.Frontend;
 using Our.Umbraco.TheDashboard.Security;
 using Our.Umbraco.TheDashboard.Services;
 using Umbraco.Cms.Core.Cache;
-using Umbraco.Cms.Core.Scoping;
+using Umbraco.Cms.Infrastructure.Scoping;
 using Umbraco.Cms.Core.Security;
 using Umbraco.Cms.Core.Services;
 using Umbraco.Cms.Web.BackOffice.Controllers;

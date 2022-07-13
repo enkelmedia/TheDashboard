@@ -1,26 +1,33 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
+using NPoco;
 using Our.Umbraco.TheDashboard.Models.Dtos;
-using Umbraco.Cms.Core.Scoping;
+using Umbraco.Cms.Infrastructure.Scoping;
 
 namespace Our.Umbraco.TheDashboard.Services
 {
     public class TheDashboardService : ITheDashboardService
     {
         private readonly IScopeProvider _scopeProvider;
+        private readonly ILogger<TheDashboardService> _logger;
 
-        public TheDashboardService(IScopeProvider scopeProvider)
+        public TheDashboardService(IScopeProvider scopeProvider, ILogger<TheDashboardService> logger)
         {
-            _scopeProvider = scopeProvider;
+	        _scopeProvider = scopeProvider;
+	        _logger = logger;
         }
 
         public List<LogEntryDto> GetEntries()
         {
-            using (var scope = _scopeProvider.CreateScope())
-            {
-                //TODO: Add some kind of "limitation" on this one either count limit or date.
-                //TODO: Only fetch logHeaders that we're interested in.
+	        try
+	        {
+		        using (var scope = _scopeProvider.CreateScope())
+		        {
+			        //TODO: Add some kind of "limitation" on this one either count limit or date.
+			        //TODO: Only fetch logHeaders that we're interested in.
 
-                var sql = @"SELECT TOP(500) ul.[id]
+			        var coreSql = @"ul.[id]
                               ,ul.[userId]
                               ,ul.[NodeId]
                               ,ul.[entityType]
@@ -44,11 +51,20 @@ namespace Our.Umbraco.TheDashboard.Services
 	                        AND ul.entityType = 'Document' 
 
                           ORDER by ul.Datestamp DESC";
-                
-                var res = scope.Database.Fetch<LogEntryDto>(sql);
+			        
 
-                return res;
-            }
+			        var sql = scope.Database.DatabaseType == DatabaseType.SQLite ? $"SELECT {coreSql} Limit 500" : $"Select Top(500) {coreSql}";
+
+			        var res = scope.Database.Fetch<LogEntryDto>(sql);
+
+			        return res;
+		        }
+	        }
+	        catch (Exception e)
+	        {
+		        _logger.LogError(e, "Unable to Get dashboard Entries");
+		        return new List<LogEntryDto>();
+	        }
         }
 
 

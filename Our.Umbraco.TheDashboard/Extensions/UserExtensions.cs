@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using Umbraco.Cms.Core.Cache;
@@ -9,6 +10,7 @@ namespace Our.Umbraco.TheDashboard.Extensions
 {
     public static class UserExtensions
     {
+        private static HttpClient Client = new HttpClient();
          /// <summary>
         /// Tries to lookup the user's Gravatar to see if the endpoint can be reached, if so it returns the valid URL
         /// </summary>
@@ -36,19 +38,19 @@ namespace Our.Umbraco.TheDashboard.Extensions
                 var gravatarAccess = cache.GetCacheItem<bool>("UserAvatar" + userId, () =>
                 {
                     // Test if we can reach this URL, will fail when there's network or firewall errors
-                    var request = (HttpWebRequest)WebRequest.Create(gravatarUrl);
-                    // Require response within 10 seconds
-                    request.Timeout = 10000;
+                    Client.Timeout = new TimeSpan(0,0,10);
+                    var fetchTask = Client.GetAsync(gravatarUrl);
+                    
                     try
                     {
-                        using ((HttpWebResponse)request.GetResponse()) { }
+                        var res = fetchTask.Result;
+                        return res.IsSuccessStatusCode;
                     }
                     catch (Exception)
                     {
                         // There was an HTTP or other error, return an null instead
                         return false;
                     }
-                    return true;
                 });
 
                 if (gravatarAccess)
