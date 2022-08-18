@@ -95,6 +95,7 @@ Are more then welcome but please, before you put a lot of work into it raise and
 * V2 = Umbraco 7.7.0+
 * V8 = Umbraco 8
 * V9 = Umbraco 9
+* V10 = Umbraco 10
 
 ### Roadmap
 The main idea with the package is to provide a super simple dashboard for the content section, we're extremely cautious with adding features as we want to keep the code base super-easy.
@@ -104,7 +105,7 @@ In the v8 version of the package the "Developer Dashboard" was remove, there's p
 ### Build
 To build a Release-version of the package, 
 
-* [ ] Make sure to update package.build.xml and set `PackageVersion` to the right version.
+* [ ] Make sure to update verison in the csproj-file
 * [ ] Run `dotnet pack --configuration Release` inside the `Our.Umbraco.TheDashboard`-folder to create packages
 * [ ] Artifacts created in /Package/-folder
 

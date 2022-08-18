@@ -7,9 +7,9 @@
         <PackageReference Include="Umbraco.Cms" Version="10.0.0" />
     </ItemGroup>
 
-    <Import Project="..\Our.Umbraco.TheDashboard\build\Our.Umbraco.TheDashboard.targets"/>
+    <Import Project="..\Our.Umbraco.TheDashboard\build\Our.Umbraco.TheDashboard.targets" />
     <ItemGroup>
-        <ProjectReference Include="..\Our.Umbraco.TheDashboard\Our.Umbraco.TheDashboard.csproj"/>
+        <ProjectReference Include="..\Our.Umbraco.TheDashboard\Our.Umbraco.TheDashboard.csproj" />
     </ItemGroup>
 
     <ItemGroup>
@@ -39,6 +39,9 @@
         <Content Remove="umbraco\Data\**" />
         <Content Remove="umbraco\logs\**" />
         <Content Remove="umbraco\MediaCache\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="wwwroot\" />
     </ItemGroup>
 
     <!-- Set this to true if ModelsBuilder mode is not InMemoryAuto-->
