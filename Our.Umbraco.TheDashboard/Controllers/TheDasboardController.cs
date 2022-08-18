@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using Microsoft.AspNetCore.Mvc;
 using Our.Umbraco.TheDashboard.Counters.Collections;
 using Our.Umbraco.TheDashboard.Mapping;
@@ -29,6 +30,7 @@ namespace Our.Umbraco.TheDashboard.Controllers
         private readonly IUserService _userService;
         private readonly IBackOfficeSecurity _security;
         private readonly IEntityService _entityService;
+        private readonly IHttpClientFactory _httpClientFactory;
 
         public TheDashboardController(AppCaches appCaches, 
             IScopeProvider scopeProvider,
@@ -36,7 +38,8 @@ namespace Our.Umbraco.TheDashboard.Controllers
             DashboardCountersCollection dashboardCountersCollection,
             IUserService userService,
             IBackOfficeSecurity security,
-            IEntityService entityService
+            IEntityService entityService,
+            IHttpClientFactory httpClientFactory
         )
         {
             _appCaches = appCaches;
@@ -46,6 +49,7 @@ namespace Our.Umbraco.TheDashboard.Controllers
             _userService = userService;
             _security = security;
             _entityService = entityService;
+            _httpClientFactory = httpClientFactory;
         }
 
         [HttpGet]
@@ -90,7 +94,7 @@ namespace Our.Umbraco.TheDashboard.Controllers
         private List<RecentActivityFrontendModel> CreateFrontendModelsFrom(List<LogEntryDto> dtos)
         {
             var maxCount = 10;
-            var mapper = new LogEntryToRecentActivityMapper(_appCaches);
+            var mapper = new LogEntryToRecentActivityMapper(_appCaches,_httpClientFactory);
 
             // Should return a list of models containing unique items for the nodeId.
             var list = new List<RecentActivityFrontendModel>();

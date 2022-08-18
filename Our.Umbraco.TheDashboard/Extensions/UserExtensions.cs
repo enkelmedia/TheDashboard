@@ -10,15 +10,14 @@ namespace Our.Umbraco.TheDashboard.Extensions
 {
     public static class UserExtensions
     {
-        private static HttpClient Client = new HttpClient();
+        
          /// <summary>
         /// Tries to lookup the user's Gravatar to see if the endpoint can be reached, if so it returns the valid URL
         /// </summary>
-        
-        /// <returns>
+         /// <returns>
         /// A list of 5 different sized avatar URLs
         /// </returns>
-        public static string[] GetUserAvatarUrls(int userId,string userEmail, string userAvatar, IAppCache cache)
+        public static string[] GetUserAvatarUrls(int userId,string userEmail, string userAvatar, IAppCache cache, IHttpClientFactory httpClientFactory)
         {
             // If FIPS is required, never check the Gravatar service as it only supports MD5 hashing.  
             // Unfortunately, if the FIPS setting is enabled on Windows, using MD5 will throw an exception
@@ -34,12 +33,12 @@ namespace Our.Umbraco.TheDashboard.Extensions
                 var gravatarHash = HashEmailForGravatar(userEmail);
                 var gravatarUrl = "https://www.gravatar.com/avatar/" + gravatarHash + "?d=404";
 
-                //try Gravatar
                 var gravatarAccess = cache.GetCacheItem<bool>("UserAvatar" + userId, () =>
                 {
+                    var httpClient = httpClientFactory.CreateClient();
                     // Test if we can reach this URL, will fail when there's network or firewall errors
-                    Client.Timeout = new TimeSpan(0,0,10);
-                    var fetchTask = Client.GetAsync(gravatarUrl);
+                    httpClient.Timeout = new TimeSpan(0,0,10);
+                    var fetchTask = httpClient.GetAsync(gravatarUrl);
                     
                     try
                     {
