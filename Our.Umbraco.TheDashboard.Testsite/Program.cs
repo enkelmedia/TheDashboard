@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace Our.Umbraco.TheDashboard.Testsite
 {
@@ -13,7 +12,11 @@ namespace Our.Umbraco.TheDashboard.Testsite
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureLogging(x => x.ClearProviders())
-                .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>());
+                .ConfigureUmbracoDefaults()
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStaticWebAssets();
+                    webBuilder.UseStartup<Startup>();
+                });
     }
 }

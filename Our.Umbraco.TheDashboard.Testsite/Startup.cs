@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Umbraco.Cms.Core.DependencyInjection;
+using Umbraco.Extensions;
 
 namespace Our.Umbraco.TheDashboard.Testsite
 {
