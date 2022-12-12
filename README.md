@@ -4,7 +4,7 @@ The Dashboard
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![NuGet version (Our.Umbraco.TheDashboard)](https://img.shields.io/nuget/v/Our.Umbraco.TheDashboard.svg?style=flat-square)](https://www.nuget.org/packages/Our.Umbraco.TheDashboard/)
 
-This is a magic dashboard for Umbraco 7,8 and 9, it's actually "The Dashboard". It will show editors a summary of the latest activites on the website combined with each editors recent activities and other useful information.
+This is a magic dashboard for Umbraco CMS, it's actually "The Dashboard". It will show editors a summary of the latest activites on the website combined with each editors recent activities and other useful information.
 
 ## Installation in Umbraco CMS
 There is a built version of the package here: https://our.umbraco.org/projects/backoffice-extensions/the-dashboard/ just download it and install it in the developers-section.
@@ -96,6 +96,7 @@ Are more then welcome but please, before you put a lot of work into it raise and
 * V8 = Umbraco 8
 * V9 = Umbraco 9
 * V10 = Umbraco 10
+* V11 = Umbraco 11
 
 ### Roadmap
 The main idea with the package is to provide a super simple dashboard for the content section, we're extremely cautious with adding features as we want to keep the code base super-easy.

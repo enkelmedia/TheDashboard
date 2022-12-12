@@ -6,14 +6,16 @@
         <Title>Our.Umbraco.TheDashboard</Title>
         <Description>Content dashboard for Umbraco 10</Description>
         <Product>The Dashboard for Umbraco</Product>
-        <PackageTags>umbraco plugin package</PackageTags>
-        <Version>10.0.1</Version>
+        <PackageTags>umbraco umbraco-marketplace dashboard activities plugin package</PackageTags>
+        <Version>11.0.0</Version>
         <Authors>Markus Johansson</Authors>
         <Copyright>Copyright (c) Obviuse AB</Copyright>
         <Company>Obviuse AB / Enkel Media Stockholm AB</Company>
         <PackageProjectUrl>https://our.umbraco.org/projects/backoffice-extensions/the-dashboard/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/enkelmedia/TheDashboard</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
+	    <PackageReadmeFile>README.md</PackageReadmeFile>
+	    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     </PropertyGroup>
 
     <ItemGroup>
@@ -31,4 +33,7 @@
             <PackagePath>buildTransitive</PackagePath>
         </None>
     </ItemGroup>
+	<ItemGroup>
+		<None Include="build\README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
 </Project>
