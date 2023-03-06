@@ -11,7 +11,7 @@
         <Authors>Markus Johansson</Authors>
         <Copyright>Copyright (c) Obviuse AB</Copyright>
         <Company>Obviuse AB / Enkel Media Stockholm AB</Company>
-        <PackageProjectUrl>https://our.umbraco.org/projects/backoffice-extensions/the-dashboard/</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/enkelmedia/TheDashboard</PackageProjectUrl>
         <RepositoryUrl>https://github.com/enkelmedia/TheDashboard</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
     </PropertyGroup>
