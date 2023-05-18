@@ -38,7 +38,7 @@ Shows content that is published but have an unscheduled change, this mostly happ
 
 
 ## Extension Points
-There's something called "Counters" listed to the left in the Dashboard. These are actually small classes that implements the IDashboardCounter-interface from the package. 
+There's something called "Counters" listed to the right in the Dashboard. These are actually small classes that implements the IDashboardCounter-interface from the package. 
 
 These classes are instantiated using Umbraco's CollectionBuilders (same as for ie ContentFinders) so you can inject any dependency you need in the constructor. 
 
