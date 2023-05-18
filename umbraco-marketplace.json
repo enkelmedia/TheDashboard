@@ -1,8 +1,25 @@
 {
-    "Category": "Editor Tools",
-    "LicenseTypes": [ "Free" ],
-    "PackageType": "Package",
-    "Tags": [
-      "dashboard"
-    ]
-  }
+  "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
+  "AuthorDetails": {
+    "Name": "Markus Johansson",
+    "Description": "Made by me and the Umbraco community.",
+    "Url": "https://www.enkelmedia.se/blogg",
+    "ImageUrl": ""
+  },
+  "Title": "The Dashboard",
+  "Description": "Nice content dashboard, shows a short summery of recent events inside a site like recent changes.",
+  "DocumentationUrl": "https://github.com/enkelmedia/TheDashboard",
+  "IssueTrackerUrl": "https://github.com/enkelmedia/TheDashboard/issues",
+  "Category": "Editor Tools",
+  "LicenseTypes": [ "Free" ],
+  "PackageType": "Package",
+  "Tags": [
+    "dashboard"
+  ],
+  "Screenshots": [
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/enkelmedia/TheDashboard/v11/dev/Docs/the-dashboard-screenshot.png",
+      "Caption": "Dashboard with nice overview"
+    }
+  ]
+}
