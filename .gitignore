@@ -35,7 +35,6 @@ bin/
 *.orig
 */Thumbs.db
 */log.txt
-/Assets/
 /Build/
 *.DS_Store
 

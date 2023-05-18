@@ -6,6 +6,8 @@ The Dashboard
 
 This is a magic dashboard for Umbraco CMS, it's actually "The Dashboard". It will show editors a summary of the latest activites on the website combined with each editors recent activities and other useful information.
 
+![The Dasboard Screenshot](Docs/the-dashboard-screenshot.png)
+
 ## Installation in Umbraco CMS
 There is a built version of the package here: https://our.umbraco.org/projects/backoffice-extensions/the-dashboard/ just download it and install it in the developers-section.
 
