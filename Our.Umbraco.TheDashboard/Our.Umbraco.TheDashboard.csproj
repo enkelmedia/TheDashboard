@@ -1,13 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
+	    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+	    <StaticWebAssetBasePath>/</StaticWebAssetBasePath>
         <ContentTargetFolders>.</ContentTargetFolders>
         <PackageId>Our.Umbraco.TheDashboard</PackageId>
         <Title>Our.Umbraco.TheDashboard</Title>
         <Description>Content dashboard for Umbraco 10</Description>
         <Product>The Dashboard for Umbraco</Product>
         <PackageTags>umbraco umbraco-marketplace dashboard activities plugin package</PackageTags>
-        <Version>11.0.1</Version>
+        <Version>11.1.0</Version>
         <Authors>Markus Johansson</Authors>
         <Copyright>Copyright (c) Obviuse AB</Copyright>
         <Company>Obviuse AB / Enkel Media Stockholm AB</Company>
@@ -24,11 +26,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="App_Plugins\Our.Umbraco.TheDashboard\**\*.*">
-            <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-            <CopyToPublishDirectory>Always</CopyToPublishDirectory>
-        </Content>
-        <None Include="build\**\*.*">
+	    <None Include="build\**\*.*">
             <Pack>True</Pack>
             <PackagePath>buildTransitive</PackagePath>
         </None>

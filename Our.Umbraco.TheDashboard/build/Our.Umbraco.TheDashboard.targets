@@ -4,18 +4,6 @@
         <OurUmbracoTheDashboardContentFilesPath>$(MSBuildThisFileDirectory)..\App_Plugins\Our.Umbraco.TheDashboard\**\*.*</OurUmbracoTheDashboardContentFilesPath>
     </PropertyGroup>
 
-    <Target Name="CopyOurUmbracoTheDashboardAssets" BeforeTargets="Build">
-        <ItemGroup>
-            <OurUmbracoTheDashboardContentFiles Include="$(OurUmbracoTheDashboardContentFilesPath)" />
-        </ItemGroup>
-        <Message Text="Copying Our.Umbraco.TheDashboard files: $(OurUmbracoTheDashboardContentFilesPath) - #@(OurUmbracoTheDashboardContentFiles->Count()) files"  Importance="high" />
-        <Copy
-            SourceFiles="@(OurUmbracoTheDashboardContentFiles)"
-            DestinationFiles="@(OurUmbracoTheDashboardContentFiles->'$(MSBuildProjectDirectory)\App_Plugins\Our.Umbraco.TheDashboard\%(RecursiveDir)%(Filename)%(Extension)')"
-            SkipUnchangedFiles="true" />
-
-    </Target>
-
     <Target Name="ClearOurUmbracoTheDashboardAssets" BeforeTargets="Clean">
         <ItemGroup>
             <OurUmbracoTheDashboardDir Include="$(MSBuildProjectDirectory)\App_Plugins\Our.Umbraco.TheDashboard\" />
