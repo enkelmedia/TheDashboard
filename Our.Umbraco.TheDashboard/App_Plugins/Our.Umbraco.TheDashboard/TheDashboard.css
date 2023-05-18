@@ -2,7 +2,13 @@
     display: flex;
 }
 
-    .theDashboard > div {
+@media screen and (max-width: 600px) {
+    .theDashboard {
+        flex-direction: column;
+    }
+}
+
+   .theDashboard > div {
         flex-grow: 1;
         flex-basis: 0;
         margin-right: 20px;
