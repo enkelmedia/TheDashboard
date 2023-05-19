@@ -6,7 +6,7 @@
         <ContentTargetFolders>.</ContentTargetFolders>
         <PackageId>Our.Umbraco.TheDashboard</PackageId>
         <Title>Our.Umbraco.TheDashboard</Title>
-        <Description>Content dashboard for Umbraco 10</Description>
+        <Description>Content dashboard for Umbraco 11</Description>
         <Product>The Dashboard for Umbraco</Product>
         <PackageTags>umbraco umbraco-marketplace dashboard activities plugin package</PackageTags>
         <Version>11.1.0</Version>
