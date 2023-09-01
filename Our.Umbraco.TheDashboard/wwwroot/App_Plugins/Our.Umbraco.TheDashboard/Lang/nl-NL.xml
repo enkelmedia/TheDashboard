@@ -8,7 +8,9 @@
       <key alias="recentActivitiesDescription">Toont recente activiteiten van alle gebruikers in de back office.</key>
       <key alias="unpublishedContent">Ongepubliceerde inhoud</key>
       <key alias="unpublishedContentDescription">Toont ongepubliceerde inhoud dat niet gepland is om te publiceren.</key>
-      <key alias="yourRecentActivity">Jouw recente activiteiten</key>
+	  <key alias="pendingContent">In behandeling</key>
+	  <key alias="pendingContentDescription">Toont gepubliceerde inhoud met wijzigingen die niet zijn gepland voor publicatie.</key>
+	  <key alias="yourRecentActivity">Jouw recente activiteiten</key>
       <key alias="yourRecentActivitiesDescription">Toont je eigen recente activiteiten</key>
       <key alias="publishedContentNodes">Gepubliceerde content nodes</key>
       <key alias="nodesInRecycleBin">Nodes in prullenbak</key>
