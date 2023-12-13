@@ -4,7 +4,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Umbraco.Cms" Version="11.0.0" />
+        <PackageReference Include="Umbraco.Cms" Version="12.3.4" />
     </ItemGroup>
 
     <Import Project="..\Our.Umbraco.TheDashboard\build\Our.Umbraco.TheDashboard.targets" />
