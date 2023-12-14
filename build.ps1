@@ -1,0 +1,1 @@
+dotnet pack Our.Umbraco.TheDashboard/Our.Umbraco.TheDashboard.csproj --output Artifacts --configuration Release
