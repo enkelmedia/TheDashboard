@@ -101,6 +101,9 @@ Are more then welcome but please, before you put a lot of work into it raise an 
 * V9 = Umbraco 9
 * V10 = Umbraco 10
 * V11 = Umbraco 11
+* V12 = Umbraco 12
+* V12 = Umbraco 13
+* .....
 
 ### Roadmap
 The main idea with the package is to provide a super simple dashboard for the Content section. We're extremely cautious with adding features, as we want to keep the codebase super-easy.
@@ -111,8 +114,6 @@ In the v8 version of the package the "Developer Dashboard" was removed. There's 
 To build a Release-version of the package,
 
 * [ ] Make sure to update the version in the .csproj file
-* [ ] Run `dotnet pack --configuration Release` inside the `Our.Umbraco.TheDashboard`-folder to create packages
-* [ ] Artifacts created in /Package/-folder
+* [ ] Run `.\build.ps1` inside the root, files is created in the `Artifacts`-folder
 
-
-This package was created by Enkel Media, https://www.enkelmedia.se
+This package was created by Enkel Media, https://www.enkelmedia.se and is supported by https://www.obviuse.se
