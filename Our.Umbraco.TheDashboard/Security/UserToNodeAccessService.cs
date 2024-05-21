@@ -1,4 +1,4 @@
-﻿using Our.Umbraco.TheDashboard.Models.Dtos;
+using Our.Umbraco.TheDashboard.Models.Dtos;
 using System.Collections.Generic;
 using System.Linq;
 using Our.Umbraco.TheDashboard.Models;
@@ -32,7 +32,7 @@ namespace Our.Umbraco.TheDashboard.Security
         {
             _entityService = entityService;
             _appCaches = appCaches;
-            _userStartNodes = currentUser.CalculateContentStartNodeIds(_entityService,appCaches);
+            _userStartNodes = currentUser.CalculateContentStartNodeIds(_entityService,appCaches).Distinct().ToArray();
             _permissions = userService.GetPermissions(currentUser, AllNodeIdsFromPath(nodes));
         }
 
@@ -68,6 +68,7 @@ namespace Our.Umbraco.TheDashboard.Security
             // Compare usersStart node(s) (if any) against the path, if not found in start nodes access should be denied
             if (_userStartNodes.Length > 0)
             {
+
                 bool onlyRootInList = _userStartNodes.Length == 1 && _userStartNodes[0] == Constants.System.Root;
 
                 // Users with access to "all" will have a startNode with -1

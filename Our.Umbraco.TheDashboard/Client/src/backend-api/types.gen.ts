@@ -37,9 +37,14 @@ export type RecentActivityFrontendModel = {
     scheduledPublishDate?: string | null;
 };
 
+export type UserAvatarFrontendModel = {
+    src: string;
+    srcSet: string;
+};
+
 export type UserFrontendModel = {
     name: string;
-    avatar: Array<(string)>;
+    avatar: UserAvatarFrontendModel;
 };
 
 export type GetAllRecentActivitiesResponse = RecentActivitiesFrontendModel;

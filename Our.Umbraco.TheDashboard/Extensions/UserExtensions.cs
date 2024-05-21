@@ -1,8 +1,10 @@
-﻿using System;
+using System;
 using System.Net;
 using System.Net.Http;
+using System.Reflection.Metadata.Ecma335;
 using System.Security.Cryptography;
 using System.Text;
+using Our.Umbraco.TheDashboard.Models.Frontend;
 using Umbraco.Cms.Core.Cache;
 using Umbraco.Extensions;
 
@@ -17,7 +19,7 @@ namespace Our.Umbraco.TheDashboard.Extensions
          /// <returns>
         /// A list of 5 different sized avatar URLs
         /// </returns>
-        public static string[] GetUserAvatarUrls(int userId,string userEmail, string userAvatar, IAppCache cache, IHttpClientFactory httpClientFactory)
+        public static UserAvatarFrontendModel GetUserAvatarUrls(int userId,string userEmail, string userAvatar, IAppCache cache, IHttpClientFactory httpClientFactory)
         {
             // If FIPS is required, never check the Gravatar service as it only supports MD5 hashing.  
             // Unfortunately, if the FIPS setting is enabled on Windows, using MD5 will throw an exception
@@ -25,8 +27,10 @@ namespace Our.Umbraco.TheDashboard.Extensions
             // Also, check if the user has explicitly removed all avatars including a Gravatar, this will be possible and the value will be "none"
             if (userAvatar == "none" || CryptoConfig.AllowOnlyFipsAlgorithms)
             {
-                return new string[0];
+                return new UserAvatarFrontendModel();
             }
+
+            StringBuilder sb = new StringBuilder();
 
             if (userAvatar.IsNullOrWhiteSpace())
             {
@@ -54,29 +58,27 @@ namespace Our.Umbraco.TheDashboard.Extensions
 
                 if (gravatarAccess)
                 {
-                    return new[]
-                    {
-                        gravatarUrl  + "&s=30",
-                        gravatarUrl  + "&s=60",
-                        gravatarUrl  + "&s=90",
-                        gravatarUrl  + "&s=150",
-                        gravatarUrl  + "&s=300"
-                    };
+                    var gravatarSmallSize = gravatarUrl + "&s=30";
+
+                    sb.Append(gravatarSmallSize + " x1, ");
+                    sb.AppendLine(gravatarUrl + "&s=60 x2, ");
+                    sb.AppendLine(gravatarUrl + "&s=90 x3, ");
+
+                    return new UserAvatarFrontendModel(gravatarSmallSize, sb.ToString());
+
                 }
 
-                return new string[0];
+                return new UserAvatarFrontendModel();
             }
 
             var customAvatarUrl = "/media/" + userAvatar;
-          
-            return new []
-            {
-                GetAvatarCrop(customAvatarUrl,30),
-                GetAvatarCrop(customAvatarUrl,60),
-                GetAvatarCrop(customAvatarUrl,90),
-                GetAvatarCrop(customAvatarUrl,150),
-                GetAvatarCrop(customAvatarUrl,300),
-            };
+            var smallSize = GetAvatarCrop(customAvatarUrl, 30);
+
+            sb.Append(smallSize + " x1, ");
+            sb.AppendLine(GetAvatarCrop(customAvatarUrl, 60) + " x2, ");
+            sb.AppendLine(GetAvatarCrop(customAvatarUrl, 90) + " x3, ");
+
+            return new UserAvatarFrontendModel(smallSize, sb.ToString());
 
         }
 
@@ -99,6 +101,7 @@ namespace Our.Umbraco.TheDashboard.Extensions
 
              return sBuilder.ToString();
          }
+
 
     }
 }
