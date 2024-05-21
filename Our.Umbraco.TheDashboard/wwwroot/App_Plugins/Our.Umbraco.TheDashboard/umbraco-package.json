@@ -1,0 +1,14 @@
+{
+	"$schema": "../../../../Our.Umbraco.TheDashboard.Testsite/umbraco-package-schema.json",
+	"name": "TheDashboard",
+	"version": "14.0.0",
+	"extensions": [
+		{
+			"type": "entryPoint",
+			"alias": "TheDashboard.EntryPoint",
+			"name": "TheDashboard Entry Point",
+			"js": "/App_Plugins/Our.Umbraco.TheDashboard/dist/the-dashboard-umbraco.js",
+			"weight": 13000
+		}
+	]
+}
