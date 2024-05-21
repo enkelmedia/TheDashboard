@@ -12,17 +12,14 @@ using Umbraco.Cms.Core.Cache;
 using Umbraco.Cms.Infrastructure.Scoping;
 using Umbraco.Cms.Core.Security;
 using Umbraco.Cms.Core.Services;
-using Umbraco.Cms.Web.BackOffice.Controllers;
-using Umbraco.Cms.Web.BackOffice.Filters;
 using Umbraco.Cms.Web.Common.Attributes;
 
 
 namespace Our.Umbraco.TheDashboard.Controllers
 {
     [IsBackOffice]
-    [JsonCamelCaseFormatter]
-    public class TheDashboardController : UmbracoAuthorizedJsonController
-    {
+    public class TheDashboardController : ControllerBase
+	{
         private readonly AppCaches _appCaches;
         private readonly IScopeProvider _scopeProvider;
         private readonly ITheDashboardService _dashboardService;

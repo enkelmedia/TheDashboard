@@ -1,22 +1,27 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-namespace Our.Umbraco.TheDashboard.Testsite
-{
-    public class Program
+builder.CreateUmbracoBuilder()
+    .AddBackOffice()
+    .AddWebsite()
+    .AddDeliveryApi()
+    .AddComposers()
+    .Build();
+
+WebApplication app = builder.Build();
+
+await app.BootUmbracoAsync();
+
+
+app.UseUmbraco()
+    .WithMiddleware(u =>
     {
-        public static void Main(string[] args)
-            => CreateHostBuilder(args)
-                .Build()
-                .Run();
+        u.UseBackOffice();
+        u.UseWebsite();
+    })
+    .WithEndpoints(u =>
+    {
+        u.UseBackOfficeEndpoints();
+        u.UseWebsiteEndpoints();
+    });
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureUmbracoDefaults()
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStaticWebAssets();
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
-}
+await app.RunAsync();

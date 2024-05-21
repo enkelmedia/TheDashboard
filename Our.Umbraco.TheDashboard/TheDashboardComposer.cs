@@ -13,7 +13,6 @@ namespace Our.Umbraco.TheDashboard
         public void Compose(IUmbracoBuilder builder)
         {
 
-            builder.Dashboards().Add<TheDashboardDashboard>();
             builder.Services.AddTransient<ITheDashboardService, TheDashboardService>();
 
             builder.WithCollectionBuilder<DashboardCountersCollectionBuilder>()
