@@ -3,6 +3,7 @@ import { UmbElementMixin } from '@umbraco-cms/backoffice/element-api';
 import { UmbTextStyles } from '@umbraco-cms/backoffice/style';
 import '@umbraco-cms/backoffice/components';
 import { RecentActivitiesFrontendModel, TheDashboardResource } from '../backend-api';
+import './../components/box/the-dashboard-box.element';
 
 // const DateTimeOptions: Intl.DateTimeFormatOptions = {
 //   //weekday: '',
@@ -46,11 +47,11 @@ export class TheDashboardDashboardElement extends UmbElementMixin(LitElement) {
     return html`
       <div id="layout">
         <div>
-          <uui-box>
-            <div slot="headline" class="uui-text">
-              <h5 class="uui-h5">${this.localize.term("theDashboard_recentActivities")}</h5>
-              <small>${this.localize.term('theDashboard_recentActivitiesDescription')}</small>
-            </div>
+          <the-dashboard-box
+            headline=${this.localize.term("theDashboard_recentActivities")}
+            description=${this.localize.term('theDashboard_recentActivitiesDescription')}
+            >
+
             ${when(this.recentActivities,()=>html`
               ${repeat(this.recentActivities!.allItems,
                 (item)=>item.nodeId,
@@ -61,33 +62,27 @@ export class TheDashboardDashboardElement extends UmbElementMixin(LitElement) {
                   </div>
               `)}
             `)}
-          </uui-box>
+          </the-dashboard-box>
         </div>
         <div>
-          <uui-box>
-            <div slot="headline" class="uui-text">
-              <h5 class="uui-h5">${this.localize.term("theDashboard_recentActivities")}</h5>
-              <small>${this.localize.term('theDashboard_recentActivitiesDescription')}</small>
-            </div>
-            <div>
+        <the-dashboard-box
+            headline=${this.localize.term("theDashboard_pendingContent")}
+            description=${this.localize.term('theDashboard_pendingContentDescription')}
+            counter="5"
+            expandable>
+            Custom Box content
+          </the-dashboard-box>
+          <the-dashboard-box
+            headline=${this.localize.term("theDashboard_yourRecentActivity")}
+            description=${this.localize.term('theDashboard_yourRecentActivitiesDescription')}>
+            Custom Box content
+          </the-dashboard-box>
 
-            </div>
-          </uui-box>
-          <uui-box>
-            <div slot="headline" class="uui-text">
-              <h5 class="uui-h5">${this.localize.term("theDashboard_recentActivities")}</h5>
-              <small>${this.localize.term('theDashboard_recentActivitiesDescription')}</small>
-            </div>
-            <div>
-
-            </div>
-          </uui-box>
         </div>
         <div>
           counters
         </div>
       </div>
-
   `
   }
 

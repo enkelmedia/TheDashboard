@@ -6,8 +6,8 @@ export default {
 
     recentActivities : 'Recent activities',
     recentActivitiesDescription : 'Shows recent activities from all users in the back office.',
-    unpublishedContent : 'Unpublished content',
-    unpublishedContentDescription : 'Shows unpublished content that has not been scheduled for publish.',
+    unpublishedContent : '__remove_me__',
+    unpublishedContentDescription : '__remove_me__',
     pendingContent : 'Pending content',
     pendingContentDescription : 'Shows published content with changes that has not been scheduled for publishing.',
     yourRecentActivity : 'Your recent activity',
