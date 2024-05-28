@@ -12,7 +12,6 @@
     <Description>Content dashboard for Umbraco</Description>
     <Product>The Dashboard for Umbraco</Product>
     <PackageTags>umbraco umbraco-marketplace dashboard activities plugin package</PackageTags>
-    <Version>14.0.0</Version>
     <Authors>Markus Johansson</Authors>
     <Copyright>Copyright (c) Obviuse AB</Copyright>
     <Company>Obviuse AB / Enkel Media Stockholm AB</Company>
@@ -21,6 +20,10 @@
     <RepositoryType>git</RepositoryType>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <Version>14.0.0</Version>
+    <PackageVersion>14.0.0-rc4</PackageVersion>
+    <InformationalVersion>14.0.0-rc4</InformationalVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -31,4 +34,20 @@
   <ItemGroup>
     <None Include="build\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
+
+    <Target Name="PreBuildClientRelease" BeforeTargets="PreBuild" Condition="$(ConfigurationName) == Release">
+    <Message Text="Building client side assets using npm." Importance="High" />
+    <Exec Command="npm install" WorkingDirectory="$(ProjectDir)\Client" />
+    <Exec Command="npm run build" WorkingDirectory="$(ProjectDir)\Client" />
+    <!-- Ensure nothing from /Client is included in the build artifact -->
+    <ItemGroup>
+      <Compile Remove="Client\**" />
+      <Content Remove="Client\**" />
+      <EmbeddedResource Remove="Client\**" />
+      <None Remove="Client\**" />
+    </ItemGroup>
+  </Target>
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="$(ConfigurationName) != DebugNoClientSideBuild">
+    <Message Text="Client side code was built." Importance="High" />
+  </Target>
 </Project>
