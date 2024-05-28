@@ -25,17 +25,14 @@
     <PackageVersion>14.0.0-rc4</PackageVersion>
     <InformationalVersion>14.0.0-rc4</InformationalVersion>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Umbraco.Cms.Api.Common" Version="14.0.0-rc4" />
     <PackageReference Include="Umbraco.Cms.Web.Website" Version="14.0.0-rc4" />
   </ItemGroup>
-
   <ItemGroup>
     <None Include="build\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
-
-    <Target Name="PreBuildClientRelease" BeforeTargets="PreBuild" Condition="$(ConfigurationName) == Release">
+  <Target Name="PreBuildClientRelease" BeforeTargets="PreBuild" Condition="$(ConfigurationName) == Release">
     <Message Text="Building client side assets using npm." Importance="High" />
     <Exec Command="npm install" WorkingDirectory="$(ProjectDir)\Client" />
     <Exec Command="npm run build" WorkingDirectory="$(ProjectDir)\Client" />
