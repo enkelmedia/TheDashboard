@@ -35,7 +35,6 @@ bin/
 *.orig
 */Thumbs.db
 */log.txt
-/Build/
 *.DS_Store
 
 /Umbraco8.Web.UI/*
