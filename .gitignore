@@ -50,4 +50,4 @@ xcopy*
 Our.Umbraco.TheDashboard.Testsite/
 Artifacts
 
-Our.Umbraco.TheDashboard/wwwroot/App_Plugins/Our.Umbraco.TheDashboard/dist
+src/Our.Umbraco.TheDashboard/wwwroot/App_Plugins/Our.Umbraco.TheDashboard/dist
