@@ -9,7 +9,7 @@
         <Description>Content dashboard for Umbraco</Description>
         <Product>The Dashboard for Umbraco</Product>
         <PackageTags>umbraco umbraco-marketplace dashboard activities plugin package</PackageTags>
-        <Version>13.0.0</Version>
+        <Version>13.0.1</Version>
         <Authors>Markus Johansson</Authors>
         <Copyright>Copyright (c) Obviuse AB</Copyright>
         <Company>Obviuse AB / Enkel Media Stockholm AB</Company>
@@ -18,6 +18,7 @@
         <RepositoryType>git</RepositoryType>
 	    <PackageReadmeFile>README.md</PackageReadmeFile>
 	    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageIcon>icon.png</PackageIcon>
     </PropertyGroup>
 
     <ItemGroup>
@@ -30,8 +31,10 @@
             <Pack>True</Pack>
             <PackagePath>buildTransitive</PackagePath>
         </None>
+        
     </ItemGroup>
 	<ItemGroup>
 		<None Include="build\README.md" Pack="true" PackagePath="\" />
+        <None Include="..\Docs\icon.png" Pack="true" PackagePath="\" />
 	</ItemGroup>
 </Project>
