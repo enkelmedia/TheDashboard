@@ -1,9 +1,8 @@
-﻿using Umbraco.Cms.Core.Composing;
+using Umbraco.Cms.Core.Composing;
 
-namespace Our.Umbraco.TheDashboard.Counters.Collections
+namespace Our.Umbraco.TheDashboard.Counters.Collections;
+
+public class DashboardCountersCollectionBuilder : OrderedCollectionBuilderBase<DashboardCountersCollectionBuilder, DashboardCountersCollection, IDashboardCounter>
 {
-    public class DashboardCountersCollectionBuilder : OrderedCollectionBuilderBase<DashboardCountersCollectionBuilder, DashboardCountersCollection, IDashboardCounter>
-    {
-        protected override DashboardCountersCollectionBuilder This => this;
-    }
+    protected override DashboardCountersCollectionBuilder This => this;
 }

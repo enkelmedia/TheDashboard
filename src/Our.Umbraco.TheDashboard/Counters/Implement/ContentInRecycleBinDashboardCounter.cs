@@ -1,34 +1,29 @@
-﻿using System.Threading;
 using Umbraco.Cms.Core;
 using Umbraco.Cms.Infrastructure.Scoping;
-using Umbraco.Cms.Core.Services;
 
-namespace Our.Umbraco.TheDashboard.Counters.Implement
+namespace Our.Umbraco.TheDashboard.Counters.Implement;
+
+public class ContentInRecycleBinDashboardCounter : IDashboardCounter
 {
-    public class ContentInRecycleBinDashboardCounter : IDashboardCounter
+
+    public ContentInRecycleBinDashboardCounter()
     {
-        private readonly ILocalizedTextService _localizedTextService;
+    }
 
-        public ContentInRecycleBinDashboardCounter(ILocalizedTextService localizedTextService)
-        {
-            _localizedTextService = localizedTextService;
-        }
-
-        public DashboardCounterModel GetModel(IScope scope)
-        {
-            var sql = @"SELECT count(un.[id]) FROM umbracoNode AS un
+    public DashboardCounterModel GetModel(IScope scope)
+    {
+        var sql = @"SELECT count(un.[id]) FROM umbracoNode AS un
                                WHERE un.nodeObjectType = @0 	
 	                           AND un.trashed = 1";
 
-            var count = scope.Database.ExecuteScalar<int>(sql, Constants.ObjectTypes.Document);
+        var count = scope.Database.ExecuteScalar<int>(sql, Constants.ObjectTypes.Document);
             
-            return new DashboardCounterModel()
-            {
-                Text = _localizedTextService.Localize("theDashboard","nodesInRecycleBin",Thread.CurrentThread.CurrentCulture),
-                Count = count,
-                ClickUrl = "/umbraco#/content/content/recyclebin",
-                Style = DashboardCounterModel.CounterStyles.Action
-            };
-        }
+        return new DashboardCounterModel()
+        {
+            LocalizationKey = "theDashboard_nodesInRecycleBin",
+            Count = count,
+            //ClickUrl = "/umbraco#/content/content/recyclebin", //TODO: Add link in the future if core adds overview for recyle bin
+            Style = DashboardCounterModel.CounterStyles.Action
+        };
     }
 }

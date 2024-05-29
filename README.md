@@ -49,11 +49,10 @@ Here's an example:
 ```csharp
 public class OrdersDashboardCounter : IDashboardCounter
 {
-    private readonly ILocalizedTextService _localizedTextService;
+    private readonly ISomeService _someService;
 
-    public OrdersDashboardCounter(ILocalizedTextService localizedTextService)
+    public OrdersDashboardCounter(ISomeService _someService)
     {
-        _localizedTextService = localizedTextService;
     }
 
     public DashboardCounterModel GetModel(IScope scope)
@@ -61,9 +60,10 @@ public class OrdersDashboardCounter : IDashboardCounter
         var sql = @"SELECT count(id) FROM customOrders";
 
         var count = scope.Database.ExecuteScalar<int>(sql);
+
         return new DashboardCounterModel()
         {
-            Text = _localizedTextService.Localize("custom/totalOrders"),
+            LocalizationKey = "custom_totalOrders", //Must be loaded into the backoffice
             Count = count,
             ClickUrl = "/umbraco#/orders",
             Style = DashboardCounterModel.CounterStyles.Action
@@ -102,7 +102,8 @@ Are more then welcome but please, before you put a lot of work into it raise an 
 * V10 = Umbraco 10
 * V11 = Umbraco 11
 * V12 = Umbraco 12
-* V12 = Umbraco 13
+* V13 = Umbraco 13
+* V14 = Umbraco 14
 * .....
 
 ### Roadmap

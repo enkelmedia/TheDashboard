@@ -5,6 +5,13 @@ export type CountersFrontendModel = {
 };
 
 export type DashboardCounterModel = {
+    /**
+     * Localization key used in the frontend for translation. Prefer using this over Our.Umbraco.TheDashboard.Counters.DashboardCounterModel.Text if possible.
+     */
+    localizationKey: string;
+    /**
+     * Hardcoded text for the counter.
+     */
     text: string;
     count: number;
     /**

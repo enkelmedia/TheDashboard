@@ -8,31 +8,28 @@ using Our.Umbraco.TheDashboard.Controllers.OpenApi;
 using Our.Umbraco.TheDashboard.Counters.Collections;
 using Umbraco.Cms.Api.Common.OpenApi;
 
-namespace Our.Umbraco.TheDashboard
+namespace Our.Umbraco.TheDashboard;
+
+public class TheDashboardComposer : IComposer
 {
-    public class TheDashboardComposer : IComposer
+    public void Compose(IUmbracoBuilder builder)
     {
-        public void Compose(IUmbracoBuilder builder)
-        {
 
-            builder.Services.AddTransient<ITheDashboardService, TheDashboardService>();
+        builder.Services.AddTransient<ITheDashboardService, TheDashboardService>();
 
-            builder.WithCollectionBuilder<DashboardCountersCollectionBuilder>()
-                .Append<ContentTotalContentItemsDashboardCounter>()
-                .Append<ContentInRecycleBinDashboardCounter>()
-                .Append<MembersTotalDashboardCounter>();
+        builder.WithCollectionBuilder<DashboardCountersCollectionBuilder>()
+            .Append<ContentTotalContentItemsDashboardCounter>()
+            .Append<ContentInRecycleBinDashboardCounter>()
+            .Append<MembersTotalDashboardCounter>();
 
-            // Just using this to make sure that it works and are used in the package
-            builder.TheDashboardCounters().Append<MembersNewLastWeekDashboardCounter>();
+        // Just using this to make sure that it works and are used in the package
+        builder.TheDashboardCounters().Append<MembersNewLastWeekDashboardCounter>();
 
 #if DEBUG
-            // SWAGGER - Only use in debug build to avoid exposing in production messing up things in the core.
-            builder.Services.ConfigureOptions<ConfigureTheDashboardApiSwaggerGenOptions>();
-            builder.Services.AddSingleton<ISchemaIdHandler, TheDashboardSchemaIdHandler>();
+        // SWAGGER - Only use in debug build to avoid exposing in production messing up things in the core.
+        builder.Services.ConfigureOptions<ConfigureTheDashboardApiSwaggerGenOptions>();
+        builder.Services.AddSingleton<ISchemaIdHandler, TheDashboardSchemaIdHandler>();
 #endif
-
-            
-        }
 
     }
 }

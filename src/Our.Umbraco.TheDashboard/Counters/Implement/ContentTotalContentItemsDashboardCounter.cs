@@ -1,23 +1,18 @@
-﻿using System;
-using System.Threading;
 using Umbraco.Cms.Core;
 using Umbraco.Cms.Infrastructure.Scoping;
-using Umbraco.Cms.Core.Services;
 
-namespace Our.Umbraco.TheDashboard.Counters.Implement
+namespace Our.Umbraco.TheDashboard.Counters.Implement;
+
+public class ContentTotalContentItemsDashboardCounter : IDashboardCounter
 {
-    public class ContentTotalContentItemsDashboardCounter : IDashboardCounter
+
+    public ContentTotalContentItemsDashboardCounter()
     {
-        private readonly ILocalizedTextService _localizedTextService;
+    }
 
-        public ContentTotalContentItemsDashboardCounter(ILocalizedTextService localizedTextService)
-        {
-            _localizedTextService = localizedTextService;
-        }
-
-        public DashboardCounterModel GetModel(IScope scope)
-        {
-            var sql = @"SELECT count(un.[id])
+    public DashboardCounterModel GetModel(IScope scope)
+    {
+        var sql = @"SELECT count(un.[id])
                       FROM umbracoNode AS un
 	                    INNER JOIN umbracoDocument as ud on ud.nodeId = un.id
                       WHERE 
@@ -25,14 +20,13 @@ namespace Our.Umbraco.TheDashboard.Counters.Implement
                         AND un.trashed = 0
 	                    AND ud.published = 1";
 
-            var count = scope.Database.ExecuteScalar<int>(sql, Constants.ObjectTypes.Document);
+        var count = scope.Database.ExecuteScalar<int>(sql, Constants.ObjectTypes.Document);
 
-            return new DashboardCounterModel()
-            {
-                Text = _localizedTextService.Localize("theDashboard","publishedContentNodes", Thread.CurrentThread.CurrentCulture),
-                Count = count,
-                Style = DashboardCounterModel.CounterStyles.Action
-            };
-        }
+        return new DashboardCounterModel()
+        {
+            LocalizationKey = "theDashboard_publishedContentNodes",
+            Count = count,
+            Style = DashboardCounterModel.CounterStyles.Action
+        };
     }
 }

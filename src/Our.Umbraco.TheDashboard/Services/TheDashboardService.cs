@@ -3,27 +3,27 @@ using NPoco;
 using Our.Umbraco.TheDashboard.Models.Dtos;
 using Umbraco.Cms.Infrastructure.Scoping;
 
-namespace Our.Umbraco.TheDashboard.Services
+namespace Our.Umbraco.TheDashboard.Services;
+
+public class TheDashboardService : ITheDashboardService
 {
-    public class TheDashboardService : ITheDashboardService
+    private readonly IScopeProvider _scopeProvider;
+    private readonly ILogger<TheDashboardService> _logger;
+
+    public TheDashboardService(IScopeProvider scopeProvider, ILogger<TheDashboardService> logger)
     {
-        private readonly IScopeProvider _scopeProvider;
-        private readonly ILogger<TheDashboardService> _logger;
+        _scopeProvider = scopeProvider;
+        _logger = logger;
+    }
 
-        public TheDashboardService(IScopeProvider scopeProvider, ILogger<TheDashboardService> logger)
+    public List<LogEntryDto> GetEntries()
+    {
+        try
         {
-	        _scopeProvider = scopeProvider;
-	        _logger = logger;
-        }
-
-        public List<LogEntryDto> GetEntries()
-        {
-	        try
-	        {
-		        using (var scope = _scopeProvider.CreateScope())
-		        {
+            using (var scope = _scopeProvider.CreateScope())
+            {
 			        
-			        var coreSql = @"ul.[id]
+                var coreSql = @"ul.[id]
                               ,ul.[userId]
                               ,ul.[NodeId]
                               ,ul.[entityType]
@@ -50,25 +50,25 @@ namespace Our.Umbraco.TheDashboard.Services
                           ORDER by ul.Datestamp DESC";
 			        
 
-			        var sql = scope.Database.DatabaseType == DatabaseType.SQLite ? $"SELECT {coreSql} Limit 500" : $"Select Top(500) {coreSql}";
+                var sql = scope.Database.DatabaseType == DatabaseType.SQLite ? $"SELECT {coreSql} Limit 500" : $"Select Top(500) {coreSql}";
 
-			        var res = scope.Database.Fetch<LogEntryDto>(sql);
+                var res = scope.Database.Fetch<LogEntryDto>(sql);
 
-			        return res;
-		        }
-	        }
-	        catch (Exception e)
-	        {
-		        _logger.LogError(e, "Unable to Get dashboard Entries");
-		        return new List<LogEntryDto>();
-	        }
+                return res;
+            }
         }
-
-
-        public List<LogEntryDto> GetPending()
+        catch (Exception e)
         {
+            _logger.LogError(e, "Unable to Get dashboard Entries");
+            return new List<LogEntryDto>();
+        }
+    }
 
-            var sql = @"SELECT ul.[id]
+
+    public List<LogEntryDto> GetPending()
+    {
+
+        var sql = @"SELECT ul.[id]
                   ,ul.[userId]
                   ,ul.[NodeId]
                   ,ul.[entityType]
@@ -103,14 +103,12 @@ namespace Our.Umbraco.TheDashboard.Services
               ORDER by ul.Datestamp DESC
             ";
 
-            using (var scope = _scopeProvider.CreateScope())
-            {
+        using (var scope = _scopeProvider.CreateScope())
+        {
 
-                var res = scope.Database.Fetch<LogEntryDto>(sql);
-                return res;
-            }
-
+            var res = scope.Database.Fetch<LogEntryDto>(sql);
+            return res;
         }
+
     }
 }
-

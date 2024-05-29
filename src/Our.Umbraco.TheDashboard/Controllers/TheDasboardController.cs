@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
 using Microsoft.AspNetCore.Mvc;
 using Our.Umbraco.TheDashboard.Counters.Collections;
 using Our.Umbraco.TheDashboard.Mapping;

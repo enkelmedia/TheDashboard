@@ -166,8 +166,16 @@ export class TheDashboardDashboardElement extends UmbElementMixin(LitElement) {
             ${repeat(this.counters!.counters,
               (item)=>item.text,
               (counter)=>html`
-                <div class="">
-                  ${counter.text}
+                <div class="counter">
+                  <div>
+                    <span class="dot ${counter.style}">${counter.count}</span>
+                  </div>
+                  <div>
+                    <p>
+                      ${when(counter.localizationKey,()=>html`${this.localize.term(counter.localizationKey)}`)}
+                      ${when(!counter.localizationKey,()=>html`${counter.text}`)}
+                    </p>
+                  </div>
                 </div>
             `)}
           `)}
@@ -223,6 +231,30 @@ export class TheDashboardDashboardElement extends UmbElementMixin(LitElement) {
       margin:0;
       line-height:1.4em;
     }
+
+    .counter {
+      display:flex;
+      gap:10px;
+      margin-bottom:10px;
+    }
+
+    .dot {
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      background-color: cadetblue;
+      color: #fff;
+      border-radius: 25px;
+      width: 50px;
+      height: 50px;
+    }
+
+    .dot.standard {background:#3544b1;}
+    .dot.action {background:var(--uui-color-emphasis, #3544b1);}
+    .dot.success {background:var(--uui-color-positive);}
+    .dot.warning {background:var(--uui-color-warning);}
+    .dot.selected {background:var(--uui-color-current,#f5c1bc);}
+    .dot.danger {background:var(--uui-color-danger);}
 
   `]
 }

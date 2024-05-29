@@ -1,4 +1,4 @@
-﻿namespace Our.Umbraco.TheDashboard.Models.Frontend;
+namespace Our.Umbraco.TheDashboard.Models.Frontend;
 
 public class UserAvatarFrontendModel
 {

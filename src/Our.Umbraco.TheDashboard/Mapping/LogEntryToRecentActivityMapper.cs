@@ -1,83 +1,81 @@
-using System.Net.Http;
 using Our.Umbraco.TheDashboard.Extensions;
 using Our.Umbraco.TheDashboard.Models.Dtos;
 using Our.Umbraco.TheDashboard.Models.Frontend;
 using Umbraco.Cms.Core.Cache;
 
-namespace Our.Umbraco.TheDashboard.Mapping
-{
-	public class LogEntryToRecentActivityMapper
-	{
-		private readonly AppCaches _appCaches;
-        private readonly IHttpClientFactory _httpClientFactory;
+namespace Our.Umbraco.TheDashboard.Mapping;
 
-        public LogEntryToRecentActivityMapper(AppCaches appCaches, IHttpClientFactory httpClientFactory)
+public class LogEntryToRecentActivityMapper
+{
+    private readonly AppCaches _appCaches;
+    private readonly IHttpClientFactory _httpClientFactory;
+
+    public LogEntryToRecentActivityMapper(AppCaches appCaches, IHttpClientFactory httpClientFactory)
+    {
+        _appCaches = appCaches;
+        _httpClientFactory = httpClientFactory;
+    }
+
+    public RecentActivityFrontendModel Map(LogEntryDto dto)
+    {
+        var dashboardLogEntryType = GetLogEntryType(dto);
+
+        if (string.IsNullOrEmpty(dashboardLogEntryType))
         {
-            _appCaches = appCaches;
-            _httpClientFactory = httpClientFactory;
+            return null;
         }
 
-		public RecentActivityFrontendModel Map(LogEntryDto dto)
-		{
-			var dashboardLogEntryType = GetLogEntryType(dto);
+        return new RecentActivityFrontendModel()
+        {
+            NodeKey = dto.NodeKey,
+            NodeName = dto.NodeName,
+            Datestamp = dto.Datestamp,
+            ScheduledPublishDate = dto.NodeScheduledDate,
+            ActivityType = dashboardLogEntryType,
+            User = new UserFrontendModel()
+            {
+                Name = dto.UserName,
+                Avatar = UserExtensions.GetUserAvatarUrls(dto.UserId, dto.UserEmail, dto.UserAvatar, _appCaches.RuntimeCache,_httpClientFactory)
+            }
+        };
+    }
 
-			if (string.IsNullOrEmpty(dashboardLogEntryType))
-			{
-				return null;
-			}
+    private string GetLogEntryType(LogEntryDto dto)
+    {
+        if (dto.LogHeader == TheDashboardConstants.UmbracoLogHeaders.Publish ||
+            dto.LogHeader == TheDashboardConstants.UmbracoLogHeaders.PublishVariant)
+        {
+            return TheDashboardConstants.ActivityTypes.Publish;
+        }
 
-			return new RecentActivityFrontendModel()
-			{
-				NodeKey = dto.NodeKey,
-				NodeName = dto.NodeName,
-				Datestamp = dto.Datestamp,
-				ScheduledPublishDate = dto.NodeScheduledDate,
-				ActivityType = dashboardLogEntryType,
-				User = new UserFrontendModel()
-				{
-					Name = dto.UserName,
-					Avatar = UserExtensions.GetUserAvatarUrls(dto.UserId, dto.UserEmail, dto.UserAvatar, _appCaches.RuntimeCache,_httpClientFactory)
-				}
-			};
-		}
+        if (dto.LogHeader == TheDashboardConstants.UmbracoLogHeaders.Save ||
+            dto.LogHeader == TheDashboardConstants.UmbracoLogHeaders.SaveVariant)
+        {
+            if (dto.NodeScheduledDate.HasValue)
+            {
+                return TheDashboardConstants.ActivityTypes.SaveAndScheduled;
+            }
 
-		private string GetLogEntryType(LogEntryDto dto)
-		{
-			if (dto.LogHeader == TheDashboardConstants.UmbracoLogHeaders.Publish ||
-				dto.LogHeader == TheDashboardConstants.UmbracoLogHeaders.PublishVariant)
-			{
-				return TheDashboardConstants.ActivityTypes.Publish;
-			}
+            return TheDashboardConstants.ActivityTypes.Save;
+        }
 
-			if (dto.LogHeader == TheDashboardConstants.UmbracoLogHeaders.Save ||
-				dto.LogHeader == TheDashboardConstants.UmbracoLogHeaders.SaveVariant)
-			{
-				if (dto.NodeScheduledDate.HasValue)
-				{
-					return TheDashboardConstants.ActivityTypes.SaveAndScheduled;
-				}
+        if (dto.LogHeader == TheDashboardConstants.UmbracoLogHeaders.Unpublish ||
+            dto.LogHeader == TheDashboardConstants.UmbracoLogHeaders.UnpublishVariant)
+        {
+            return TheDashboardConstants.ActivityTypes.Unpublish;
+        }
 
-				return TheDashboardConstants.ActivityTypes.Save;
-			}
+        if (dto.LogHeader == TheDashboardConstants.UmbracoLogHeaders.RollBack)
+        {
+            return TheDashboardConstants.ActivityTypes.RollBack;
+        }
 
-			if (dto.LogHeader == TheDashboardConstants.UmbracoLogHeaders.Unpublish ||
-				dto.LogHeader == TheDashboardConstants.UmbracoLogHeaders.UnpublishVariant)
-			{
-				return TheDashboardConstants.ActivityTypes.Unpublish;
-			}
+        if (dto.LogHeader == TheDashboardConstants.UmbracoLogHeaders.Delete && dto.LogComment.Contains("Trashed"))
+        {
+            return TheDashboardConstants.ActivityTypes.RecycleBin;
+        }
 
-			if (dto.LogHeader == TheDashboardConstants.UmbracoLogHeaders.RollBack)
-			{
-				return TheDashboardConstants.ActivityTypes.RollBack;
-			}
-
-			if (dto.LogHeader == TheDashboardConstants.UmbracoLogHeaders.Delete && dto.LogComment.Contains("Trashed"))
-			{
-				return TheDashboardConstants.ActivityTypes.RecycleBin;
-			}
-
-			// Empty string means this is a type of LogEntryDto that we don't care about.
-			return string.Empty;
-		}
-	}
+        // Empty string means this is a type of LogEntryDto that we don't care about.
+        return string.Empty;
+    }
 }
