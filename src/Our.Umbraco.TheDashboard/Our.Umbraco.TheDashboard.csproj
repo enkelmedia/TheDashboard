@@ -22,17 +22,23 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <AssemblyVersion>1.0.0</AssemblyVersion>
     <Version>14.0.0</Version>
-    <PackageVersion>14.0.0-rc4</PackageVersion>
-    <InformationalVersion>14.0.0-rc4</InformationalVersion>
+    <PackageVersion>14.0.0-rc5</PackageVersion>
+    <InformationalVersion>14.0.0-rc5</InformationalVersion>
     <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Umbraco.Cms.Api.Common" Version="14.0.0-rc4" />
-    <PackageReference Include="Umbraco.Cms.Web.Website" Version="14.0.0-rc4" />
+    <PackageReference Include="Umbraco.Cms.Api.Common" Version="14.0.0-rc5" />
+    <PackageReference Include="Umbraco.Cms.Web.Website" Version="14.0.0-rc5" />
   </ItemGroup>
   <ItemGroup>
     <None Include="build\README.md" Pack="true" PackagePath="\" />
     <None Include="..\..\documentation\icon.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="wwwroot\App_Plugins\Our.Umbraco.TheDashboard\dist\**" />
+    <Content Remove="wwwroot\App_Plugins\Our.Umbraco.TheDashboard\dist\**" />
+    <EmbeddedResource Remove="wwwroot\App_Plugins\Our.Umbraco.TheDashboard\dist\**" />
+    <None Remove="wwwroot\App_Plugins\Our.Umbraco.TheDashboard\dist\**" />
   </ItemGroup>
   <Target Name="PreBuildClientRelease" BeforeTargets="PreBuild" Condition="$(ConfigurationName) == Release">
     <Message Text="Building client side assets using npm." Importance="High" />
@@ -44,6 +50,9 @@
       <Content Remove="Client\**" />
       <EmbeddedResource Remove="Client\**" />
       <None Remove="Client\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="wwwroot\App_Plugins\Our.Umbraco.TheDashboard\dist\**" />
     </ItemGroup>
   </Target>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="$(ConfigurationName) != DebugNoClientSideBuild">
