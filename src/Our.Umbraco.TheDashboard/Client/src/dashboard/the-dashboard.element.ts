@@ -2,18 +2,18 @@ import { LitElement,css,html,customElement, state, repeat, when} from '@umbraco-
 import { UmbElementMixin } from '@umbraco-cms/backoffice/element-api';
 import { UmbTextStyles } from '@umbraco-cms/backoffice/style';
 import '@umbraco-cms/backoffice/components';
-import { RecentActivitiesFrontendModel, TheDashboardResource } from '../backend-api';
+import { CountersFrontendModel, PendingContentNotScheduledFrontendModel, RecentActivitiesFrontendModel, TheDashboardResource } from '../backend-api';
 import './../components/box/the-dashboard-box.element';
 
-// const DateTimeOptions: Intl.DateTimeFormatOptions = {
-//   //weekday: '',
-//   year: 'numeric',
-//   month: 'numeric',
-//   day: 'numeric',
-//   hour : '2-digit',
-//   minute : '2-digit',
-//   hourCycle : 'h24'
-// };
+const DateTimeOptions: Intl.DateTimeFormatOptions = {
+  weekday: 'short',
+  year: 'numeric',
+  month: 'numeric',
+  day: 'numeric',
+  hour : '2-digit',
+  minute : '2-digit',
+  hourCycle : 'h23'
+};
 
 /**
 * the-dashboard-dashboard description
@@ -25,6 +25,12 @@ export class TheDashboardDashboardElement extends UmbElementMixin(LitElement) {
   @state()
   recentActivities? : RecentActivitiesFrontendModel;
 
+  @state()
+  pendingContent? : PendingContentNotScheduledFrontendModel;
+
+  @state()
+  counters? : CountersFrontendModel;
+
   connectedCallback(): void {
     super.connectedCallback();
 
@@ -34,9 +40,11 @@ export class TheDashboardDashboardElement extends UmbElementMixin(LitElement) {
     });
     TheDashboardResource.getPending().then((res)=>{
       console.log('pending',res);
+      this.pendingContent = res;
     });
     TheDashboardResource.getCounters().then((res)=>{
       console.log('counter',res);
+      this.counters = res;
     });
 
   }
@@ -54,11 +62,35 @@ export class TheDashboardDashboardElement extends UmbElementMixin(LitElement) {
 
             ${when(this.recentActivities,()=>html`
               ${repeat(this.recentActivities!.allItems,
-                (item)=>item.nodeId,
-                (activity)=>html`
-                  <div class="">
-                    <uui-avatar img-src=${activity.user.avatar.src} img-srcset=${activity.user.avatar.srcSet} name=${activity.user.name}></uui-avatar>
-                    Name: ${activity.nodeName}
+                (item)=>item.nodeKey,
+                (item)=>html`
+                  <div class="activity">
+                    <div>
+                      <uui-avatar img-src=${item.user.avatar.src} img-srcset=${item.user.avatar.srcSet} name=${item.user.name}></uui-avatar>
+                    </div>
+                    <div>
+                      <span>${this.localize.date(item.datestamp,DateTimeOptions)}</span>
+                      <p>
+                        ${when(item.activityType == 'Save',()=>html`
+                          ${item.user.name} ${this.localize.term('theDashboard_saved')} <a href="section/content/workspace/document/edit/${item.nodeKey}">${item.nodeName}</a> ${this.localize.term('theDashboard_butDidNotPublish')}.
+                        `)}
+                        ${when(item.activityType == 'SaveAndScheduled',()=>html`
+                          ${item.user.name} ${this.localize.term('theDashboard_savedAndScheduled')} <a href="section/content/workspace/document/edit/${item.nodeKey}">${item.nodeName}</a> ${this.localize.term('theDashboard_forPublishingAt')} ${this.localize.date(item.scheduledPublishDate!,DateTimeOptions)}.
+                        `)}
+                        ${when(item.activityType == 'Publish',()=>html`
+                          ${item.user.name} ${this.localize.term('theDashboard_savedAndPublished')} <a href="section/content/workspace/document/edit/${item.nodeKey}">${item.nodeName}</a>.
+                        `)}
+                        ${when(item.activityType == 'Unpublish',()=>html`
+                          ${item.user.name} ${this.localize.term('theDashboard_unpublished')} <a href="section/content/workspace/document/edit/${item.nodeKey}">${item.nodeName}</a>.
+                        `)}
+                        ${when(item.activityType == 'RecycleBin',()=>html`
+                          ${item.user.name} ${this.localize.term('theDashboard_moved')} <a href="section/content/workspace/document/edit/${item.nodeKey}">${item.nodeName}</a> ${this.localize.term('theDashboard_to')} ${this.localize.term('theDashboard_recycleBin')}.
+                        `)}
+                        ${when(item.activityType == 'RollBack',()=>html`
+                          ${item.user.name} ${this.localize.term('theDashboard_rolledBack')} <a href="section/content/workspace/document/edit/${item.nodeKey}">${item.nodeName}</a>.
+                        `)}
+                      </p>
+                    </div>
                   </div>
               `)}
             `)}
@@ -68,19 +100,77 @@ export class TheDashboardDashboardElement extends UmbElementMixin(LitElement) {
         <the-dashboard-box
             headline=${this.localize.term("theDashboard_pendingContent")}
             description=${this.localize.term('theDashboard_pendingContentDescription')}
-            counter="5"
+            counter=${this.pendingContent?.count ?? 0}
             expandable>
-            Custom Box content
+            ${when(this.pendingContent,()=>html`
+              ${repeat(this.pendingContent!.items,
+                (item)=>item.nodeKey,
+                (item)=>html`
+                  <div class="activity">
+                    <div>
+                      <uui-avatar img-src=${item.user.avatar.src} img-srcset=${item.user.avatar.srcSet} name=${item.user.name}></uui-avatar>
+                    </div>
+                    <div>
+                      <span>${this.localize.date(item.datestamp,DateTimeOptions)}</span>
+                      <p>
+                        ${when(item.activityType == 'Save',()=>html`
+                          ${item.user.name} ${this.localize.term('theDashboard_saved')} <a href="section/content/workspace/document/edit/${item.nodeKey}">${item.nodeName}</a> ${this.localize.term('theDashboard_butDidNotPublish')}.
+                        `)}
+                      </p>
+                    </div>
+                  </div>
+              `)}
+            `)}
           </the-dashboard-box>
           <the-dashboard-box
             headline=${this.localize.term("theDashboard_yourRecentActivity")}
             description=${this.localize.term('theDashboard_yourRecentActivitiesDescription')}>
-            Custom Box content
+            ${when(this.recentActivities,()=>html`
+              ${repeat(this.recentActivities!.yourItems,
+                (item)=>item.nodeKey,
+                (item)=>html`
+                  <div class="activity">
+                    <div>
+                      <uui-avatar img-src=${item.user.avatar.src} img-srcset=${item.user.avatar.srcSet} name=${item.user.name}></uui-avatar>
+                    </div>
+                    <div>
+                      <span>${this.localize.date(item.datestamp,DateTimeOptions)}</span>
+                      <p>
+                        ${when(item.activityType == 'Save',()=>html`
+                          ${this.localize.term('theDashboard_Saved')} <a href="section/content/workspace/document/edit/${item.nodeKey}">${item.nodeName}</a> ${this.localize.term('theDashboard_butDidNotPublish')}.
+                        `)}
+                        ${when(item.activityType == 'SaveAndScheduled',()=>html`
+                          ${this.localize.term('theDashboard_SavedAndScheduled')} <a href="section/content/workspace/document/edit/${item.nodeKey}">${item.nodeName}</a> ${this.localize.term('theDashboard_forPublishingAt')} ${this.localize.date(item.scheduledPublishDate!,DateTimeOptions)}.
+                        `)}
+                        ${when(item.activityType == 'Publish',()=>html`
+                          ${this.localize.term('theDashboard_SavedAndPublished')} <a href="section/content/workspace/document/edit/${item.nodeKey}">${item.nodeName}</a>.
+                        `)}
+                        ${when(item.activityType == 'Unpublish',()=>html`
+                          ${this.localize.term('theDashboard_Unpublished')} <a href="section/content/workspace/document/edit/${item.nodeKey}">${item.nodeName}</a>.
+                        `)}
+                        ${when(item.activityType == 'RecycleBin',()=>html`
+                          ${this.localize.term('theDashboard_Moved')} <a href="section/content/workspace/document/edit/${item.nodeKey}">${item.nodeName}</a> ${this.localize.term('theDashboard_to')} ${this.localize.term('theDashboard_recycleBin')}.
+                        `)}
+                        ${when(item.activityType == 'RollBack',()=>html`
+                          ${this.localize.term('theDashboard_RolledBack')} <a href="section/content/workspace/document/edit/${item.nodeKey}">${item.nodeName}</a>.
+                        `)}
+                      </p>
+                    </div>
+                  </div>
+              `)}
+            `)}
           </the-dashboard-box>
-
         </div>
         <div>
-          counters
+          ${when(this.counters,()=>html`
+            ${repeat(this.counters!.counters,
+              (item)=>item.text,
+              (counter)=>html`
+                <div class="">
+                  ${counter.text}
+                </div>
+            `)}
+          `)}
         </div>
       </div>
   `
@@ -91,6 +181,7 @@ export class TheDashboardDashboardElement extends UmbElementMixin(LitElement) {
     * {
       box-sizing:border-box;
     }
+
     :host > div {
       padding:20px;
       display:flex;
@@ -98,7 +189,9 @@ export class TheDashboardDashboardElement extends UmbElementMixin(LitElement) {
     }
 
     small {
-      margin:0;
+      display: block;
+      margin: 5px 0 0 0;
+      line-height: 16px;
       font-weight:normal;
     }
 
@@ -108,6 +201,27 @@ export class TheDashboardDashboardElement extends UmbElementMixin(LitElement) {
     }
     #layout > div {
       flex-grow: 1;
+    }
+
+    .activity {
+      display:flex;
+      gap:15px;
+      border-bottom:1px solid #f3f3f3;
+      margin-bottom:2.5px;
+    }
+    .activity + .activity {
+      padding-top:2.5px;
+    }
+    .activity span {
+      display:block;
+      color: #828282;
+      font-size:12px;
+      font-style:italic;
+      line-height:12px;
+    }
+    .activity p {
+      margin:0;
+      line-height:1.4em;
     }
 
   `]

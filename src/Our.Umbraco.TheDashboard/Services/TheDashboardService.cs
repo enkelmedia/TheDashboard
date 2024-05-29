@@ -1,5 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 using NPoco;
 using Our.Umbraco.TheDashboard.Models.Dtos;
@@ -24,9 +22,7 @@ namespace Our.Umbraco.TheDashboard.Services
 	        {
 		        using (var scope = _scopeProvider.CreateScope())
 		        {
-			        //TODO: Add some kind of "limitation" on this one either count limit or date.
-			        //TODO: Only fetch logHeaders that we're interested in.
-
+			        
 			        var coreSql = @"ul.[id]
                               ,ul.[userId]
                               ,ul.[NodeId]
@@ -36,6 +32,7 @@ namespace Our.Umbraco.TheDashboard.Services
                               ,ul.[logComment]
 	                          ,un.[text] as NodeName
                               ,un.[path] as NodePath
+                              ,un.[uniqueID] as [nodeKey]
                               ,ucs.[date] as NodeScheduledDate
 	                          ,uu.userName
 	                          ,uu.userEmail
@@ -80,6 +77,7 @@ namespace Our.Umbraco.TheDashboard.Services
                   ,ul.[logComment]
 	              ,un.[text] as NodeName
 	              ,un.[path] as NodePath
+                  ,un.[uniqueID] as [nodeKey]
 	              ,ucs.[action] as NodeScheduleAction
 	              ,uu.userName
 	              ,uu.userEmail

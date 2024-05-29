@@ -1,4 +1,4 @@
-﻿using System.Net.Http;
+using System.Net.Http;
 using Our.Umbraco.TheDashboard.Extensions;
 using Our.Umbraco.TheDashboard.Models.Dtos;
 using Our.Umbraco.TheDashboard.Models.Frontend;
@@ -28,7 +28,7 @@ namespace Our.Umbraco.TheDashboard.Mapping
 
 			return new RecentActivityFrontendModel()
 			{
-				NodeId = dto.NodeId,
+				NodeKey = dto.NodeKey,
 				NodeName = dto.NodeName,
 				Datestamp = dto.Datestamp,
 				ScheduledPublishDate = dto.NodeScheduledDate,

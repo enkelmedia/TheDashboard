@@ -76,7 +76,11 @@ export class TheDashboardBoxElement extends UmbElementMixin(LitElement) {
             line-height:15px;
         }
         small {
+          display:block;
           color: #828282;
+          margin: 5px 0 0 0;
+          line-height: 1.4em;
+          font-weight:normal;
         }
 
         #box {

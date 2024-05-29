@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using NPoco;
 
 namespace Our.Umbraco.TheDashboard.Models.Dtos
@@ -7,6 +7,7 @@ namespace Our.Umbraco.TheDashboard.Models.Dtos
     {
         public int UserId { get; set; }
         public int NodeId { get; set; }
+        public Guid NodeKey { get; set; }
         public string EntityType { get; set; }
         public DateTime Datestamp { get; set; }
 

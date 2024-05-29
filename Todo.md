@@ -1,5 +1,17 @@
 # The Dashboard TODOs
 
+# Umbraco v14
+
+* [ ] Migrate to use Guids over int-ids
+  * [x] Recent
+  * [x] Pending
+* [ ] Ensure counter texts are translated on the frontend.
+  * [ ] Remove any language-things from the server.
+
+
+# Umbraco v14 - Upcoming
+* [ ] Link to recycle bin when possible.
+
 ## Over all
 
 

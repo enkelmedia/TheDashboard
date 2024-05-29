@@ -138,7 +138,7 @@ public class TheDashboardController : ControllerBase
             var dto = dtos[i];
             // If we already have a item in the list with the same nodeId this means that the latest activity
             // for this nodeid already has been added.
-            if (!list.Any(x => x.NodeId == dto.NodeId))
+            if (!list.Any(x => x.NodeKey == dto.NodeKey))
             {
                 // try to create a view model, this will return null when the model is not of a valid type.
                 var vm = mapper.Map(dto);

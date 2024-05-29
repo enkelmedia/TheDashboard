@@ -31,7 +31,7 @@ export type RecentActivitiesFrontendModel = {
 export type RecentActivityFrontendModel = {
     activityType: string;
     nodeName: string;
-    nodeId: number;
+    nodeKey: string;
     user: UserFrontendModel;
     datestamp: string;
     scheduledPublishDate?: string | null;
