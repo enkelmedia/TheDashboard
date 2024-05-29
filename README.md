@@ -102,7 +102,7 @@ Are more then welcome but please, before you put a lot of work into it raise an 
 * V10 = Umbraco 10
 * V11 = Umbraco 11
 * V12 = Umbraco 12
-* V12 = Umbraco 13
+* V13 = Umbraco 13
 * .....
 
 ### Roadmap
