@@ -4,7 +4,7 @@ const dashboard = 	{
     alias: 'TheDashboard.Dashboard',
     name: 'The Dashboard Dashboard',
     weight: 10000,
-    element : ()=> import('./the-dashboard.element.js'),
+    element : ()=> import('./the-dashboard-v2.element.js'),
     meta: {
         label: '#theDashboard_tabLabel',
         pathname: 'dashboard'

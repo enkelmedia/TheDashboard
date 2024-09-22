@@ -263,6 +263,6 @@ export default TheDashboardDashboardElement;
 
 declare global {
     interface HTMLElementTagNameMap {
-        'the-dashboard-dashboard': TheDashboardDashboardElement;
+        'the-dashboard-dashboard-old': TheDashboardDashboardElement;
     }
 }
