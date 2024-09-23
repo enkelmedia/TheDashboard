@@ -1,19 +1,9 @@
-import { LitElement,css,html,customElement, state, unsafeCSS, when, repeat} from '@umbraco-cms/backoffice/external/lit';;
+import { LitElement,css,html,customElement, state, when, repeat} from '@umbraco-cms/backoffice/external/lit';
 import { UmbElementMixin } from '@umbraco-cms/backoffice/element-api';
 import { UmbTextStyles } from '@umbraco-cms/backoffice/style';
 import '@umbraco-cms/backoffice/components';
-import { CountersFrontendModel, PendingContentNotScheduledFrontendModel, RecentActivitiesFrontendModel, TheDashboardResource } from '../backend-api';
-import './../components/box/the-dashboard-box.element';
-
-const DateTimeOptions: Intl.DateTimeFormatOptions = {
-  weekday: 'short',
-  year: 'numeric',
-  month: 'numeric',
-  day: 'numeric',
-  hour : '2-digit',
-  minute : '2-digit',
-  hourCycle : 'h23'
-};
+import { CountersFrontendModel, TheDashboardResource } from '../../backend-api';
+import '../../components/box/the-dashboard-box.element';
 
 /**
 * the-dashboard-dashboard description

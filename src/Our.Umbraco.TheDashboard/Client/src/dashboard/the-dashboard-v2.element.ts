@@ -1,15 +1,14 @@
-import { LitElement,css,html,customElement, state, unsafeCSS} from '@umbraco-cms/backoffice/external/lit';;
+import { LitElement,css,html,customElement, unsafeCSS} from '@umbraco-cms/backoffice/external/lit';
 import { UmbElementMixin } from '@umbraco-cms/backoffice/element-api';
 import { UmbTextStyles } from '@umbraco-cms/backoffice/style';
 import '@umbraco-cms/backoffice/components';
-import { CountersFrontendModel, PendingContentNotScheduledFrontendModel, RecentActivitiesFrontendModel } from '../backend-api';
 import './../components/box/the-dashboard-box.element';
-import { GridStack, GridStackElement } from 'gridstack';
+import { GridStack, GridStackElement, GridStackWidget } from 'gridstack';
 import style from 'gridstack/dist/gridstack.min.css?inline';
-import './widget.element'
-import './widget-my-activities.element'
-import './widget-counters.element'
-import './widget-pending-content.element'
+import { ManifestTdWidget } from '../core/td-widget';
+import { umbExtensionsRegistry } from '@umbraco-cms/backoffice/extension-registry';
+import { createExtensionElement, loadManifestElement, UmbExtensionsManifestInitializer } from '@umbraco-cms/backoffice/extension-api';
+import { UmbLitElement } from '@umbraco-cms/backoffice/lit-element';
 
 /**
 * the-dashboard-dashboard description
@@ -18,25 +17,64 @@ import './widget-pending-content.element'
 @customElement('the-dashboard-dashboard')
 export class TheDashboardDashboardElement extends UmbElementMixin(LitElement) {
 
-  @state()
-  recentActivities? : RecentActivitiesFrontendModel;
-
-  @state()
-  pendingContent? : PendingContentNotScheduledFrontendModel;
-
-  @state()
-  counters? : CountersFrontendModel;
-
   _grid? : GridStack;
+  _elements : UmbLitElement[] = [];
+  _widgets : ManifestTdWidget[] = [];
 
-  firstUpdated(): void {
+  connectedCallback() : void {
+    super.connectedCallback();
+
+    new UmbExtensionsManifestInitializer(
+      this,
+      umbExtensionsRegistry,
+      'tdWidget',
+      (f : ManifestTdWidget) => f != null,
+      async (viewManifests) => {
+
+        if(viewManifests.length == 0){
+          //this._emailProviderSettingsElement = undefined;
+          return;
+        }
+
+        console.log('widgets',viewManifests);
+
+        this._widgets = viewManifests.map(x=>x.manifest);
+
+
+
+        this.initGrid();
+
+
+        //this._emailProviderSettingsElement = await createExtensionElement(viewManifests[0].manifest) as any as NsEmailServiceProviderUiBase<any>;
+        //this._emailProviderSettingsElement.settings = this.model.emailServiceProviderValue.settings;
+        //this._emailProviderSettingsElement.overriddenSettings = this.serverData.overriddenEmailServiceProviderSettings;
+        //this._emailProviderSettingsElement.addEventListener('change', (e : Event) => {
+          //let evt = e as NsSmtpProviderSettingsChangedEvent;
+         // this.model.emailServiceProviderValue.settings = evt.detail;
+       // });
+
+        //this.requestUpdate();
+
+
+
+    },
+    "theDashboardLoadWidgets");
+
+  }
+
+  firstUpdated(): void{
+
+  }
+
+  initGrid(): void {
     //super.connectedCallback();
 
     const elm = this.shadowRoot?.querySelector('.grid-stack') as GridStackElement;
 
     console.log('elm',elm);
 
-    var items = [
+    var items : GridStackWidget[] = [];
+      /*
       {
         w:4,
         h:10,
@@ -58,13 +96,69 @@ export class TheDashboardDashboardElement extends UmbElementMixin(LitElement) {
         h:7,
         content: `<div><h2>${this.localize.term("theDashboard_yourRecentActivity")}</h2><small>${this.localize.term('theDashboard_yourRecentActivitiesDescription')}</small></div><tdd-widget-my-activities></tdd-widget-my-activities>`
       },
+      */
+    //];
 
-    ];
+    console.log('elements', this._elements.length);
+/*
+    this._elements.forEach((instance)=>{
+      items.push({
+        w: 4,
+        h:7,
+        content : `<${instance.nodeName}></${instance.nodeName}>`
+      });
+    });
+*/
     this._grid = GridStack.init({
       //minRow:2,
       cellHeight:50
     },elm);
-    this._grid.load(items);
+    //this._grid.load(items);
+
+    /*
+    await Promise.all(viewManifests.map(async (manifest) => {
+
+
+      let instance = await createExtensionElement(manifest.manifest) as any as UmbLitElement;
+
+      console.log('add', instance.nodeName);
+      this._elements.push(instance);
+
+    }));
+    */
+
+    console.log('lets init grid');
+
+    this._widgets.forEach(async (manifest)=>{
+      this.addGridStackElement(manifest);
+    });
+
+
+  }
+
+  async addGridStackElement(manifest : ManifestTdWidget){
+
+    var instance = await createExtensionElement(manifest) as any as UmbLitElement;
+
+    // <div class="grid-stack-item ${this.opts.itemClass || ''}"><div class="grid-stack-item-content">${content}</div></div>
+    let itemElm = document.createElement('div');
+    itemElm.classList.add("grid-stack-item");
+
+    let contentItemElm = document.createElement("div");
+    contentItemElm.classList.add("grid-stack-item-content");
+
+    contentItemElm.appendChild(instance);
+    itemElm.appendChild(contentItemElm);
+
+    this._grid!.addWidget(itemElm,{
+      w : manifest.meta.width,
+      h : manifest.meta.height,
+      minW:4,
+      minH:4,
+      maxW:4,
+      maxH:10,
+    });
+
   }
 
   handleSave(){
