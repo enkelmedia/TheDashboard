@@ -7,6 +7,7 @@
 * [ ] Could we make a component update it's own height (expandable?)
 * [ ] Support for "instances"? E.g for HTML Widget, might want to add existing one.
 * [ ] Rendering widgets notification
+* [ ] "Edit mode" where grid is no locked.
 
 WidgetPlacement
 * Actual height/ width.
