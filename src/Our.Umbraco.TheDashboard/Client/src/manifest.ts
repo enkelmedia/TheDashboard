@@ -1,7 +1,7 @@
-import type { ManifestLocalization, UmbBackofficeExtensionRegistry } from "@umbraco-cms/backoffice/extension-registry";
+import type { UmbBackofficeExtensionRegistry } from "@umbraco-cms/backoffice/extension-registry";
 import { manifests as dashboardManifests } from "./dashboard/manifest.js";
 
-const translationManifests : Array<ManifestLocalization> = [
+const translationManifests = [
 	{
 		type: "localization",
 		alias: "TheDasboard.Localize.En_US",

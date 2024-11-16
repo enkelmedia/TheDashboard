@@ -1,5 +1,5 @@
 
-const dashboard = 	{
+const dashboard = {
     type: 'dashboard',
     alias: 'TheDashboard.Dashboard',
     name: 'The Dashboard Dashboard',

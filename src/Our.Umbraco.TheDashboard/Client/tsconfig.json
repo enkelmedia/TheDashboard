@@ -20,5 +20,8 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "types": [
+    "@umbraco-cms/backoffice/extension-types"
+  ]
 }
