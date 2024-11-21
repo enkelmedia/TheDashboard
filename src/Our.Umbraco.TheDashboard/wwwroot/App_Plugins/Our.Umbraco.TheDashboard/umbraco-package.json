@@ -4,7 +4,7 @@
   "version": "15.0.0",
   "extensions": [
     {
-      "type": "entryPoint",
+      "type": "backofficeEntryPoint",
       "alias": "TheDashboard.EntryPoint",
       "name": "TheDashboard Entry Point",
       "js": "/App_Plugins/Our.Umbraco.TheDashboard/dist/the-dashboard-umbraco.js?v1500",
