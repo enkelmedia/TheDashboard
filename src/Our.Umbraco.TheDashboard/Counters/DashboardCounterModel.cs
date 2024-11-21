@@ -26,8 +26,10 @@ public class DashboardCounterModel
     public string ClickUrl { get; set; }
 
     /// <summary>
-    /// Provides a way to "click" on a element in the backoffice UI by providing a CSS selector. Ie. *[data-element=tab-contentIntro] > a to show the intro dashboard.
+    /// Provides a way to "click" on an element in the backoffice UI by providing a CSS selector.
+    /// Ie. *[data-element=tab-contentIntro] > a to show the intro dashboard.
     /// </summary>
+    [Obsolete("This not in use since v14, will be removed in the future")]
     public string ClickElement { get; set; }
         
     public string Style { get; set; }

@@ -165,19 +165,25 @@ export class TheDashboardDashboardElement extends UmbElementMixin(LitElement) {
           ${when(this.counters,()=>html`
             ${repeat(this.counters!.counters,
               (item)=>item.text,
-              (counter)=>html`
-                <div class="counter">
-                  <div>
-                    <span class="dot ${counter.style}">${counter.count}</span>
+              (counter)=>{
+
+                const text = counter.localizationKey != '' ? this.localize.term(counter.localizationKey) : counter.text;
+
+                return html`
+                  <div class="counter">
+                    <div>
+                      <span class="dot ${counter.style}">${counter.count}</span>
+                    </div>
+                    <div>
+                      <p>
+                        ${when(counter.clickUrl,
+                          ()=>html`<a href=${counter.clickUrl}>${text}</a>`,
+                          ()=>html`${text}`
+                        )}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <p>
-                      ${when(counter.localizationKey,()=>html`${this.localize.term(counter.localizationKey)}`)}
-                      ${when(!counter.localizationKey,()=>html`${counter.text}`)}
-                    </p>
-                  </div>
-                </div>
-            `)}
+              `})}
           `)}
         </div>
       </div>

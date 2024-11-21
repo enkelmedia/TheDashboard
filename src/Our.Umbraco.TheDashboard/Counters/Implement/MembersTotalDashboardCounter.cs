@@ -16,7 +16,7 @@ public class MembersTotalDashboardCounter : IDashboardCounter
         {
             LocalizationKey = "theDashboard_membersOnWebsite",
             Count = count,
-            ClickUrl = "section/member-management",
+            ClickUrl = "section/member-management/workspace/member-root",
             Style = DashboardCounterModel.CounterStyles.Selected
         };
     }
