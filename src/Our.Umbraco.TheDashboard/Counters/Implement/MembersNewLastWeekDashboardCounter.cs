@@ -19,7 +19,7 @@ public class MembersNewLastWeekDashboardCounter : IDashboardCounter
         {
             LocalizationKey = "theDashboard_newMembersLastWeek",
             Count = count,
-            ClickUrl = "section/member-management/workspace/member-root",
+            ClickUrl = "section/member-management",
             Style = DashboardCounterModel.CounterStyles.Selected
         };
     }
