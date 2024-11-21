@@ -1,7 +1,7 @@
 {
   "name": "the-dashboard-umbraco",
   "private": true,
-  "version": "14.0.0",
+  "version": "15.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
