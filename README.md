@@ -6,6 +6,15 @@ The Dashboard
 
 This is a magic dashboard for Umbraco CMS, it's actually "The Dashboard". It will show editors a summary of the latest activites on the website combined with each editor's recent activities and other useful information.
 
+## vNext
+This branch is a "work in progress" branch for the new widget-based UI.
+
+Here is a simple demo of the purposed features
+
+![The Dashboard, work in progress](documentation/dashboard-vnext-wip.gif)
+
+## The Dashboard
+
 ![The Dasboard Screenshot](documentation/the-dashboard-screenshot.png)
 
 ## Installation in Umbraco CMS
