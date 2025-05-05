@@ -7,9 +7,9 @@ const translationManifests : Array<UmbExtensionManifest> = [
 		alias: "TheDasboard.Localize.En_US",
 		name: "The Dashboard Localization English (United States)",
 		meta: {
-			"culture": "en-us"
+			"culture": "en"
 		},
-		js : ()=> import('./localization/en-us.js')
+		js : ()=> import('./localization/en.js')
 	},
 	{
 		type: "localization",
