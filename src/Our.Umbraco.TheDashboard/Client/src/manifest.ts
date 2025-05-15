@@ -67,11 +67,10 @@ const translationManifests : Array<UmbExtensionManifest> = [
 	}
 ]
 
+
 export function registerManifest(registry : UmbBackofficeExtensionRegistry) {
 
-  console.log('register extensions');
-
-    registry.registerMany([
+  registry.registerMany([
 		...dashboardManifests,
     ...translationManifests
 	]);

@@ -35,22 +35,18 @@ export class TheDashboardDashboardElement extends UmbElementMixin(LitElement) {
     super.connectedCallback();
 
     TheDashboardResource.getAllRecentActivities().then((res)=>{
-      console.log('recent',res);
-      this.recentActivities = res;
+      this.recentActivities = res.data;
     });
     TheDashboardResource.getPending().then((res)=>{
-      console.log('pending',res);
-      this.pendingContent = res;
+      this.pendingContent = res.data;
     });
     TheDashboardResource.getCounters().then((res)=>{
-      console.log('counter',res);
-      this.counters = res;
+      this.counters = res.data;
     });
 
   }
 
   render() {
-
 
     return html`
       <div id="layout">

@@ -56,9 +56,9 @@ public static class UserExtensions
             {
                 var gravatarSmallSize = gravatarUrl + "&s=30";
 
-                sb.Append(gravatarSmallSize + " x1, ");
-                sb.AppendLine(gravatarUrl + "&s=60 x2, ");
-                sb.AppendLine(gravatarUrl + "&s=90 x3, ");
+                sb.Append(gravatarSmallSize + " 1x, ");
+                sb.AppendLine(gravatarUrl + "&s=60 2x, ");
+                sb.AppendLine(gravatarUrl + "&s=90 3x");
 
                 return new UserAvatarFrontendModel(gravatarSmallSize, sb.ToString());
 
@@ -70,9 +70,9 @@ public static class UserExtensions
         var customAvatarUrl = "/media/" + userAvatar;
         var smallSize = GetAvatarCrop(customAvatarUrl, 30);
 
-        sb.Append(smallSize + " x1, ");
-        sb.AppendLine(GetAvatarCrop(customAvatarUrl, 60) + " x2, ");
-        sb.AppendLine(GetAvatarCrop(customAvatarUrl, 90) + " x3, ");
+        sb.Append(smallSize + " 1x, ");
+        sb.AppendLine(GetAvatarCrop(customAvatarUrl, 60) + " 2x, ");
+        sb.AppendLine(GetAvatarCrop(customAvatarUrl, 90) + " 3x");
 
         return new UserAvatarFrontendModel(smallSize, sb.ToString());
 

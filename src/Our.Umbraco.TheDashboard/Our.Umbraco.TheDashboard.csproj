@@ -21,14 +21,15 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <AssemblyVersion>1.0.0</AssemblyVersion>
-    <Version>15.0.1</Version>
-    <PackageVersion>15.0.1</PackageVersion>
-    <InformationalVersion>15.0.1</InformationalVersion>
+    <Version>16.0.0</Version>
+    <PackageVersion>16.0.0</PackageVersion>
+    <InformationalVersion>16.0.0</InformationalVersion>
     <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Umbraco.Cms.Api.Common" Version="15.0.0" />
-    <PackageReference Include="Umbraco.Cms.Web.Website" Version="15.0.0" />
+    <PackageReference Include="Umbraco.Cms.Web.Website" Version="16.0.0-rc2" />
+    <PackageReference Include="Umbraco.Cms.Api.Common" Version="16.0.0-rc2" />
+    <PackageReference Include="Umbraco.Cms.Api.Management" Version="16.0.0-rc2" />
   </ItemGroup>
   <ItemGroup>
     <None Include="build\README.md" Pack="true" PackagePath="\" />

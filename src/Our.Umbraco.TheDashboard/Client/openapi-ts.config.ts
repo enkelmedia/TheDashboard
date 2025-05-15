@@ -1,5 +1,31 @@
-import { defineConfig } from '@hey-api/openapi-ts';
+import { defineConfig,defaultPlugins } from '@hey-api/openapi-ts';
 
+export default defineConfig({
+	input: 'http://localhost:24760/umbraco/swagger/the-dashboard/swagger.json',
+	output: {
+		path: './src/backend-api',
+	},
+	plugins: [
+    ...defaultPlugins,
+		{
+			name: '@hey-api/client-fetch',
+			bundle: false,
+			exportFromIndex: true,
+			throwOnError: true,
+		},
+		{
+			name: '@hey-api/typescript',
+			enums: 'typescript'
+		},
+		{
+			name: '@hey-api/sdk',
+			asClass: true,
+      serviceNameBuilder : '{{name}}Resource'
+		}
+	]
+});
+
+/*
 export default defineConfig({
   input: 'http://localhost:24760/umbraco/swagger/the-dashboard/swagger.json',
   output: 'src/backend-api',
@@ -12,3 +38,4 @@ export default defineConfig({
     name: '{{name}}Resource'
   }
 });
+*/

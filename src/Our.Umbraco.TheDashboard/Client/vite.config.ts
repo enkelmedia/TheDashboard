@@ -14,6 +14,7 @@ export default defineConfig(({ command }) => {
             name : "TheDashboard.Umbraco"
         },
         outDir: "../wwwroot/App_Plugins/Our.Umbraco.TheDashboard/dist",
+        emptyOutDir: true,
         sourcemap: buildMode == 'development' ? true : false,
         rollupOptions: {
             external: [/^@umbraco/]

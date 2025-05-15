@@ -1,21 +1,22 @@
-import type { UmbEntryPointOnInit } from '@umbraco-cms/backoffice/extension-api';
-import { UMB_AUTH_CONTEXT } from '@umbraco-cms/backoffice/auth';
-import { registerManifest } from './manifest.js';
-import { OpenAPI } from './backend-api/index.js';
+import {UmbEntryPointOnInit } from "@umbraco-cms/backoffice/extension-api";
+import { UMB_AUTH_CONTEXT } from "@umbraco-cms/backoffice/auth";
+import { client } from './backend-api/client.gen.js';
+import { registerManifest } from "./manifest.js";
 
-export const onInit: UmbEntryPointOnInit = (host, extensionRegistry) => {
+// load up the manifests here
+export const onInit: UmbEntryPointOnInit = (host,_extensionRegistry) => {
 
-  host.consumeContext(UMB_AUTH_CONTEXT,(auth)=> {
+  host.consumeContext(UMB_AUTH_CONTEXT, async (authContext) => {
 
-      const config = auth.getOpenApiConfiguration();
+    const config = authContext!.getOpenApiConfiguration();
 
-      OpenAPI.BASE = config.base;
-      OpenAPI.WITH_CREDENTIALS = config.withCredentials;
-      OpenAPI.CREDENTIALS = config.credentials;
-      OpenAPI.TOKEN = config.token;
+    client.setConfig({
+      auth: config.token,
+      baseUrl: config.base,
+      credentials: config.credentials,
+    });
+
+    registerManifest(_extensionRegistry);
 
   });
-
-  registerManifest(extensionRegistry);
-
 };

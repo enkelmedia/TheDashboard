@@ -29,7 +29,10 @@ public class TheDashboardComposer : IComposer
         // SWAGGER - Only use in debug build to avoid exposing in production messing up things in the core.
         builder.Services.ConfigureOptions<ConfigureTheDashboardApiSwaggerGenOptions>();
         builder.Services.AddSingleton<ISchemaIdHandler, TheDashboardSchemaIdHandler>();
+        builder.Services.AddSingleton<IOperationIdHandler, TheDashboardOperationIdHandler>();
 #endif
 
     }
 }
+
+
