@@ -7,7 +7,7 @@ const translationManifests : Array<UmbExtensionManifest> = [
 		alias: "TheDasboard.Localize.En_US",
 		name: "The Dashboard Localization English (United States)",
 		meta: {
-			"culture": "en-us"
+			"culture": "en"
 		},
 		js : ()=> import('./localization/en-us.js')
 	},
@@ -16,7 +16,7 @@ const translationManifests : Array<UmbExtensionManifest> = [
 		alias: "TheDasboard.Localize.Sv_SE",
 		name: "The Dashboard Localization Swedish (Sweden)",
 		meta: {
-			"culture": "sv-se"
+			"culture": "sv"
 		},
 		js : ()=> import('./localization/sv-se.js')
 	},
@@ -25,7 +25,7 @@ const translationManifests : Array<UmbExtensionManifest> = [
 		alias: "TheDasboard.Localize.Da_DK",
 		name: "The Dashboard Localization Danish (Denmark)",
 		meta: {
-			"culture": "da-dk"
+			"culture": "da"
 		},
 		js : ()=> import('./localization/da-dk.js')
 	},
@@ -34,7 +34,7 @@ const translationManifests : Array<UmbExtensionManifest> = [
 		alias: "TheDasboard.Localize.Es_ES",
 		name: "The Dashboard Localization Spanish (Spain)",
 		meta: {
-			"culture": "es-es"
+			"culture": "es"
 		},
 		js : ()=> import('./localization/es-es.js')
 	},
@@ -43,7 +43,7 @@ const translationManifests : Array<UmbExtensionManifest> = [
 		alias: "TheDasboard.Localize.Hr_HR",
 		name: "The Dashboard Localization Croatian (Croatia)",
 		meta: {
-			"culture": "hr-hr"
+			"culture": "hr"
 		},
 		js : ()=> import('./localization/hr-hr.js')
 	},
@@ -52,7 +52,7 @@ const translationManifests : Array<UmbExtensionManifest> = [
 		alias: "TheDasboard.Localize.Nb_NO",
 		name: "The Dashboard Localization Norwegian Bokmål (Norway)",
 		meta: {
-			"culture": "nb-no"
+			"culture": "nb"
 		},
 		js : ()=> import('./localization/nb-no.js')
 	},
@@ -61,7 +61,7 @@ const translationManifests : Array<UmbExtensionManifest> = [
 		alias: "TheDasboard.Localize.Nl_NL",
 		name: "The Dashboard Localization Dutch (Netherlands)",
 		meta: {
-			"culture": "nl-nl"
+			"culture": "nl"
 		},
 		js : ()=> import('./localization/nl-nl.js')
 	}
