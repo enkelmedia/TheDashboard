@@ -110,7 +110,7 @@ This package was created by Enkel Media, https://www.enkelmedia.se and is suppor
 
 * **main** contains the latest stable version
 * **next** contains any upcoming work for new Umbraco-versions
-* **vXX/main** branch per major version, created when after a new stable major version has been released.
+* **vXX/dev** branch per major version, created when after a new stable major version has been released.
 
 **Branch History**
 * V1 = Umbraco 7 - 7.7.0
