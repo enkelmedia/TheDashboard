@@ -192,6 +192,10 @@ export class TheDashboardDashboardElement extends UmbElementMixin(LitElement) {
       box-sizing:border-box;
     }
 
+    uui-avatar {
+      display:flex;
+    }
+
     :host > div {
       padding:20px;
       display:flex;
@@ -217,6 +221,7 @@ export class TheDashboardDashboardElement extends UmbElementMixin(LitElement) {
       display:flex;
       gap:15px;
       border-bottom:1px solid #f3f3f3;
+      padding-bottom:2.5px;
       margin-bottom:2.5px;
     }
     .activity + .activity {
