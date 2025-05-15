@@ -93,19 +93,6 @@ public class OrdersCounterComposer : IComposer
 ## Contributions
 Are more then welcome but please, before you put a lot of work into it raise an issue and make sure that we're on the same track.
 
-### Branches
-
-* V1 = Umbraco 7 - 7.7.0
-* V2 = Umbraco 7.7.0+
-* V8 = Umbraco 8
-* V9 = Umbraco 9
-* V10 = Umbraco 10
-* V11 = Umbraco 11
-* V12 = Umbraco 12
-* V13 = Umbraco 13
-* V14 = Umbraco 14
-* .....
-
 ### Roadmap
 The main idea with the package is to provide a super simple dashboard for the Content section. We're extremely cautious with adding features, as we want to keep the codebase super-easy.
 
@@ -118,3 +105,21 @@ To build a Release-version of the package,
 * [ ] Run `.\build.ps1` inside the root, files is created in the `Artifacts`-folder
 
 This package was created by Enkel Media, https://www.enkelmedia.se and is supported by https://www.obviuse.se
+
+### Branches
+
+* **main** contains the latest stable version
+* **next** contains any upcoming work for new Umbraco-versions
+* **vXX/main** branch per major version, created when after a new stable major version has been released.
+
+**Branch History**
+* V1 = Umbraco 7 - 7.7.0
+* V2 = Umbraco 7.7.0+
+* V8 = Umbraco 8
+* V9 = Umbraco 9
+* V10 = Umbraco 10
+* V11 = Umbraco 11
+* V12 = Umbraco 12
+* V13 = Umbraco 13
+* V14 = Umbraco 14
+* And so on
