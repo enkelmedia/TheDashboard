@@ -4,7 +4,7 @@ The Dashboard
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![NuGet version (Our.Umbraco.TheDashboard)](https://img.shields.io/nuget/v/Our.Umbraco.TheDashboard.svg?style=flat-square)](https://www.nuget.org/packages/Our.Umbraco.TheDashboard/)
 
-This is a magic dashboard for Umbraco CMS, it's actually "The Dashboard". It will show editors a summary of the latest activites on the website combined with each editor's recent activities and other useful information.
+This is a magic dashboard for Umbraco CMS, it's actually "The Dashboard". It will show editors a summary of the latest activities on the website combined with each editor's recent activities and other useful information.
 
 ![The Dasboard Screenshot](documentation/the-dashboard-screenshot.png)
 
@@ -93,19 +93,6 @@ public class OrdersCounterComposer : IComposer
 ## Contributions
 Are more then welcome but please, before you put a lot of work into it raise an issue and make sure that we're on the same track.
 
-### Branches
-
-* V1 = Umbraco 7 - 7.7.0
-* V2 = Umbraco 7.7.0+
-* V8 = Umbraco 8
-* V9 = Umbraco 9
-* V10 = Umbraco 10
-* V11 = Umbraco 11
-* V12 = Umbraco 12
-* V13 = Umbraco 13
-* V14 = Umbraco 14
-* .....
-
 ### Roadmap
 The main idea with the package is to provide a super simple dashboard for the Content section. We're extremely cautious with adding features, as we want to keep the codebase super-easy.
 
@@ -118,3 +105,22 @@ To build a Release-version of the package,
 * [ ] Run `.\build.ps1` inside the root, files is created in the `Artifacts`-folder
 
 This package was created by Enkel Media, https://www.enkelmedia.se and is supported by https://www.obviuse.se
+
+### Branches
+The default branch of the Github repository will always be the latest stable version. 
+
+Each major version will have a branch like so `vXX/dev` where ongoing development will take place.
+
+If you're providing a PR, ensure that you're targeting the right branch.
+
+**Branch History**
+* V1 = Umbraco 7 - 7.7.0
+* V2 = Umbraco 7.7.0+
+* V8 = Umbraco 8
+* V9 = Umbraco 9
+* V10 = Umbraco 10
+* V11 = Umbraco 11
+* V12 = Umbraco 12
+* V13 = Umbraco 13
+* V14 = Umbraco 14
+* And so on
