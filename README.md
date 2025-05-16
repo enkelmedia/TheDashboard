@@ -107,10 +107,11 @@ To build a Release-version of the package,
 This package was created by Enkel Media, https://www.enkelmedia.se and is supported by https://www.obviuse.se
 
 ### Branches
+The default branch of the Github repository will always be the latest stable version. 
 
-* **main** contains the latest stable version
-* **next** contains any upcoming work for new Umbraco-versions
-* **vXX/dev** branch per major version, created when after a new stable major version has been released.
+Each major version will have a branch like so `vXX/dev` where ongoing development will take place.
+
+If you're providing a PR, ensure that you're targeting the right branch.
 
 **Branch History**
 * V1 = Umbraco 7 - 7.7.0
