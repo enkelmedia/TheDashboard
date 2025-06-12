@@ -4,7 +4,7 @@ import { manifests as dashboardManifests } from "./dashboard/manifest.js";
 const translationManifests : Array<UmbExtensionManifest> = [
 	{
 		type: "localization",
-		alias: "TheDasboard.Localize.En_US",
+		alias: "TheDashboard.Localize.En_US",
 		name: "The Dashboard Localization English (United States)",
 		meta: {
 			"culture": "en"
@@ -13,7 +13,7 @@ const translationManifests : Array<UmbExtensionManifest> = [
 	},
 	{
 		type: "localization",
-		alias: "TheDasboard.Localize.Sv_SE",
+		alias: "TheDashboard.Localize.Sv_SE",
 		name: "The Dashboard Localization Swedish (Sweden)",
 		meta: {
 			"culture": "sv"
@@ -22,7 +22,7 @@ const translationManifests : Array<UmbExtensionManifest> = [
 	},
   {
 		type: "localization",
-		alias: "TheDasboard.Localize.Da_DK",
+		alias: "TheDashboard.Localize.Da_DK",
 		name: "The Dashboard Localization Danish (Denmark)",
 		meta: {
 			"culture": "da"
@@ -31,7 +31,7 @@ const translationManifests : Array<UmbExtensionManifest> = [
 	},
   {
 		type: "localization",
-		alias: "TheDasboard.Localize.Es_ES",
+		alias: "TheDashboard.Localize.Es_ES",
 		name: "The Dashboard Localization Spanish (Spain)",
 		meta: {
 			"culture": "es"
@@ -40,7 +40,7 @@ const translationManifests : Array<UmbExtensionManifest> = [
 	},
   {
 		type: "localization",
-		alias: "TheDasboard.Localize.Hr_HR",
+		alias: "TheDashboard.Localize.Hr_HR",
 		name: "The Dashboard Localization Croatian (Croatia)",
 		meta: {
 			"culture": "hr"
@@ -49,7 +49,7 @@ const translationManifests : Array<UmbExtensionManifest> = [
 	},
   {
 		type: "localization",
-		alias: "TheDasboard.Localize.Nb_NO",
+		alias: "TheDashboard.Localize.Nb_NO",
 		name: "The Dashboard Localization Norwegian Bokmål (Norway)",
 		meta: {
 			"culture": "nb"
@@ -58,7 +58,7 @@ const translationManifests : Array<UmbExtensionManifest> = [
 	},
   {
 		type: "localization",
-		alias: "TheDasboard.Localize.Nl_NL",
+		alias: "TheDashboard.Localize.Nl_NL",
 		name: "The Dashboard Localization Dutch (Netherlands)",
 		meta: {
 			"culture": "nl"
