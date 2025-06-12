@@ -11,10 +11,10 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@hey-api/client-fetch": "^0.8.3",
+    "@hey-api/client-fetch": "^0.10.0",
     "@hey-api/openapi-ts": "^0.64.10",
     "@types/node": "^22.15.17",
-    "@umbraco-cms/backoffice": "^16.0.0-rc2",
+    "@umbraco-cms/backoffice": "^16.0.0",
     "lit": "^3.3.0",
     "typescript": "^5.8.2",
     "vite": "^6.2.0"

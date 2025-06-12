@@ -1,13 +1,13 @@
 {
   "$schema": "../../../../Our.Umbraco.TheDashboard.Testsite/umbraco-package-schema.json",
   "name": "TheDashboard",
-  "version": "16.0.0-rc1",
+  "version": "16.0.0",
   "extensions": [
     {
       "type": "backofficeEntryPoint",
       "alias": "TheDashboard.EntryPoint",
       "name": "The Dashboard Entry Point",
-      "js": "/App_Plugins/Our.Umbraco.TheDashboard/dist/the-dashboard-umbraco.js?v1600rc1",
+      "js": "/App_Plugins/Our.Umbraco.TheDashboard/dist/the-dashboard-umbraco.js?v1600",
       "weight": 13000
     }
   ]
