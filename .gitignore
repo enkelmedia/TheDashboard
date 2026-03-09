@@ -6,7 +6,7 @@ syntax: glob
 _ReSharper.*
 # Visual Studio Stuff
 *.obj
-*.pdb
+*.pdbasd
 *.user
 *.aps
 *.pch
