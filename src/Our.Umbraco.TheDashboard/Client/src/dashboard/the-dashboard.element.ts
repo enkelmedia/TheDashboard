@@ -8,11 +8,11 @@ import './../components/box/the-dashboard-box.element';
 const DateTimeOptions: Intl.DateTimeFormatOptions = {
   weekday: 'short',
   year: 'numeric',
-  month: 'numeric',
+  month: 'long',
   day: 'numeric',
-  hour : '2-digit',
-  minute : '2-digit',
-  hourCycle : 'h23'
+  hour: 'numeric',
+  minute: '2-digit',
+  hour12: true
 };
 
 /**
