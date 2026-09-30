@@ -6,13 +6,8 @@ import { CountersFrontendModel, PendingContentNotScheduledFrontendModel, RecentA
 import './../components/box/the-dashboard-box.element';
 
 const DateTimeOptions: Intl.DateTimeFormatOptions = {
-  weekday: 'short',
-  year: 'numeric',
-  month: 'numeric',
-  day: 'numeric',
-  hour : '2-digit',
-  minute : '2-digit',
-  hourCycle : 'h23'
+  dateStyle : 'full',
+  timeStyle : 'short'
 };
 
 /**
@@ -46,6 +41,15 @@ export class TheDashboardDashboardElement extends UmbElementMixin(LitElement) {
 
   }
 
+  formatDate(dateToFormat: Date | string | undefined | null) : string {
+    if(!dateToFormat)
+      return '';
+
+    const formatted = this.localize.date(dateToFormat,DateTimeOptions);
+
+    return formatted.charAt(0).toUpperCase() + formatted.slice(1);
+  }
+
   render() {
 
     return html`
@@ -65,13 +69,13 @@ export class TheDashboardDashboardElement extends UmbElementMixin(LitElement) {
                       <uui-avatar img-src=${item.user.avatar.src} img-srcset=${item.user.avatar.srcSet} name=${item.user.name}></uui-avatar>
                     </div>
                     <div>
-                      <span>${this.localize.date(item.datestamp,DateTimeOptions)}</span>
+                      <span>${this.formatDate(item.datestamp)}</span>
                       <p>
                         ${when(item.activityType == 'Save',()=>html`
                           ${item.user.name} ${this.localize.term('theDashboard_saved')} <a href="section/content/workspace/document/edit/${item.nodeKey}">${item.nodeName}</a> ${this.localize.term('theDashboard_butDidNotPublish')}.
                         `)}
                         ${when(item.activityType == 'SaveAndScheduled',()=>html`
-                          ${item.user.name} ${this.localize.term('theDashboard_savedAndScheduled')} <a href="section/content/workspace/document/edit/${item.nodeKey}">${item.nodeName}</a> ${this.localize.term('theDashboard_forPublishingAt')} ${this.localize.date(item.scheduledPublishDate!,DateTimeOptions)}.
+                          ${item.user.name} ${this.localize.term('theDashboard_savedAndScheduled')} <a href="section/content/workspace/document/edit/${item.nodeKey}">${item.nodeName}</a> ${this.localize.term('theDashboard_forPublishingAt')} ${this.formatDate(item.scheduledPublishDate)}.
                         `)}
                         ${when(item.activityType == 'Publish',()=>html`
                           ${item.user.name} ${this.localize.term('theDashboard_savedAndPublished')} <a href="section/content/workspace/document/edit/${item.nodeKey}">${item.nodeName}</a>.
@@ -107,7 +111,7 @@ export class TheDashboardDashboardElement extends UmbElementMixin(LitElement) {
                       <uui-avatar img-src=${item.user.avatar.src} img-srcset=${item.user.avatar.srcSet} name=${item.user.name}></uui-avatar>
                     </div>
                     <div>
-                      <span>${this.localize.date(item.datestamp,DateTimeOptions)}</span>
+                      <span>${this.formatDate(item.datestamp)}</span>
                       <p>
                         ${when(item.activityType == 'Save',()=>html`
                           ${item.user.name} ${this.localize.term('theDashboard_saved')} <a href="section/content/workspace/document/edit/${item.nodeKey}">${item.nodeName}</a> ${this.localize.term('theDashboard_butDidNotPublish')}.
@@ -130,13 +134,13 @@ export class TheDashboardDashboardElement extends UmbElementMixin(LitElement) {
                       <uui-avatar img-src=${item.user.avatar.src} img-srcset=${item.user.avatar.srcSet} name=${item.user.name}></uui-avatar>
                     </div>
                     <div>
-                      <span>${this.localize.date(item.datestamp,DateTimeOptions)}</span>
+                      <span>${this.formatDate(item.datestamp)}</span>
                       <p>
                         ${when(item.activityType == 'Save',()=>html`
                           ${this.localize.term('theDashboard_Saved')} <a href="section/content/workspace/document/edit/${item.nodeKey}">${item.nodeName}</a> ${this.localize.term('theDashboard_butDidNotPublish')}.
                         `)}
                         ${when(item.activityType == 'SaveAndScheduled',()=>html`
-                          ${this.localize.term('theDashboard_SavedAndScheduled')} <a href="section/content/workspace/document/edit/${item.nodeKey}">${item.nodeName}</a> ${this.localize.term('theDashboard_forPublishingAt')} ${this.localize.date(item.scheduledPublishDate!,DateTimeOptions)}.
+                          ${this.localize.term('theDashboard_SavedAndScheduled')} <a href="section/content/workspace/document/edit/${item.nodeKey}">${item.nodeName}</a> ${this.localize.term('theDashboard_forPublishingAt')} ${this.formatDate(item.scheduledPublishDate)}.
                         `)}
                         ${when(item.activityType == 'Publish',()=>html`
                           ${this.localize.term('theDashboard_SavedAndPublished')} <a href="section/content/workspace/document/edit/${item.nodeKey}">${item.nodeName}</a>.
