@@ -2,6 +2,8 @@ using System.Security.Cryptography;
 using System.Text;
 using Our.Umbraco.TheDashboard.Models.Frontend;
 using Umbraco.Cms.Core.Cache;
+using Umbraco.Cms.Core.Media;
+using Umbraco.Cms.Core.Models;
 using Umbraco.Extensions;
 
 namespace Our.Umbraco.TheDashboard.Extensions;
@@ -15,7 +17,7 @@ public static class UserExtensions
     /// <returns>
     /// A list of 5 different sized avatar URLs
     /// </returns>
-    public static UserAvatarFrontendModel GetUserAvatarUrls(int userId,string userEmail, string userAvatar, IAppCache cache, IHttpClientFactory httpClientFactory)
+    public static UserAvatarFrontendModel GetUserAvatarUrls(int userId,string userEmail, string userAvatar, IAppCache cache, IHttpClientFactory httpClientFactory, IImageUrlGenerator imageUrlGenerator)
     {
         // If FIPS is required, never check the Gravatar service as it only supports MD5 hashing.  
         // Unfortunately, if the FIPS setting is enabled on Windows, using MD5 will throw an exception
@@ -68,20 +70,23 @@ public static class UserExtensions
         }
 
         var customAvatarUrl = "/media/" + userAvatar;
-        var smallSize = GetAvatarCrop(customAvatarUrl, 30);
+        var smallSize = GetAvatarCrop(customAvatarUrl, 30, imageUrlGenerator);
 
         sb.Append(smallSize + " 1x, ");
-        sb.AppendLine(GetAvatarCrop(customAvatarUrl, 60) + " 2x, ");
-        sb.AppendLine(GetAvatarCrop(customAvatarUrl, 90) + " 3x");
+        sb.AppendLine(GetAvatarCrop(customAvatarUrl, 60, imageUrlGenerator) + " 2x, ");
+        sb.AppendLine(GetAvatarCrop(customAvatarUrl, 90, imageUrlGenerator) + " 3x");
 
         return new UserAvatarFrontendModel(smallSize, sb.ToString());
 
     }
 
-    internal static string GetAvatarCrop(string url, int dimensions)
-    {
-        return url + $"?width={dimensions}&height={dimensions}&mode=crop";
-    }
+    internal static string GetAvatarCrop(string url, int dimensions, IImageUrlGenerator imageUrlGenerator)
+        => imageUrlGenerator.GetImageUrl(new ImageUrlGenerationOptions(url)
+        {
+            Width = dimensions,
+            Height = dimensions,
+            ImageCropMode = ImageCropMode.Crop,
+        }) ?? url;
 
     internal static string HashEmailForGravatar(string email)
     {
