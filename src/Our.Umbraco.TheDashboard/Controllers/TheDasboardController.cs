@@ -6,6 +6,7 @@ using Our.Umbraco.TheDashboard.Models.Frontend;
 using Our.Umbraco.TheDashboard.Security;
 using Our.Umbraco.TheDashboard.Services;
 using Umbraco.Cms.Core.Cache;
+using Umbraco.Cms.Core.Media;
 using Umbraco.Cms.Infrastructure.Scoping;
 using Umbraco.Cms.Core.Security;
 using Umbraco.Cms.Core.Services;
@@ -13,13 +14,8 @@ using Umbraco.Cms.Web.Common.Attributes;
 using Microsoft.AspNetCore.Authorization;
 using Our.Umbraco.TheDashboard.Controllers.OpenApi;
 using Umbraco.Cms.Api.Common.Attributes;
-using Umbraco.Cms.Api.Common.Filters;
-using Umbraco.Cms.Core;
 using Umbraco.Cms.Web.Common.Authorization;
 using Microsoft.AspNetCore.Http;
-using Umbraco.Cms.Web.Common.Routing;
-using Asp.Versioning;
-
 
 namespace Our.Umbraco.TheDashboard.Controllers;
 
@@ -45,6 +41,7 @@ public class TheDashboardController : ControllerBase
     private readonly IBackOfficeSecurity _security;
     private readonly IEntityService _entityService;
     private readonly IHttpClientFactory _httpClientFactory;
+    private readonly IImageUrlGenerator _imageUrlGenerator;
 
     public TheDashboardController(AppCaches appCaches, 
         IScopeProvider scopeProvider,
@@ -53,7 +50,8 @@ public class TheDashboardController : ControllerBase
         IUserService userService,
         IBackOfficeSecurity security,
         IEntityService entityService,
-        IHttpClientFactory httpClientFactory
+        IHttpClientFactory httpClientFactory,
+        IImageUrlGenerator imageUrlGenerator
     )
     {
         _appCaches = appCaches;
@@ -64,6 +62,7 @@ public class TheDashboardController : ControllerBase
         _security = security;
         _entityService = entityService;
         _httpClientFactory = httpClientFactory;
+        _imageUrlGenerator = imageUrlGenerator;
     }
 
     [HttpGet("get-all-recent-activities")]
@@ -126,7 +125,7 @@ public class TheDashboardController : ControllerBase
     private List<RecentActivityFrontendModel> CreateFrontendModelsFrom(List<LogEntryDto> dtos)
     {
         var maxCount = 10;
-        var mapper = new LogEntryToRecentActivityMapper(_appCaches, _httpClientFactory);
+        var mapper = new LogEntryToRecentActivityMapper(_appCaches, _httpClientFactory, _imageUrlGenerator);
 
         // Should return a list of models containing unique items for the nodeId.
         var list = new List<RecentActivityFrontendModel>();

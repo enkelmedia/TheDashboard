@@ -2,6 +2,7 @@ using Our.Umbraco.TheDashboard.Extensions;
 using Our.Umbraco.TheDashboard.Models.Dtos;
 using Our.Umbraco.TheDashboard.Models.Frontend;
 using Umbraco.Cms.Core.Cache;
+using Umbraco.Cms.Core.Media;
 
 namespace Our.Umbraco.TheDashboard.Mapping;
 
@@ -9,11 +10,16 @@ public class LogEntryToRecentActivityMapper
 {
     private readonly AppCaches _appCaches;
     private readonly IHttpClientFactory _httpClientFactory;
+    private readonly IImageUrlGenerator _imageUrlGenerator;
 
-    public LogEntryToRecentActivityMapper(AppCaches appCaches, IHttpClientFactory httpClientFactory)
+    public LogEntryToRecentActivityMapper(
+        AppCaches appCaches,
+        IHttpClientFactory httpClientFactory,
+        IImageUrlGenerator imageUrlGenerator)
     {
         _appCaches = appCaches;
         _httpClientFactory = httpClientFactory;
+        _imageUrlGenerator = imageUrlGenerator;
     }
 
     public RecentActivityFrontendModel Map(LogEntryDto dto)
@@ -35,7 +41,13 @@ public class LogEntryToRecentActivityMapper
             User = new UserFrontendModel()
             {
                 Name = dto.UserName,
-                Avatar = UserExtensions.GetUserAvatarUrls(dto.UserId, dto.UserEmail, dto.UserAvatar, _appCaches.RuntimeCache,_httpClientFactory)
+                Avatar = UserExtensions.GetUserAvatarUrls(
+                    dto.UserId,
+                    dto.UserEmail,
+                    dto.UserAvatar,
+                    _appCaches.RuntimeCache,
+                    _httpClientFactory,
+                    _imageUrlGenerator)
             }
         };
     }
