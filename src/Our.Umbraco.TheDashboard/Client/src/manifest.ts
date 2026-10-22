@@ -64,6 +64,15 @@ const translationManifests : Array<UmbExtensionManifest> = [
 			"culture": "nl"
 		},
 		js : ()=> import('./localization/nl-nl.js')
+	},
+  {
+		type: "localization",
+		alias: "TheDashboard.Localize.Ja",
+		name: "The Dashboard Localization Japanese",
+		meta: {
+			"culture": "ja"
+		},
+		js: () => import('./localization/ja.js')
 	}
 ]
 
