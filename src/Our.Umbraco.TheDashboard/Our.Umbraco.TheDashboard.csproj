@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
+    <TargetFramework>net11.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
@@ -21,11 +21,11 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <AssemblyVersion>1.0.0</AssemblyVersion>
-    <Version>18.0.1</Version>
-    <PackageVersion>18.0.1</PackageVersion>
-    <InformationalVersion>18.0.1</InformationalVersion>
+    <Version>19.0.0-beta1</Version>
+    <PackageVersion>19.0.0-beta1</PackageVersion>
+    <InformationalVersion>19.0.0-beta1</InformationalVersion>
     <PackageIcon>icon.png</PackageIcon>
-    <UmbracoCmsVersion>18.0.0</UmbracoCmsVersion>
+    <UmbracoCmsVersion>19.0.0-beta1</UmbracoCmsVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Umbraco.Cms.Web.Website" Version="$(UmbracoCmsVersion)" />

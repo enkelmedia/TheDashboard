@@ -8,13 +8,7 @@ export const onInit: UmbEntryPointOnInit = (host,_extensionRegistry) => {
 
   host.consumeContext(UMB_AUTH_CONTEXT, async (authContext) => {
 
-    const config = authContext!.getOpenApiConfiguration();
-
-    client.setConfig({
-      auth: config.token,
-      baseUrl: config.base,
-      credentials: config.credentials,
-    });
+    authContext!.configureClient(client);
 
     registerManifest(_extensionRegistry);
 

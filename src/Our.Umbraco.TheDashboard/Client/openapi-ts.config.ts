@@ -13,8 +13,11 @@ export default defineConfig({
 		},
 		{
 			name: '@hey-api/sdk',
-			asClass: true,
-      classNameBuilder : '{{name}}Resource'
+			operations: {
+				strategy: 'byTags',
+				container: 'class',
+				containerName: '{{name}}Resource'
+			}
 		}
 	]
 });

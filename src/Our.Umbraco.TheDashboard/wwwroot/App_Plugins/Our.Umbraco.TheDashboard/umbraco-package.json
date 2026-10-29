@@ -1,7 +1,7 @@
 {
   "$schema": "../../../../Our.Umbraco.TheDashboard.Testsite/umbraco-package-schema.json",
   "name": "TheDashboard",
-  "version": "18.0.1",
+  "version": "19.0.0-beta1",
   "extensions": [
     {
       "type": "backofficeEntryPoint",
