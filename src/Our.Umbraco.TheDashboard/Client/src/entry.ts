@@ -1,16 +1,15 @@
-import {UmbEntryPointOnInit } from "@umbraco-cms/backoffice/extension-api";
+import type { UmbEntryPointOnInit } from "@umbraco-cms/backoffice/extension-api";
 import { UMB_AUTH_CONTEXT } from "@umbraco-cms/backoffice/auth";
 import { client } from './backend-api/client.gen.js';
 import { registerManifest } from "./manifest.js";
 
-// load up the manifests here
-export const onInit: UmbEntryPointOnInit = (host,_extensionRegistry) => {
+export const onInit: UmbEntryPointOnInit = async (host, extensionRegistry) => {
+  const authContext = await host.getContext(UMB_AUTH_CONTEXT);
+  if (!authContext) {
+    console.warn("UMB_AUTH_CONTEXT is unavailable. The Dashboard API client cannot authenticate.");
+    return;
+  }
 
-  host.consumeContext(UMB_AUTH_CONTEXT, async (authContext) => {
-
-    authContext!.configureClient(client);
-
-    registerManifest(_extensionRegistry);
-
-  });
+  authContext.configureClient(client);
+  registerManifest(extensionRegistry);
 };

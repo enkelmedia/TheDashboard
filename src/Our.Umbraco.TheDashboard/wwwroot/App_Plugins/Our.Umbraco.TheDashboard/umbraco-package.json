@@ -7,7 +7,7 @@
       "type": "backofficeEntryPoint",
       "alias": "TheDashboard.EntryPoint",
       "name": "The Dashboard Entry Point",
-      "js": "/App_Plugins/Our.Umbraco.TheDashboard/dist/the-dashboard-umbraco.js?v1801",
+      "js": "/App_Plugins/Our.Umbraco.TheDashboard/dist/the-dashboard-umbraco.js?v1900beta1",
       "weight": 13000
     }
   ]
